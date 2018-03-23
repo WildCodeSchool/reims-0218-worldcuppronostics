@@ -6,3 +6,4 @@
 -----------------
 
 * Tanguy (**ScrumMaster**)
+* Arnaud (**Developper**)
