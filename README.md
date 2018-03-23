@@ -7,3 +7,4 @@
 
 * Tanguy (**ScrumMaster**)
 * Arnaud (**Developper**)
+* Pierre (**ProductOwner**)
