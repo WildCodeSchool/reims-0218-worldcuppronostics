@@ -20,19 +20,21 @@ const html = `
   </body>
 </html>`
 
-const match = {
-  teamHome: "France",
-  teamOut: "Egypte",
-  scoreTeamHome: "10",
-  scoreTeamOut: "1",
-  hours: "20:45",
-  localisation: "Moscou"
-}
 
-console.log(match)
+
+
 
 app.get('/matchs', (req, res) => {
   console.log("matchs powa")
+  const match = {
+    teamHome: "France",
+    teamOut: "Egypte",
+    scoreTeamHome: "10",
+    scoreTeamOut: "1",
+    hours: "20:45",
+    localisation: "Moscou"
+  }
+  console.log(match)
 })
 
 
