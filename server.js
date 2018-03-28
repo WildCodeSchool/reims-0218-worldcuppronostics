@@ -20,6 +20,14 @@ const html = `
   </body>
 </html>`
 
+const match = {
+  teamHome: "",
+  teamOut: "",
+  scoreTeamHome: "",
+  scoreTeamOut: "",
+  hours: "",
+  localisation: ""
+}
 
 app.get('/matchs', (req, res) => {
   console.log("matchs powa")
