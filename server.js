@@ -10,7 +10,7 @@ const html = `
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <title>NodeJS server</title>
+    <title>Pronostics World Cup</title>
     <link rel="stylesheet" href="bootstrap.min.css" />
   </head>
   <body>
