@@ -1,7 +1,7 @@
 # reims-0218-worldcuppronostics
 
 
-## WILD PRONOSTICS 
+## WILD PRONOSTICS
 
 -----------------
 ### 1.Team organization
@@ -18,4 +18,3 @@ _____________________________________________________________
 
 ### 3.Time realisation
 We had to realize this project during 6 weeks.
-
