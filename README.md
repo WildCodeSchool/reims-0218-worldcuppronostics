@@ -1,7 +1,7 @@
 # reims-0218-worldcuppronostics
 
 
-#World Cup Web site 
+## WILD PRONOSTICS 
 
 -----------------
 ### 1.Team organization
