@@ -21,13 +21,15 @@ const html = `
 </html>`
 
 const match = {
-  teamHome: "",
-  teamOut: "",
-  scoreTeamHome: "",
-  scoreTeamOut: "",
-  hours: "",
-  localisation: ""
+  teamHome: "France",
+  teamOut: "Egypte",
+  scoreTeamHome: "10",
+  scoreTeamOut: "1",
+  hours: "20:45",
+  localisation: "Moscou"
 }
+
+console.log(match)
 
 app.get('/matchs', (req, res) => {
   console.log("matchs powa")
