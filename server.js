@@ -24,7 +24,7 @@ const html = `
 
 
 
-app.get('/matchs', (req, res) => {
+app.get("/matchs", (req, res) => {
   console.log("matchs powa")
   const matchs = [
     {
@@ -47,8 +47,15 @@ app.get('/matchs', (req, res) => {
   res.json (matchs)
 })
 
+app.post("/matchs/new", (req, res) => {
+  console.log("je suis sur le serveur")
+  res.end("bloblo")
+}
 
-app.get('*', (req, res) => {
+
+)
+
+app.get("*", (req, res) => {
   res.send(html)
   res.end()
 })
