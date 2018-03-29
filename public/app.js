@@ -6,7 +6,7 @@ const render = html => {
 
 const controllers = {
 
-  '/': () => console.log("blabal")
+  '/': () => render('<h1>Pronostics</h1>')
 ,
   '*': () => render('<h1>Not Found</h1>')
 }

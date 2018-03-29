@@ -20,10 +20,6 @@ const html = `
   </body>
 </html>`
 
-
-
-
-
 app.get('/matchs', (req, res) => {
   console.log("matchs powa")
   const matchs = [
@@ -38,9 +34,9 @@ app.get('/matchs', (req, res) => {
     {
       teamHome: "France",
       teamOut: "Egypte",
-      scoreTeamHome: "10",
-      scoreTeamOut: "1",
-      hours: "20:45",
+      scoreTeamHome: 10,
+      scoreTeamOut: 1,
+      date: "",
       localisation: "Moscou"
     },
   ]
