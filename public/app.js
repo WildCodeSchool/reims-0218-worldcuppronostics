@@ -1,4 +1,5 @@
-const mainDiv = document.getElementById('main')
+const mainDiv = document.getElementById("main")
+
 
 const render = html => {
   mainDiv.innerHTML = html
@@ -6,9 +7,18 @@ const render = html => {
 
 const controllers = {
 
-  '/': () => console.log("blabal")
+  '/': () =>
+    fetch('/matchs')
+    .then(res => 
+      console.log(res.json())
+  )
+   
 ,
-  '*': () => render('<h1>Not Found</h1>')
+  "/matchs/new": () => render("<h2>TANGUY</h2>")
+
+,
+  "*": () => render("<h1>Not Found</h1>")
+  // toutes les autres routes sauf / on obtient en get NOT FOUND
 }
 
 const route = pathname => {
@@ -18,7 +28,7 @@ const route = pathname => {
 
 (() => {
 
-  ['/', '*'].forEach(
+  ["/", "/matchs/new", "*"].forEach(
     path => page(path, controllers[path])
   )
   page()

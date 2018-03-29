@@ -21,9 +21,6 @@ const html = `
 </html>`
 
 
-
-
-
 app.get("/matchs", (req, res) => {
   console.log("matchs powa")
   const matchs = [
@@ -44,20 +41,19 @@ app.get("/matchs", (req, res) => {
       localisation: "Moscou"
     },
   ]
-  res.json (matchs)
+  res.json(matchs)
 })
 
-app.post("/matchs/new", (req, res) => {
-  console.log("je suis sur le serveur")
-  res.end("bloblo")
-}
-
-
-)
+app.get("/matchs/new",(req, res) => {
+  console.log("vous etes dans matchs/new")
+  res.send(html) 
+  res.end()
+})
 
 app.get("*", (req, res) => {
   res.send(html)
   res.end()
 })
+
 
 app.listen(8000)
