@@ -7,14 +7,15 @@ const render = html => {
 
 const controllers = {
 
-  '/': () =>
+  "/": () =>
     fetch('/matchs')
-    .then(res => 
-      console.log(res.json())
-  )
+    .then(res => res.json())
+    .then(matchs => console.log(matchs))
+      
+  
    
 ,
-  "/matchs/new": () => render("<h2>TANGUY</h2>")
+  "/matchs/new": () => console.log('match/new')
 
 ,
   "*": () => render("<h1>Not Found</h1>")
@@ -22,7 +23,7 @@ const controllers = {
 }
 
 const route = pathname => {
-  console.log("salut")
+
 }
 
 
