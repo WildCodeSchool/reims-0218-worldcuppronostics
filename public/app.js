@@ -8,17 +8,13 @@ const render = html => {
 const makeCard = item => `
   <div class="col-md-4">
     <div class="card mb-4 box-shadow">
-      <img class="card-img-top" src="${item.image}" alt="Thumbnail [100%x225]" />
+      <img class="card-img-top" src="${item.image}" alt="Match" />
       <div class="card-body">
         <p class="card-text" style="height: 80px">${item.teamHome}-${item.teamOut}</p>
         <p class="card-text" style="height: 80px">${item.scoreTeamHome}-${item.scoreTeamOut}</p>
       </div>
     </div>
   </div>`
-
-
-
-
 
 const controllers = {
 
@@ -36,8 +32,7 @@ const controllers = {
         </div>
         <div class="row">${album}</div>
       </div>`)
-    )
-    
+    )   
 ,
   "/matchs/new": () => render(
     `<div class="container">
@@ -71,7 +66,6 @@ const controllers = {
 }
 
 const route = pathname => {
-
 }
 
 

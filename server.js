@@ -1,7 +1,7 @@
-const express = require('express')
+const express = require("express")
 const app = express()
 
-app.use(express.static('public'))
+app.use(express.static("public"))
 
 const html = `
 <!doctype html>
@@ -21,24 +21,23 @@ const html = `
   </body>
 </html>`
 
-
 app.get("/matchs", (req, res) => {
-  console.log("matchs powa")
+  //console.log("matchs powa")
   const matchs = [
     {
       teamHome: "France",
       teamOut: "Egypte",
-      scoreTeamHome: "10",
-      scoreTeamOut: "1",
+      scoreTeamHome: 10,
+      scoreTeamOut: 1,
       hours: "20:45",
       localisation: "Moscou"
     },
     {
       teamHome: "France",
       teamOut: "Egypte",
-      scoreTeamHome: "10",
-      scoreTeamOut: "1",
-      hours: "20:45",
+      scoreTeamHome: 10,
+      scoreTeamOut: 1,
+      hours: "20h40",
       localisation: "Moscou"
     },
   ]
