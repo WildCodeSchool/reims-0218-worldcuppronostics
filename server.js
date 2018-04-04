@@ -10,6 +10,7 @@ let db
 
 //permet de servir les ressources statiques du dossier public
 app.use(express.static("public"))
+app.use(bodyParser.json())
 
 
 //inserer un match
