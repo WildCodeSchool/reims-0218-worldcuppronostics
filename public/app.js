@@ -19,9 +19,9 @@ const makeCard = item => `
 const controllers = {
 
   "/": () =>
-    fetch('/matchs')
+    fetch("/matchs")
     .then(res => res.json())
-    .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), '')) 
+    .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), "")) 
     .then(album => render(
       `<div class="container">
         <div class="jumbotron">
@@ -37,7 +37,6 @@ const controllers = {
   "/matchs/new": () => render(
     `<div class="container">
       <div id="alert-box" class="hidden">
-
       </div>
       <form id="add-pirate">
         <div class="form-group">
