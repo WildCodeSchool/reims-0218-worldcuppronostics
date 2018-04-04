@@ -1,8 +1,11 @@
 //chargement des modules
+const sqlite = require("sqlite")
 const express = require("express")
 const app = express()
 //chargement des fichiers dans public
 const matchsSeed = require("./public/matchs.json")
+// database
+let db
 
 //permet de servir les ressources statiques du dossier public
 app.use(express.static("public"))
