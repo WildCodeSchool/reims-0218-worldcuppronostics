@@ -21,10 +21,10 @@ const controllers = {
 
   "/": () =>
     fetch("/matchs")
-    .then(res => res.json())
-    .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), "")) 
-    .then(album => render(
-      `<div class="container">
+      .then(res => res.json())
+      .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
+      .then(album => render(
+        `<div class="container">
         <div class="jumbotron">
           <h1 class="display-3">Hello, world!</h1>
           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
@@ -33,8 +33,8 @@ const controllers = {
         </div>
         <div class="row">${album}</div>
       </div>`)
-    )   
-,
+      )
+  ,
   "/matchs/new": () => render(
     `<div class="container">
       <div id="alert-box" class="hidden">
@@ -60,7 +60,7 @@ const controllers = {
       </form>
     </div>`
   )
-,
+  ,
   "*": () => render("<h1>Not Found</h1>")
   // toutes les autres routes sauf / on obtient en get NOT FOUND
 }
@@ -69,7 +69,7 @@ const controllers = {
 
 //gère l'éxécution du routing côté client
 const routing = () => {
-  const routes = [
+  const routes = [ //ne pas mettre les routes du côté serveur (fetch)
     "/",
     "/matchs/new",
     "*"
