@@ -44,12 +44,6 @@ app.get("/matchs", (req, res) => {
   res.json(matchs)
 })
 
-// app.get("/matchs/new",(req, res) => {
-//   console.log("vous etes dans matchs/new")
-//   res.send(html) 
-//   res.end()
-// })
-
 app.get("*", (req, res) => {
   res.send(html)
   res.end()
