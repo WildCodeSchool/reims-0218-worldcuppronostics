@@ -16,7 +16,7 @@ const makeCard = item => `
     </div>
   </div>`
 
-//routing côté client
+//routing côté
 const controllers = {
 
   "/": () =>
@@ -65,16 +65,21 @@ const controllers = {
   // toutes les autres routes sauf / on obtient en get NOT FOUND
 }
 
-const route = pathname => {
-}
 
 
-(() => {
-
-  ["/", "/matchs/new", "*"].forEach(
+//gère l'éxécution du routing côté client
+const routing = () => {
+  const routes = [
+    "/",
+    "/matchs/new",
+    "*"
+  ]
+  routes.forEach(
     path => page(path, controllers[path])
   )
   page()
-  // route()
+}
 
-})()
+//appel cette fonction pour gérer les routes
+routing()
+

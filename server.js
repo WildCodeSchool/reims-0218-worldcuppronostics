@@ -52,6 +52,7 @@ app.get("/matchs", (req, res) => {
 
 //route par défaut qui renvoie le code html/css/js complet de l'application
 app.get("*", (req, res) => {
+  // to test log du path
   res.send(html)
   res.end()
 })
