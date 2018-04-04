@@ -1,8 +1,9 @@
 //chargement des modules
-const sqlite = require("sqlite3")
+const sqlite = require("sqlite")
 const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
+const Promise = require("bluebird")
 //chargement des fichiers dans public
 const matchsSeed = require("./public/matchs.json")
 // database
@@ -14,7 +15,7 @@ app.use(bodyParser.json())
 
 
 //inserer un match
-const insertMatch = m => {
+const insertMatchs = m => {
   const { teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation } = m
   return db.get("INSERT INTO matchs(teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation)
   .then(() => db.get("SELECT last_insert_rowid() as id"))
@@ -24,13 +25,13 @@ const insertMatch = m => {
 //code qui remplit la db exemple
 const dbPromise = Promise.resolve()
 .then(() => sqlite.open("./database.sqlite", { Promise }))
-.then( db => {
+.then( _db => {
   db = _db
   return db.migrate({ force: "last" })
 })  
   .then(() => Promise.map(matchsSeed, m => insertMatchs(m)))
   .then(() => {
-    const testMatch = insertMatch({
+    const testMatch = insertMatchs({
       teamhome: "Espagne",
       teamout: "Belgique",
       scoreteamhome: 3,
