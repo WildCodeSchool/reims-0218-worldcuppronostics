@@ -4,7 +4,7 @@ const mainDiv = document.getElementById("main")
 const render = html => {
   mainDiv.innerHTML = html
 }
-
+//renvoie le html d'une card bootstrap pour un match
 const makeCard = item => `
   <div class="col-md-4">
     <div class="card mb-4 box-shadow">
@@ -16,6 +16,7 @@ const makeCard = item => `
     </div>
   </div>`
 
+//routing côté client
 const controllers = {
 
   "/": () =>

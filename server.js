@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 
+//permet de servir les ressources statiques du dossier public
 app.use(express.static("public"))
 
 const html = `
@@ -21,6 +22,11 @@ const html = `
   </body>
 </html>`
 
+//routing côté serveur
+
+//routes de l'api REST qui répondent par du 
+
+//READ
 app.get("/matchs", (req, res) => {
   //console.log("matchs powa")
   const matchs = [
@@ -44,6 +50,7 @@ app.get("/matchs", (req, res) => {
   res.json(matchs)
 })
 
+//route par défaut qui renvoie le code html/css/js complet de l'application
 app.get("*", (req, res) => {
   res.send(html)
   res.end()
