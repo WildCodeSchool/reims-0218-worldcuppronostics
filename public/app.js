@@ -29,7 +29,7 @@ const controllers = {
           <h1 class="display-3">Hello, world!</h1>
           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
           <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-          <p><a class="btn btn-success btn-lg" href="/users/new" role="button">Add a pirate »</a></p>
+          <p><a class="btn btn-success btn-lg" href="/matchs/new" role="button">Add a pirate »</a></p>
         </div>
         <div class="row">${album}</div>
       </div>`)
