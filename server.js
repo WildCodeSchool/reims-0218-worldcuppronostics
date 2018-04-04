@@ -34,20 +34,20 @@ const dbPromise = Promise.resolve()
     // example data
     const matchs = [
       {
-        teamHome: "France",
-        teamOut: "Egypte",
-        scoreTeamHome: 10,
-        scoreTeamOut: 1,
+        teamhome: "France",
+        teamout: "Egypte",
+        scoreteamhome: 10,
+        scoreteamout: 1,
         hours: "20:45",
         localisation: "Moscou"
       },
       {
-        teamHome: "France",
-        teamOut: "Egypte",
-        scoreTeamHome: 10,
-        scoreTeamOut: 1,
-        hours: "20h40",
-        localisation: "Moscou"
+        teamhome: "Espagne",
+        teamout: "Belgique",
+        scoreteamhome: 3,
+        scoreteamout: 2,
+        hours: "14h40",
+        localisation: "Moscow"
       },
       {
         teamhome: "Espagne",
@@ -88,8 +88,11 @@ const html = `
 
 //READ
 app.get("/matchs", (req, res) => {
-  db.all("SELECT * from isers")
-  .then(records => res.json(records))
+  db.all("SELECT * from matchs")
+  .then(records => {
+    console.log(records)
+    return res.json(records)
+  })
 })
 
 
