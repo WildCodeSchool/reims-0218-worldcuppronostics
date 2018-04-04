@@ -1,8 +1,19 @@
+//chargement des modules
 const express = require("express")
 const app = express()
+//chargement des fichiers dans public
+const matchsSeed = require("./public/matchs.json")
 
 //permet de servir les ressources statiques du dossier public
 app.use(express.static("public"))
+
+//inserer un match
+const insertMatch = m => {
+  const { teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation } = m
+  return db.get("INSERT INTO matchs(teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation)
+  .then(() => db.get("SELECT last_insert_rowid() as id"))
+  .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
+}
 
 const html = `
 <!doctype html>
