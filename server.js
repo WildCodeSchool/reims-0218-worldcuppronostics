@@ -16,8 +16,8 @@ app.use(bodyParser.json())
 
 //inserer un match
 const insertMatchs = m => {
-  const { teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation } = m
-  return db.get("INSERT INTO matchs(teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation)
+  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation } = m
+  return db.get("INSERT INTO matchs(teamHome, teamOut,scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut,scoreTeamHome, scoreTeamOut, hours, localisation)
   .then(() => db.get("SELECT last_insert_rowid() as id"))
   .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
@@ -34,26 +34,26 @@ const dbPromise = Promise.resolve()
     // example data
     const matchs = [
       {
-        teamhome: "France",
-        teamout: "Egypte",
-        scoreteamhome: 10,
-        scoreteamout: 1,
+        teamHome: "France",
+        teamOut: "Egypte",
+        scoreTeamHome: 10,
+        scoreTeamOut: 1,
         hours: "20:45",
         localisation: "Moscou"
       },
       {
-        teamhome: "Espagne",
-        teamout: "Belgique",
-        scoreteamhome: 3,
-        scoreteamout: 2,
+        teamHome: "Espagne",
+        teamOut: "Belgique",
+        scoreTeamHome: 3,
+        scoreTeamOut: 2,
         hours: "14h40",
         localisation: "Moscow"
       },
       {
-        teamhome: "Espagne",
-        teamout: "Belgique",
-        scoreteamhome: 3,
-        scoreteamout: 2,
+        teamHome: "Espagne",
+        teamOut: "Belgique",
+        scoreTeamHome: 3,
+        scoreTeamOut: 2,
         hours: "14h40",
         localisation: "Moscow"
 
@@ -86,6 +86,12 @@ const html = `
 
 //routes de l'api REST qui répondent par du 
 
+//CREATE
+app.post("/matchs", (req, res) => {
+  return insertMatchs(req.body)
+  .then(record => res.json(record))
+})
+
 //READ
 app.get("/matchs", (req, res) => {
   db.all("SELECT * from matchs")
@@ -94,7 +100,6 @@ app.get("/matchs", (req, res) => {
     return res.json(records)
   })
 })
-
 
 //route par défaut qui renvoie le code html/css/js complet de l'application
 app.get("*", (req, res) => {

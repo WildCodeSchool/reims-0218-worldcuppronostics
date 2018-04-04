@@ -1,10 +1,10 @@
 -- Up
 CREATE TABLE matchs (
   id INTEGER PRIMARY KEY,
-  teamhome VARCHAR(50),
-  teamout VARCHAR(50),
-  scoreteamhome INT,
-  scoreteamout INT,
+  teamHome VARCHAR(50),
+  teamOut VARCHAR(50),
+  scoreTeamHome INT,
+  scoreTeamOut INT,
   hours DATE,
   localisation VARCHAR(50)
 );
