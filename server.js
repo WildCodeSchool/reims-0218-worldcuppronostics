@@ -31,15 +31,38 @@ const dbPromise = Promise.resolve()
 })  
   .then(() => Promise.map(matchsSeed, m => insertMatchs(m)))
   .then(() => {
-    const testMatch = insertMatchs({
-      teamhome: "Espagne",
-      teamout: "Belgique",
-      scoreteamhome: 3,
-      scoreteamout: 2,
-      hours: "14h40",
-      localisation: "Moscow"
-    })
-    console.log(testMatch.then(res => console.log(res)))
+    // example data
+    const matchs = [
+      {
+        teamHome: "France",
+        teamOut: "Egypte",
+        scoreTeamHome: 10,
+        scoreTeamOut: 1,
+        hours: "20:45",
+        localisation: "Moscou"
+      },
+      {
+        teamHome: "France",
+        teamOut: "Egypte",
+        scoreTeamHome: 10,
+        scoreTeamOut: 1,
+        hours: "20h40",
+        localisation: "Moscou"
+      },
+      {
+        teamhome: "Espagne",
+        teamout: "Belgique",
+        scoreteamhome: 3,
+        scoreteamout: 2,
+        hours: "14h40",
+        localisation: "Moscow"
+
+      }
+    ]
+
+    for(match of matchs) {
+      insertMatchs(match)
+    }
   })
 
 const html = `
@@ -65,27 +88,10 @@ const html = `
 
 //READ
 app.get("/matchs", (req, res) => {
-  //console.log("matchs powa")
-  const matchs = [
-    {
-      teamHome: "France",
-      teamOut: "Egypte",
-      scoreTeamHome: 10,
-      scoreTeamOut: 1,
-      hours: "20:45",
-      localisation: "Moscou"
-    },
-    {
-      teamHome: "France",
-      teamOut: "Egypte",
-      scoreTeamHome: 10,
-      scoreTeamOut: 1,
-      hours: "20h40",
-      localisation: "Moscou"
-    },
-  ]
-  res.json(matchs)
+  db.all("SELECT * from isers")
+  .then(records => res.json(records))
 })
+
 
 //route par défaut qui renvoie le code html/css/js complet de l'application
 app.get("*", (req, res) => {
