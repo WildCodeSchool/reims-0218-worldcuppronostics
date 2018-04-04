@@ -1,7 +1,8 @@
 //chargement des modules
-const sqlite = require("sqlite")
+const sqlite = require("sqlite3")
 const express = require("express")
 const app = express()
+const bodyParser = require("body-parser")
 //chargement des fichiers dans public
 const matchsSeed = require("./public/matchs.json")
 // database
@@ -10,6 +11,7 @@ let db
 //permet de servir les ressources statiques du dossier public
 app.use(express.static("public"))
 
+
 //inserer un match
 const insertMatch = m => {
   const { teamhome, teamout, scoreteamhome, scoreteamout, hours, localisation } = m
@@ -17,6 +19,27 @@ const insertMatch = m => {
   .then(() => db.get("SELECT last_insert_rowid() as id"))
   .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
+
+//code qui remplit la db exemple
+const dbPromise = Promise.resolve()
+.then(() => sqlite.open("./database.sqlite", { Promise }))
+.then( db => {
+  db = _db
+  return db.migrate({ force: "last" })
+})  
+  .then(() => Promise.map(matchsSeed, m => insertMatchs(m)))
+  .then(() => {
+    const testMatch = insertMatch({
+      teamhome: "Espagne",
+      teamout: "Belgique",
+      scoreteamhome: 3,
+      scoreteamout: 2,
+      hours: "14h40",
+      localisation: "Moscow"
+    })
+    console.log(testMatch)
+  })
+
 
 const html = `
 <!doctype html>
