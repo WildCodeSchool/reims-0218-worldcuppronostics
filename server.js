@@ -39,7 +39,7 @@ const dbPromise = Promise.resolve()
       hours: "14h40",
       localisation: "Moscow"
     })
-    console.log(testMatch)
+    console.log(testMatch.then(res => console.log(res)))
   })
 
 const html = `
