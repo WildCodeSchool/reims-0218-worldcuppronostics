@@ -16,6 +16,16 @@ const makeCard = item => `
     </div>
   </div>`
 
+  //récuperer tous les champs d'un formulaire pour en faire un object js
+  const serializeForm = form => {
+    const data = {}
+    const elements = form.getElementByClassName("form-control")
+    for(el of elements) {
+      data[el.name] = el.value
+    }
+    return data
+  }
+
 //routing côté
 const controllers = {
 
