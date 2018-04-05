@@ -82,6 +82,12 @@ const html = `
 //routing côté serveur
 //routes de l'api REST qui répondent par du 
 
+//READ
+app.get("/inscription", (req, res) => {
+  console.log("C'est la route inscription")
+
+})
+
 //CREATE
 app.post("/matchs", (req, res) => {
   return insertMatchs(req.body)
