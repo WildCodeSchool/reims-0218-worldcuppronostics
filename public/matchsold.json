@@ -1,0 +1,18 @@
+[
+    {
+        "teamHome": "France",
+        "teamOut": "Egypte",
+        "scoreTeamHome": 10,
+        "scoreteamOut": 1,
+        "hours": "22h22",
+        "localisation": "Moscou"
+    },
+    {
+        "teamHome": "France",
+        "teamOut": "Angleterre",
+        "scoreTeamHome": 10,
+        "scoreTeamOut": 1,
+        "hours": "20h56",
+        "localisation": "Dunkerque"
+    }
+]
