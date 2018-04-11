@@ -68,32 +68,6 @@ const dbPromise = Promise.resolve()
       insertMatchs(match)
     }
   })
-  .then(() => {
-    //example data
-    const wilders = [
-      {
-        nom: "Marlot",
-        prenom: "Tanguy",
-        pseudo: "Lyonnaiiis",
-        mail: "arnaud.dchamps@gmail.com",
-        motdepasse: "jecode4SDR",
-        city: "Moussy",
-        equipepreferee: "France"
-      },
-      {
-        nom: "Dumay",
-        prenom: "Pierre",
-        pseudo: "LeParisien",
-        mail: "arnaud.dchamps@gmail.com",
-        motdepasse: "jecode4SDR",
-        city: "Moussy",
-        equipepreferee: "France"
-      }
-    ]
-    for (wilder of wilders) {
-      insertWilders(wilder)
-    }
-  })
 
 const html = `
   <!doctype html>
