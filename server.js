@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 const insertMatchs = m => {
   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation } = m
   return db.get("INSERT INTO matchs(teamHome, teamOut,scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
-    .then(() => db.get("SELECT last_insert_rowid() as id"))
+    .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
 
@@ -92,7 +92,6 @@ const dbPromise = Promise.resolve()
     ]
     for (wilder of wilders) {
       insertWilders(wilder)
-      .then(res => console.log(res))
     }
   })
 
@@ -116,8 +115,6 @@ const html = `
 //routing côté serveur
 //routes de l'api REST qui répondent par du 
 
-//READ
-
 //LA ROUTE /matchs
 //CREATE
 app.post("/matchs", (req, res) => {
@@ -133,6 +130,17 @@ app.get("/matchs", (req, res) => {
       return res.json(records)
     })
 })
+
+//LA ROUTE /widers
+//READ
+app.get("/wilders", (req, res) => {
+  db.all("SELECT * from wilders")
+    .then(records => {
+      console.log(records)
+      return res.json(records)
+    })
+})
+
 
 //route par défaut qui renvoie le code html/css/js complet de l'application
 app.get("*", (req, res) => {
