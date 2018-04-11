@@ -30,8 +30,6 @@ const serializeForm = form => {
 const controllers = {
   "/": () =>
 
-    
-    
     //la route matchs
     fetch("/matchs")
       .then(res => res.json())
@@ -110,36 +108,45 @@ const controllers = {
       `<div class="container">
       <div id="alert-box" class="hidden">
       </div>
-      <form id="add-match">
+      <form id="add-user">
         <div class="form-group">
-          <label for="inputTeamHome">Equipe Domicile</label>
-          <input name="teamHome" type="text" class="form-control" id="inputTeamHome" placeholder="Entrer teamhome">
+          <label for="inputName">Nom</label>
+          <input name="name" type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
         </div>
         <div class="form-group">
-          <label for="inputTeamOut">Equipe Extérieur</label>
-          <input name="teamOut" type="text" class="form-control" id="inputTeamOut" placeholder="Entrer teamout">
+          <label for="inputPrenom">Prénom</label>
+          <input name="prenom" type="text" class="form-control" id="inputPrenom" placeholder="Entrez votre prénom">
         </div>
         <div class="form-group">
-          <label for="inputScoreTeamHome">Score Domicile</label>
-          <input name="scoreTeamHome" type="text" class="form-control" id="inputScoreTeamHome" placeholder="Entrer the score domicile">
+          <label for="inputPseudo">Pseudo</label>
+          <input name="pseudo" type="text" class="form-control" id="inputPseudo" placeholder="Entrez votre pseudo">
         </div>
         <div class="form-group">
-          <label for="inputScoreTeamOut">Score extérieur</label>
-          <input name="scoreTeamOut" type="text" class="form-control" id="inputScoreTeamOut" placeholder="Entrer le score extérieur">
+          <label for="inputMail">E-mail</label>
+          <input name="mail" type="e-mail" class="form-control" id="inputMail" placeholder="Entrez votre e-mail">
         </div>
         <div class="form-group">
-          <label for="inputHours">Heure du match</label>
-          <input name="hours" type="text" class="form-control" id="inputHours" placeholder="Entrer l'heure">
+          <label for="inputMotDePasse">Mot de passe</label>
+          <input name="motdepasse" type="text" class="form-control" id="inputMotDePasse" placeholder="Choississez votre mot de passe">
         </div>
         <div class="form-group">
-          <label for="inputLocalisation">Lieu du match</label>
-          <input name="localisation" type="text" class="form-control" id="inputLocalisation" placeholder="Entrer le lieu du match">
+          <label for="inputConfirmationMotDePasse">Confirmation de mot de passe</label>
+          <input name="confirmationmotdepasse" type="text" class="form-control" id="inputConfirmationMotDePasse" placeholder="Veuillez confirmer votre mot de passe">
+        </div>
+        <div class="form-group">
+          <label for="inputCity">Votre ville</label>
+          <input name="city" type="text" class="form-control" id="inputCity" placeholder="Entrez votre ville actuelle">
+        </div>
+        <div class="form-group">
+          <label for="inputEquipePreferee">Votre équipe supportée pour le Mondial</label>
+          <input name="equipepreferee" type="text" class="form-control" id="inputEquioePreferee" placeholder="Entrez votre équipe supportée">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>`
     )}
   ,
+  
 
   "*": () => render("<h1>Not Found</h1>")
   // toutes les autres routes sauf / on obtient en get NOT FOUND

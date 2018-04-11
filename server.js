@@ -21,6 +21,13 @@ const insertMatchs = m => {
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
 
+//inserer un wilder
+const insertWilders = w => {
+const { nom, prenom, pseudo, mail, motdepasse, city, equipepreferee } = w
+  return db.get("INSERT INTO wilders(nom, prenom, pseudo, mail, motdepasse, city, equipepreferee) VALUES(?, ?, ?, ?, ?, ?, ?)", nom, prenom, pseudo, mail, motdepasse, city, equipepreferee)
+    .then(() => db.get("SELECT last_insert_rowid() as id"))
+    .then(({ id }) => db.get("SELECT * from wilders WHERE id = ?", id))
+}
 //code qui remplit la db exemple
 const dbPromise = Promise.resolve()
   .then(() => sqlite.open("./database.sqlite", { Promise }))
@@ -61,6 +68,33 @@ const dbPromise = Promise.resolve()
       insertMatchs(match)
     }
   })
+  .then(() => {
+    //example data
+    const wilders = [
+      {
+        nom: "Marlot",
+        prenom: "Tanguy",
+        pseudo: "Lyonnaiiis",
+        mail: "arnaud.dchamps@gmail.com",
+        motdepasse: "jecode4SDR",
+        city: "Moussy",
+        equipepreferee: "France"
+      },
+      {
+        nom: "Dumay",
+        prenom: "Pierre",
+        pseudo: "LeParisien",
+        mail: "arnaud.dchamps@gmail.com",
+        motdepasse: "jecode4SDR",
+        city: "Moussy",
+        equipepreferee: "France"
+      }
+    ]
+    for (wilder of wilders) {
+      insertWilders(wilder)
+      .then(res => console.log(res))
+    }
+  })
 
 const html = `
   <!doctype html>
@@ -86,7 +120,7 @@ const html = `
 
 //LA ROUTE /matchs
 //CREATE
-app.get("/matchs", (req, res) => {
+app.post("/matchs", (req, res) => {
   return insertMatchs(req.body)
     .then(record => res.json(record))
 })
