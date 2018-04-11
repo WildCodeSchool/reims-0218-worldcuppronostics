@@ -80,7 +80,7 @@ const html = `
   </html>`
 
 //routing côté serveur
-//routes de l'api REST qui répondent par du 
+//routes de l'api REST qui répondent par du
 
 //CREATE
 app.post("/matchs", (req, res) => {
@@ -103,5 +103,4 @@ app.get("*", (req, res) => {
   res.send(html)
   res.end()
 })
-
 app.listen(8000)

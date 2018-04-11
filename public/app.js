@@ -101,6 +101,22 @@ const controllers = {
     })
   },
 
+  "/list-match": () => {
+    fetch("https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json")
+    .then(resp => {
+      return resp.json ()
+    })
+    .then (listmatchs => {
+      console.log(listmatchs)
+      //console.log(listmatchs.groups.a.matches[0])
+        for (let i = 0; i < listmatchs.groups.a.matches.length; i ++) {
+        console.log(listmatchs.groups.a.matches[i])
+    } // BOUCLE FOR
+  }) // THEN
+} // ROUTE /LIST-MATCH
+  ,
+
+
   "*": () => render("<h1>Not Found</h1>")
   // toutes les autres routes sauf / on obtient en get NOT FOUND
 }
@@ -110,6 +126,7 @@ const routing = () => {
   const routes = [ //ne pas mettre les routes du côté serveur (fetch)
     "/",
     "/matchs/new",
+    "/list-match",
     "*"
   ]
   routes.forEach(
@@ -117,7 +134,5 @@ const routing = () => {
   )
   page()
 }
-
 //appel cette fonction pour gérer les routes
 routing()
-
