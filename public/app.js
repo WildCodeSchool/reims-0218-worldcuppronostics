@@ -102,16 +102,17 @@ const controllers = {
         })
     })
   },
-  //la route inscription
-  "/inscriptions/new": () => {
+  //la route inscription wilders
+  "/wilders/new": () => {
+    //construit le formulaire
     render(
       `<div class="container">
       <div id="alert-box" class="hidden">
       </div>
-      <form id="add-user">
+      <form id="add-wilder">
         <div class="form-group">
           <label for="inputName">Nom</label>
-          <input name="name" type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
+          <input name="nom" type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
         </div>
         <div class="form-group">
           <label for="inputPrenom">Prénom</label>
@@ -144,9 +145,30 @@ const controllers = {
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>`
-    )}
-  ,
-  
+    )
+    //transformer l'objet js en json sur ma route wilder/new
+    const form = document.getElementById("add-wilder")
+    form.addEventListener("submit", e => {
+      e.preventDefault() //à tester sans et avec
+      const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+      fetch("/wilders", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(wilder => {
+          const alertBox = document.getElementById("alert-box")
+          alertBox.className = "alert alert-success"
+          alertBox.innerHTML = `Successfully created wilder ${wilder.name} ${wilder.prenom}`
+        })
+    })
+  },
+
+
 
   "*": () => render("<h1>Not Found</h1>")
   // toutes les autres routes sauf / on obtient en get NOT FOUND
@@ -157,7 +179,7 @@ const routing = () => {
   const routes = [ //ne pas mettre les routes du côté serveur (fetch)
     "/",
     "/matchs/new",
-    "/inscriptions/new",
+    "/wilders/new",
     "*"
   ]
   routes.forEach(

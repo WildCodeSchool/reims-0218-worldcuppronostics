@@ -132,6 +132,13 @@ app.get("/matchs", (req, res) => {
 })
 
 //LA ROUTE /widers
+//CREATE
+app.post("/wilders", (req, res) => {
+  return insertWilders(req.body)
+    .then(record => res.json(record))
+})
+
+
 //READ
 app.get("/wilders", (req, res) => {
   db.all("SELECT * from wilders")
