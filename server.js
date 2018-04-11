@@ -131,13 +131,13 @@ app.get("/matchs", (req, res) => {
     })
 })
 
-//LA ROUTE /widers
+
+//LA ROUTE /wilders
 //CREATE
 app.post("/wilders", (req, res) => {
   return insertWilders(req.body)
     .then(record => res.json(record))
 })
-
 
 //READ
 app.get("/wilders", (req, res) => {
@@ -147,7 +147,6 @@ app.get("/wilders", (req, res) => {
       return res.json(records)
     })
 })
-
 
 //route par défaut qui renvoie le code html/css/js complet de l'application
 app.get("*", (req, res) => {

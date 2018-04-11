@@ -41,7 +41,9 @@ const controllers = {
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
         <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
         <p><a class="btn btn-success btn-lg" href="/matchs/new" role="button">Add a match »</a></p>
-      </div>
+        <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
+        <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
+        </div>
       <div class="row">${album}</div>
     </div>`)
       )
@@ -102,11 +104,11 @@ const controllers = {
         })
     })
   },
-  //la route inscription wilders
-  "/wilders/new": () => {
-    //construit le formulaire
-    render(
-      `<div class="container">
+
+"/wilders/new": () => {
+  //construit le formulaire
+  render(
+    `<div class="container">
       <div id="alert-box" class="hidden">
       </div>
       <form id="add-wilder">
@@ -145,28 +147,28 @@ const controllers = {
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>`
-    )
-    //transformer l'objet js en json sur ma route wilder/new
-    const form = document.getElementById("add-wilder")
-    form.addEventListener("submit", e => {
-      e.preventDefault() //à tester sans et avec
-      const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
-      fetch("/wilders", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json, text/plain, */*",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(wilder => {
-          const alertBox = document.getElementById("alert-box")
-          alertBox.className = "alert alert-success"
-          alertBox.innerHTML = `Successfully created wilder ${wilder.name} ${wilder.prenom}`
-        })
+  )
+  //transformer l'objet js en json sur ma route wilder/new
+  const form = document.getElementById("add-wilder")
+  form.addEventListener("submit", e => {
+    e.preventDefault() //à tester sans et avec
+    const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+    fetch("/wilders", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
     })
-  },
+      .then(res => res.json())
+      .then(wilder => {
+        const alertBox = document.getElementById("alert-box")
+        alertBox.className = "alert alert-success"
+        alertBox.innerHTML = `Successfully created wilder ${wilder.name} ${wilder.prenom}`
+      })
+  })
+},
 
 
 
