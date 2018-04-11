@@ -29,21 +29,22 @@ const dbPromise = Promise.resolve()
     return db.migrate({ force: "last" })
   })
   .then(() => {
-
-    //console.log(matchsSeed)
+    //console.log(matchsSeed) // l'objet global du json
     //console.log(matchsSeed.groups)
-    let matchs = []
-    for (let group in matchsSeed.groups) {
+    let matchs = [] // on définit un tableau vide
+    for (let group in matchsSeed.groups) { // une boucle qui cherche les groupes
       //console.log(matchsSeed.groups[group].matches)
       matchs = [...matchs, ...matchsSeed.groups[group].matches]
     }
     //console.log("res: ", matchs)
     const teams = matchsSeed.teams
+    //console.log(teams) // toutes les teams avec id, name et iso2
     const stadiums = matchsSeed.stadiums
+    //console.log(stadiums) // tous les stades avec les city, les names etc
     const matchsToInsert = matchs.map(match => {
       //console.log(match)
       //console.log(teams.find(team => team.id === match.teamHome))
-      const teamHome = teams.find(team => team.id === match.teamHome)
+      const teamHome = teams.find(team => team.id === match.teamHome) // renvoie le premier élement de la condition, donc
       const teamOut = teams.find(team => team.id === match.teamOut)
 
       //console.log(teamHome, teamOut)
@@ -54,44 +55,10 @@ const dbPromise = Promise.resolve()
         hours: match.date,
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city
       }
-
     })
     console.log(matchsToInsert)
       Promise.map(matchsToInsert, m => insertMatchs(m))
   })
-
-  // .then(() => {
-  //   // example data
-  //   const matchs = [
-  //     {
-  //       teamHome: "France",
-  //       teamOut: "Egypte",
-  //       scoreTeamHome: 10,
-  //       scoreTeamOut: 1,
-  //       hours: "20:45",
-  //       localisation: "Moscou"
-  //     },
-  //     {
-  //       teamHome: "Espagne",
-  //       teamOut: "Belgique",
-  //       scoreTeamHome: 3,
-  //       scoreTeamOut: 2,
-  //       hours: "15h40",
-  //       localisation: "Moscow"
-  //     },
-  //     {
-  //       teamHome: "Espagne",
-  //       teamOut: "Belgique",
-  //       scoreTeamHome: 3,
-  //       scoreTeamOut: 2,
-  //       hours: "14h40",
-  //       localisation: "St P."
-  //     }
-  //   ]
-  //   for (match of matchs) {
-  //     insertMatchs(match)
-  //   }
-  // })
 
 const html = `
   <!doctype html>
