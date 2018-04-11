@@ -29,23 +29,23 @@ const serializeForm = form => {
 //routing côté
 const controllers = {
   "/": () =>
-   
 
-
-
+    
+    
+    //la route matchs
     fetch("/matchs")
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
       .then(album => render(
         `<div class="container">
-        <div class="jumbotron">
-          <h1 class="display-3">Hello, world!</h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-          <p><a class="btn btn-success btn-lg" href="/matchs/new" role="button">Add a match »</a></p>
-        </div>
-        <div class="row">${album}</div>
-      </div>`)
+      <div class="jumbotron">
+        <h1 class="display-3">Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
+        <p><a class="btn btn-success btn-lg" href="/matchs/new" role="button">Add a match »</a></p>
+      </div>
+      <div class="row">${album}</div>
+    </div>`)
       )
   ,
   "/matchs/new": () => {
@@ -104,6 +104,42 @@ const controllers = {
         })
     })
   },
+  //la route inscription
+  "/inscriptions/new": () => {
+    render(
+      `<div class="container">
+      <div id="alert-box" class="hidden">
+      </div>
+      <form id="add-match">
+        <div class="form-group">
+          <label for="inputTeamHome">Equipe Domicile</label>
+          <input name="teamHome" type="text" class="form-control" id="inputTeamHome" placeholder="Entrer teamhome">
+        </div>
+        <div class="form-group">
+          <label for="inputTeamOut">Equipe Extérieur</label>
+          <input name="teamOut" type="text" class="form-control" id="inputTeamOut" placeholder="Entrer teamout">
+        </div>
+        <div class="form-group">
+          <label for="inputScoreTeamHome">Score Domicile</label>
+          <input name="scoreTeamHome" type="text" class="form-control" id="inputScoreTeamHome" placeholder="Entrer the score domicile">
+        </div>
+        <div class="form-group">
+          <label for="inputScoreTeamOut">Score extérieur</label>
+          <input name="scoreTeamOut" type="text" class="form-control" id="inputScoreTeamOut" placeholder="Entrer le score extérieur">
+        </div>
+        <div class="form-group">
+          <label for="inputHours">Heure du match</label>
+          <input name="hours" type="text" class="form-control" id="inputHours" placeholder="Entrer l'heure">
+        </div>
+        <div class="form-group">
+          <label for="inputLocalisation">Lieu du match</label>
+          <input name="localisation" type="text" class="form-control" id="inputLocalisation" placeholder="Entrer le lieu du match">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>`
+    )}
+  ,
 
   "*": () => render("<h1>Not Found</h1>")
   // toutes les autres routes sauf / on obtient en get NOT FOUND
@@ -114,6 +150,7 @@ const routing = () => {
   const routes = [ //ne pas mettre les routes du côté serveur (fetch)
     "/",
     "/matchs/new",
+    "/inscriptions/new",
     "*"
   ]
   routes.forEach(

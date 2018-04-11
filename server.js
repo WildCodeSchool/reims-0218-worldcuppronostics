@@ -83,13 +83,10 @@ const html = `
 //routes de l'api REST qui répondent par du 
 
 //READ
-app.get("/inscription", (req, res) => {
-  console.log("C'est la route inscription")
 
-})
-
+//LA ROUTE /matchs
 //CREATE
-app.post("/matchs", (req, res) => {
+app.get("/matchs", (req, res) => {
   return insertMatchs(req.body)
     .then(record => res.json(record))
 })
