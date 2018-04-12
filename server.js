@@ -68,32 +68,6 @@ const dbPromise = Promise.resolve()
       insertMatchs(match)
     }
   })
-  .then(() => {
-    //example data
-    const wilders = [
-      {
-        nom: "Marlot",
-        prenom: "Tanguy",
-        pseudo: "Lyonnaiiis",
-        mail: "arnaud.dchamps@gmail.com",
-        motdepasse: "jecode4SDR",
-        city: "Moussy",
-        equipepreferee: "France"
-      },
-      {
-        nom: "Dumay",
-        prenom: "Pierre",
-        pseudo: "LeParisien",
-        mail: "arnaud.dchamps@gmail.com",
-        motdepasse: "jecode4SDR",
-        city: "Moussy",
-        equipepreferee: "France"
-      }
-    ]
-    for (wilder of wilders) {
-      insertWilders(wilder)
-    }
-  })
 
 const html = `
   <!doctype html>
@@ -101,7 +75,7 @@ const html = `
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Pronostics World Cup</title>
+      <title>Pronostics Wooorld Cup</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
