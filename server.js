@@ -1,3 +1,4 @@
+
 //chargement des modules
 const sqlite = require("sqlite")
 const express = require("express")
@@ -35,39 +36,70 @@ const dbPromise = Promise.resolve()
     db = _db
     return db.migrate({ force: "last" })
   })
-  .then(() => Promise.map(matchsSeed, m => insertMatchs(m)))
   .then(() => {
-    // example data
-    const matchs = [
-      {
-        teamHome: "France",
-        teamOut: "Egypte",
-        scoreTeamHome: 10,
-        scoreTeamOut: 1,
-        hours: "20:45",
-        localisation: "Moscou"
-      },
-      {
-        teamHome: "Espagne",
-        teamOut: "Belgique",
-        scoreTeamHome: 3,
-        scoreTeamOut: 2,
-        hours: "15h40",
-        localisation: "Moscow"
-      },
-      {
-        teamHome: "Espagne",
-        teamOut: "Belgique",
-        scoreTeamHome: 3,
-        scoreTeamOut: 2,
-        hours: "14h40",
-        localisation: "St P."
-      }
-    ]
-    for (match of matchs) {
-      insertMatchs(match)
+
+    //console.log(matchsSeed)
+    //console.log(matchsSeed.groups)
+    let matchs = []
+    for (let group in matchsSeed.groups) {
+      //console.log(matchsSeed.groups[group].matches)
+      matchs = [...matchs, ...matchsSeed.groups[group].matches]
     }
+    //console.log("res: ", matchs)
+    const teams = matchsSeed.teams
+    const stadiums = matchsSeed.stadiums
+    const matchsToInsert = matchs.map(match => {
+      //console.log(match)
+      //console.log(teams.find(team => team.id === match.teamHome))
+      const teamHome = teams.find(team => team.id === match.teamHome)
+      const teamOut = teams.find(team => team.id === match.teamOut)
+
+      //console.log(teamHome, teamOut)
+      //console.log(teams[match.teamHome].name)
+      return {
+        teamHome: teamHome.name,
+        teamOut: teamOut.name,
+        hours: match.date,
+        localisation: stadiums.find(stadium => stadium.id === match.stadium).city
+      }
+
+    })
+    console.log(matchsToInsert)
+      Promise.map(matchsToInsert, m => insertMatchs(m))
   })
+
+  // .then(() => {
+  //   // example data
+  //   const matchs = [
+  //     {
+  //       teamHome: "France",
+  //       teamOut: "Egypte",
+  //       scoreTeamHome: 10,
+  //       scoreTeamOut: 1,
+  //       hours: "20:45",
+  //       localisation: "Moscou"
+  //     },
+  //     {
+  //       teamHome: "Espagne",
+  //       teamOut: "Belgique",
+  //       scoreTeamHome: 3,
+  //       scoreTeamOut: 2,
+  //       hours: "15h40",
+  //       localisation: "Moscow"
+  //     },
+  //     {
+  //       teamHome: "Espagne",
+  //       teamOut: "Belgique",
+  //       scoreTeamHome: 3,
+  //       scoreTeamOut: 2,
+  //       hours: "14h40",
+  //       localisation: "St P."
+  //     }
+  //   ]
+  //   for (match of matchs) {
+  //     insertMatchs(match)
+  //   }
+  // })
 
 const html = `
   <!doctype html>
@@ -87,7 +119,7 @@ const html = `
   </html>`
 
 //routing côté serveur
-//routes de l'api REST qui répondent par du 
+//routes de l'api REST qui répondent par du
 
 //LA ROUTE /matchs
 //CREATE
@@ -128,5 +160,4 @@ app.get("*", (req, res) => {
   res.send(html)
   res.end()
 })
-
 app.listen(8000)
