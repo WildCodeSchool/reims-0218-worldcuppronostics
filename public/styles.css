@@ -1,0 +1,113 @@
+/* GENERAL */
+
+body {
+  background: url(https://championnatdefrancedespronos.fr/images/bg_home.png)
+  no-repeat left top fixed;
+  background-size: 100%;
+  /* padding-top: 20px; */
+  background-color: #08225b;
+}
+p {
+  color: white;
+}
+
+.control-label {
+  color: white;
+}
+
+h3 {
+  color: white;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+  position: relative;
+  min-height: 100px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.navbar-default {
+  background-color: #07245e;
+  font-size: 20px;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  color: #acacac;
+}
+
+.navbar-nav {
+  padding-left: 150px;
+}
+
+.nav-link {
+  font-size: 100%;
+}
+
+.rounded {
+  border-radius: 1.25rem !important;
+}
+
+.btn-secondary {
+  background-color: #494a4a;
+}
+
+.navbar-brand {
+  margin-left: 100px;
+}
+
+/* VIDEO */
+
+.background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: url(polina.jpg) no-repeat;
+  background-size: cover;
+  filter: brightness(50%);
+}
+
+.page-header {
+  color: white;
+}
+
+
+.custom-file-input:lang(fr) ~ .custom-file-label::after {
+  content: "Parcourir";
+}
+
+.img-thumbnail {
+  width: 250px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  width: 100%;
+  height: 300px;
+  margin-top: -20px;
+}
+
+.bgimage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 200px;
+  margin-top: -20px;
+  background: url("https://i.ebayimg.com/images/i/131849350906-0-1/s-l1000.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(10px);
+}
