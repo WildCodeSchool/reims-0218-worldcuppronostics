@@ -182,24 +182,131 @@ const serializeForm = form => {
       })
     },
     "/mon-profil": () =>
-      //la route matchs
+      //la route wilder
       fetch("/wilders")
         .then(res => res.json())
         .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
-        .then(album => render(
-          `<div class="container">
-      <div class="jumbotron">
-        <h1 class="display-3">PAGE MON PROFIL</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/matchs/new" role="button">Add a match »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
-        </div>
-      <div class="row">${album}</div>
+        .then(profil => render(
+          `  <nav class="navbar navbar-expand-lg navbar-default">
+          <a class="navbar-brand" href="#">
+              <img src="https://championnatdefrancedespronos.fr/scontent/images/FDJ_CFP_logo.png" width="100" height="100" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="custom-toggler navbar-toggler navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="/mes-pronos">Mes pronos |</a>
+  
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/classement">Classement |</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/tableau-de-bord">Tableau de bord |</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="mon-profil">Profil |</a>
+                  </li>
+              </ul>
+  
+          </div>
+          <div class="row">
+              <div class="col-lg-12">
+                  <button class="btn btn-secondary rounded float-right ">Se déconnecter</button>
+              </div>
+          </div>
+      </nav>
+      <section class="bgimage"></section>
+      <div class="container" style="padding-top: 60px;">
+  
+          <div class="row">
+              <!-- left column -->
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="text-center">
+                      <img src="https://media.licdn.com/dms/image/C4D03AQE1f8XY5CkayQ/profile-displayphoto-shrink_800_800/0?e=1528707600&v=beta&t=5rLhsfXCegNLMpxjWWXyGfrkBHLHZCI9tIa9gYfbd5g"
+                          class="avatar img-circle img-thumbnail" alt="avatar">
+                      <p>Changer d'avatar ci-dessous</p>
+                      <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="customFile">
+                          <label class="custom-file-label" for="customFile">Choisis ton avatar</label>
+                      </div>
+                  </div>
+              </div>
+              <!-- edit form column -->
+              <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                  <div class="alert alert-info alert-dismissable">
+                      <a class="panel-close close" data-dismiss="alert">×</a>
+                      <i class="fa fa-coffee"></i>
+                      Tu as modifier ton
+                      <strong>profil</strong> avec succès!
+                  </div>
+                  <h3>Mes informations:</h3>
+                  <form class="form-horizontal" role="form">
+                      <div class="form-group">
+                          <label class="col-lg-3 control-label">Prénom:</label>
+                          <div class="col-lg-8">
+                              <input class="form-control" value="Pierre" type="text">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-lg-3 control-label">Nom:</label>
+                          <div class="col-lg-8">
+                              <input class="form-control" value="Dumay" type="text">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-lg-3 control-label">Pseudo:</label>
+                          <div class="col-lg-8">
+                              <input class="form-control" value="Pierre51" type="text">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-lg-3 control-label">Email:</label>
+                          <div class="col-lg-8">
+                              <input class="form-control" value="johndoe@gmail.com" type="text">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-lg-3 control-label">Ville:</label>
+                          <div class="col-lg-8">
+                              <input class="form-control" value="Reims" type="text">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-md-3 control-label">Ton équipe favorite:</label>
+                          <div class="col-md-8">
+                              <input class="form-control" value="France" type="text">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-md-3 control-label">Mot de passe:</label>
+                          <div class="col-md-8">
+                              <input class="form-control" value="11111122333" type="password">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-md-3 control-label">Confirmation du mot de passe:</label>
+                          <div class="col-md-8">
+                              <input class="form-control" value="11111122333" type="password">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-md-3 control-label"></label>
+                          <div class="col-md-8">
+                              <input class="btn btn-outline-success" value="Valider" type="button">
+                              <input class="btn btn-outline-danger" value="Annuler" type="button">
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
     </div>`)
         )
-    ,
+         ,
 
 
 
