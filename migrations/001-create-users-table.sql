@@ -11,3 +11,4 @@ CREATE TABLE matchs (
 
 -- Down
 DROP TABLE matchs;
+ 

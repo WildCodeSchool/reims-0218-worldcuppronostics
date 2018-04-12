@@ -17,10 +17,17 @@ app.use(bodyParser.json())
 const insertMatchs = m => {
   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation } = m
   return db.get("INSERT INTO matchs(teamHome, teamOut,scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
-    .then(() => db.get("SELECT last_insert_rowid() as id"))
+    .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
 
+//inserer un wilder
+const insertWilders = w => {
+const { nom, prenom, pseudo, mail, motdepasse, city, equipepreferee } = w
+  return db.get("INSERT INTO wilders(nom, prenom, pseudo, mail, motdepasse, city, equipepreferee) VALUES(?, ?, ?, ?, ?, ?, ?)", nom, prenom, pseudo, mail, motdepasse, city, equipepreferee)
+    .then(() => db.get("SELECT last_insert_rowid() as id"))
+    .then(({ id }) => db.get("SELECT * from wilders WHERE id = ?", id))
+}
 //code qui remplit la db exemple
 const dbPromise = Promise.resolve()
   .then(() => sqlite.open("./database.sqlite", { Promise }))
@@ -59,6 +66,32 @@ const dbPromise = Promise.resolve()
     console.log(matchsToInsert)
       Promise.map(matchsToInsert, m => insertMatchs(m))
   })
+  .then(() => {
+    //example data
+    const wilders = [
+      {
+        nom: "Marlot",
+        prenom: "Tanguy",
+        pseudo: "Lyonnaiiis",
+        mail: "arnaud.dchamps@gmail.com",
+        motdepasse: "jecode4SDR",
+        city: "Moussy",
+        equipepreferee: "France"
+      },
+      {
+        nom: "Dumay",
+        prenom: "Pierre",
+        pseudo: "LeParisien",
+        mail: "arnaud.dchamps@gmail.com",
+        motdepasse: "jecode4SDR",
+        city: "Moussy",
+        equipepreferee: "France"
+      }
+    ]
+    for (wilder of wilders) {
+      insertWilders(wilder)
+    }
+  })
 
 const html = `
   <!doctype html>
@@ -80,6 +113,7 @@ const html = `
 //routing côté serveur
 //routes de l'api REST qui répondent par du
 
+//LA ROUTE /matchs
 //CREATE
 app.post("/matchs", (req, res) => {
   return insertMatchs(req.body)
@@ -89,6 +123,23 @@ app.post("/matchs", (req, res) => {
 //READ
 app.get("/matchs", (req, res) => {
   db.all("SELECT * from matchs")
+    .then(records => {
+      console.log(records)
+      return res.json(records)
+    })
+})
+
+
+//LA ROUTE /wilders
+//CREATE
+app.post("/wilders", (req, res) => {
+  return insertWilders(req.body)
+    .then(record => res.json(record))
+})
+
+//READ
+app.get("/wilders", (req, res) => {
+  db.all("SELECT * from wilders")
     .then(records => {
       console.log(records)
       return res.json(records)
