@@ -36,39 +36,7 @@ const dbPromise = Promise.resolve()
     return db.migrate({ force: "last" })
   })
   .then(() => Promise.map(matchsSeed, m => insertMatchs(m)))
-  .then(() => {
-    // example data
-    const matchs = [
-      {
-        teamHome: "France",
-        teamOut: "Egypte",
-        scoreTeamHome: 10,
-        scoreTeamOut: 1,
-        hours: "20:45",
-        localisation: "Moscou"
-      },
-      {
-        teamHome: "Espagne",
-        teamOut: "Belgique",
-        scoreTeamHome: 3,
-        scoreTeamOut: 2,
-        hours: "15h40",
-        localisation: "Moscow"
-      },
-      {
-        teamHome: "Espagne",
-        teamOut: "Belgique",
-        scoreTeamHome: 3,
-        scoreTeamOut: 2,
-        hours: "14h40",
-        localisation: "St P."
-      }
-    ]
-    for (match of matchs) {
-      insertMatchs(match)
-    }
-  })
-
+ 
 const html = `
   <!doctype html>
   <html class="no-js" lang="fr">
