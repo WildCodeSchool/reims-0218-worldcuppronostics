@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 //inserer un match
 const insertMatchs = m => {
   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation } = m
-  return db.get("INSERT INTO matchs(teamHome, teamOut,scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
+  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
@@ -35,8 +35,38 @@ const dbPromise = Promise.resolve()
     db = _db
     return db.migrate({ force: "last" })
   })
-  .then(() => Promise.map(matchsSeed, m => insertMatchs(m)))
- 
+  .then(() => {
+    //console.log(matchsSeed) // l'objet global du json
+    //console.log(matchsSeed.groups)
+    let matchs = [] // on définit un tableau vide
+    for (let group in matchsSeed.groups) { // une boucle qui cherche les groupes
+      //console.log(matchsSeed.groups[group].matches)
+      matchs = [...matchs, ...matchsSeed.groups[group].matches]
+    }
+    //console.log("res: ", matchs)
+    const teams = matchsSeed.teams
+    //console.log(teams) // toutes les teams avec id, name et iso2
+    const stadiums = matchsSeed.stadiums
+    //console.log(stadiums) // tous les stades avec les city, les names etc
+    const matchsToInsert = matchs.map(match => {
+      //console.log(match)
+      //console.log(teams.find(team => team.id === match.teamHome))
+      const teamHome = teams.find(team => team.id === match.teamHome) // renvoie le premier élement de la condition, donc
+      const teamOut = teams.find(team => team.id === match.teamOut)
+
+      //console.log(teamHome, teamOut)
+      //console.log(teams[match.teamHome].name)
+      return {
+        teamHome: teamHome.name,
+        teamOut: teamOut.name,
+        hours: match.date,
+        localisation: stadiums.find(stadium => stadium.id === match.stadium).city
+      }
+    })
+    //console.log(matchsToInsert)
+      Promise.map(matchsToInsert, m => insertMatchs(m))
+  })
+
 const html = `
   <!doctype html>
   <html class="no-js" lang="fr">
@@ -68,7 +98,7 @@ app.post("/matchs", (req, res) => {
 app.get("/matchs", (req, res) => {
   db.all("SELECT * from matchs")
     .then(records => {
-      console.log(records)
+      //console.log(records)
       return res.json(records)
     })
 })
