@@ -63,7 +63,7 @@ const dbPromise = Promise.resolve()
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city
       }
     })
-    //console.log(matchsToInsert)
+    console.log(matchsToInsert)
       Promise.map(matchsToInsert, m => insertMatchs(m))
   })
 
