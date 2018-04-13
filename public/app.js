@@ -18,18 +18,18 @@ const makeCard = item =>
 
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
-`<div class="col-8 mx-auto text-center">
-<div class="card mb-4 box-shadow">
-  <div class="card-body">
-    <p class="card-text" style="height: 30px">Nom : ${profil.nom}</p>
-    <p class="card-text" style="height: 30px">Prénom : ${profil.prenom}</p>
-    <p class="card-text" style="height: 30px">Nom du profil :${profil.pseudo}</p>
-    <p class="card-text" style="height: 30px">Mail : ${profil.mail}</p>
-    <p class="card-text" style="height: 30px">Ville: ${profil.city}</p>
-    <p class="card-text" style="height: 30px">Tu supportes ${profil.equipepreferee}</p>
-  </div>
-</div>
-</div>`
+  `<div class="col-8 mx-auto text-center">
+    <div class="card mb-4 box-shadow">
+      <div class="card-body">
+        <p class="card-text" style="height: 30px">Nom : ${profil.nom}</p>
+        <p class="card-text" style="height: 30px">Prénom : ${profil.prenom}</p>
+        <p class="card-text" style="height: 30px">Nom du profil :${profil.pseudo}</p>
+        <p class="card-text" style="height: 30px">Mail : ${profil.mail}</p>
+        <p class="card-text" style="height: 30px">Ville: ${profil.city}</p>
+        <p class="card-text" style="height: 30px">Tu supportes ${profil.equipepreferee}</p>
+      </div>
+    </div>
+  </div>`
 
 //récuperer tous les champs d'un formulaire pour en faire un object js
 const serializeForm = form => {
@@ -130,21 +130,21 @@ const serializeForm = form => {
     "/mon-profil": () =>
       //la route matchs
       fetch("/wilders")
-        .then(res => res.json())
-        .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
-        .then(album => render(
+      .then(res => res.json())
+      .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
+      .then(album => render(
           `<div class="container">
-      <div class="jumbotron">
-        <h1 class="display-3">PAGE MON PROFIL</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/" role="button">Retour à l'accueil »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
-        </div>
-      <div class="row">${album}</div>
-    </div>`)
-        )
+            <div class="jumbotron">
+              <h1 class="display-3">PAGE MON PROFIL</h1>
+              <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+              <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
+              <p><a class="btn btn-success btn-lg" href="/" role="button">Retour à l'accueil »</a></p>
+              <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
+              <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
+            </div>
+            <div class="row">${album}</div>
+          </div>`)
+      )
     ,
 
     "/mes-pronos": () =>
