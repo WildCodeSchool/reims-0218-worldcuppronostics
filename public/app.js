@@ -18,9 +18,8 @@ const makeCard = item =>
 
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
-`<div class="col-md-4">
+`<div class="col-8 mx-auto text-center">
 <div class="card mb-4 box-shadow">
-  <img class="card-img-top" src="${profil.image}" alt="profil-image" />
   <div class="card-body">
     <p class="card-text" style="height: 30px">Nom : ${profil.nom}</p>
     <p class="card-text" style="height: 30px">Prénom : ${profil.prenom}</p>
@@ -42,25 +41,25 @@ const serializeForm = form => {
   return data
 }
 
-  //routing côté
+  //routing côté client
   const controllers = {
     "/": () =>
 
       //la route matchs
       fetch("/matchs")
-        .then(res => res.json())
-        .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
-        .then(album => render(
+      .then(res => res.json())
+      .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
+      .then(album => render(
           `<div class="container">
-      <div class="jumbotron">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
-        <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
-        </div>
-      <div class="row">${album}</div>
-    </div>`)
+            <div class="jumbotron">
+              <h1 class="display-3">Hello, world!</h1>
+              <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+              <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
+              <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
+              <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
+            </div>
+            <div class="row">${album}</div>
+          </div>`)
         )
   ,
 
