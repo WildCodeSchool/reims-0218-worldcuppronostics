@@ -9,8 +9,6 @@ CREATE TABLE matchs (
   localisation VARCHAR(50)
 );
 
--- Down
-DROP TABLE matchs;
 
 -- Up
 CREATE TABLE wilders (
@@ -23,6 +21,9 @@ CREATE TABLE wilders (
   city VARCHAR(50),
   equipepreferee VARCHAR(50)
 );
+
+-- Down
+DROP TABLE matchs;
 
 -- Down
 DROP TABLE wilders;
