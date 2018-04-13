@@ -50,7 +50,7 @@ const dbPromise = Promise.resolve()
     //console.log(stadiums) // tous les stades avec les city, les names etc
     const matchsToInsert = matchs.map(match => {
       //console.log(match)
-      //console.log(teams.find(team => team.id === match.teamHome))
+      console.log(teams.find(team => team.id === match.teamHome))
       const teamHome = teams.find(team => team.id === match.teamHome) // renvoie le premier élement de la condition, donc
       const teamOut = teams.find(team => team.id === match.teamOut)
 
