@@ -191,31 +191,32 @@ const serializeForm = form => {
           <a class="navbar-brand" href="#">
               <img src="https://championnatdefrancedespronos.fr/scontent/images/FDJ_CFP_logo.png" width="100" height="100" alt="">
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          <button class="pull-left navbar-toggler navbar navbar-light" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
               aria-label="Toggle navigation">
               <span class="custom-toggler navbar-toggler navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                   <li class="nav-item active">
-                      <a class="nav-link" href="/mes-pronos">Mes pronos |</a>
+                      <a class="nav-link" href="/mes-pronos">Mes pronos</a>
   
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/classement">Classement |</a>
+                      <a class="nav-link" href="/classement">Classement</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/tableau-de-bord">Tableau de bord |</a>
+                      <a class="nav-link" href="/tableau-de-bord">Tableau de bord</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="mon-profil">Profil |</a>
+                      <a class="nav-link" href="mon-profil">Profil</a>
                   </li>
-              </ul>
+                     </ul>
   
           </div>
           <div class="row">
               <div class="col-lg-12">
-                  <button class="btn btn-secondary rounded float-right ">Se déconnecter</button>
+              <button class="btn btn-secondary rounded float-right ">Se déconnecter</button>
+              
               </div>
           </div>
       </nav>

@@ -60,6 +60,24 @@ h3 {
   margin-left: 100px;
 }
 
+.navbar-toggle.navbar-left {
+  float: left;
+  margin-left: 10px;
+}
+
+.navbar-brand {
+  padding: 30px 10px;
+}
+
+.navbar-brand {
+  z-index: 100;
+  float: left;
+  padding: 30px 5px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 100px;
+}
+
 /* VIDEO */
 
 .background {
