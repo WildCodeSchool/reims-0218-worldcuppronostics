@@ -63,7 +63,7 @@ const dbPromise = Promise.resolve()
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city
       }
     })
-    console.log(matchsToInsert)
+    //console.log(matchsToInsert)
       Promise.map(matchsToInsert, m => insertMatchs(m))
   })
 
@@ -115,7 +115,7 @@ app.post("/wilders", (req, res) => {
 app.get("/wilders", (req, res) => {
   db.all("SELECT * from wilders")
     .then(records => {
-      console.log(records)
+      //console.log(records)
       return res.json(records)
     })
 })
