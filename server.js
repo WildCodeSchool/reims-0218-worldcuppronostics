@@ -36,7 +36,7 @@ const dbPromise = Promise.resolve()
     return db.migrate({ force: "last" })
   })
   .then(() => {
-    //console.log(matchsSeed) // l'objet global du json
+    console.log(matchsSeed) // l'objet global du json
     //console.log(matchsSeed.groups)
     let matchs = [] // on définit un tableau vide
     for (let group in matchsSeed.groups) { // une boucle qui cherche les groupes
@@ -63,7 +63,7 @@ const dbPromise = Promise.resolve()
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city
       }
     })
-    //console.log(matchsToInsert)
+    console.log(matchsToInsert)
       Promise.map(matchsToInsert, m => insertMatchs(m))
   })
 
@@ -73,7 +73,7 @@ const html = `
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Pronostics Wooorld Cup</title>
+      <title>Pronostics Woorld Cup</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
