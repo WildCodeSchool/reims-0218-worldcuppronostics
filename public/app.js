@@ -160,8 +160,10 @@ const serializeForm = form => {
           console.log(matchs[i])
         }
       })
-,
-
+    ,
+      "/test": () => 
+        render('matchs')
+    ,
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
@@ -173,6 +175,7 @@ const serializeForm = form => {
       "/wilders/new",
       "/mon-profil",
       "/mes-pronos",
+      "/test",
       "*"
     ]
     routes.forEach(
