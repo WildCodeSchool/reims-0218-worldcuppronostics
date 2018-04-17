@@ -161,9 +161,7 @@ const serializeForm = form => {
         }
       })
     ,
-      "/test": () => 
-        render('matchs')
-    ,
+    
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
