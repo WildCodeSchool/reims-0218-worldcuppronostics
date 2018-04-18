@@ -1,4 +1,5 @@
 import makeMatchsList from "./matchs.js"
+import makeDisplayMatch from "./matchs.js"
 
 const mainDiv = document.getElementById("main")
 
@@ -9,7 +10,6 @@ const render = html => {
 const makeCard = item =>
   `<div class="col-md-4">
     <div class="card mb-4 box-shadow">
-      <img class="card-img-top" src="${item.image}" alt="Match" />
       <div class="card-body">
         <p class="card-text" style="height: 80px">${item.teamHome}-${item.teamOut}</p>
         <p class="card-text" style="height: 80px">${item.scoreTeamHome}-${item.scoreTeamOut}</p>
@@ -47,8 +47,8 @@ const matches = [
 {
   "name": 20,
   "type": "group",
-  "teamHome": 8,
-  "teamOut": 6,
+  "teamHome": "France",
+  "teamOut": "Espagne",
   "scoreTeamHome": null,
   "scoreTeamOut": null,
   "date": "2018-06-20T21:00:00+03:00",
@@ -59,8 +59,8 @@ const matches = [
 {
   "name": 35,
   "type": "group",
-  "teamHome": 8,
-  "teamOut": 5,
+  "teamHome": "Irlande",
+  "teamOut": "Colombie",
   "scoreTeamHome": null,
   "scoreTeamOut": null,
   "date": "2018-06-25T21:00:00+03:00",
@@ -71,8 +71,8 @@ const matches = [
 {
   "name": 36,
   "type": "group",
-  "teamHome": 6,
-  "teamOut": 7,
+  "teamHome": "Allemagne",
+  "teamOut": "Pays-Bas",
   "scoreTeamHome": null,
   "scoreTeamOut": null,
   "date": "2018-06-25T20:00:00+02:00",
@@ -169,7 +169,7 @@ const matches = [
     },
 
     "/list-matchs": () =>
-      render(makeMatchsList(matches)),
+      render(makeDisplayMatch(matches)),
 
     "/mon-profil": () =>
       //la route matchs

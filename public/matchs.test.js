@@ -1,6 +1,7 @@
 import { makeMatch } from "./matchs.js"
 import makeMatchsList from "./matchs.js"
-import {cleanHtml} from "./utils.js"
+import { cleanHtml } from "./utils.js"
+import { makeDisplayMatch } from "./matchs.js"
 
 
 const someMatchs = [
@@ -65,8 +66,8 @@ const oneMatch = {
     "type": "group",
     "teamHome": "Russie",
     "teamOut": "Italie",
-    "scoreTeamHome": null,
-    "scoreTeamOut": null,
+    "scoreTeamHome": 1,
+    "scoreTeamOut": 0,
     "date": "2018-06-14T18:00:00+03:00",
     "stadium": 1,
     "channels": [],
@@ -81,6 +82,34 @@ describe("makeMatch", () => {
   })
   it('should return an html string of a match li',  () => {
     const result = cleanHtml(makeMatch(oneMatch))   
-    chai.assert.equal(makeMatch(oneMatch), expectedMakeMatchResult)
+    chai.assert.equal(result, expectedMakeMatchResult)
+  });
+})
+
+const expectedMakeDisplayMatchResult = cleanHtml(`
+  <div class="col-4 text-center">
+    <div class="card mb-4 box-shadow">
+      <div>
+        <img class="card-img-top" src="" alt="Flag_teamHome"/>
+        <p class="card-text" style="height: 30px">Russie</p>
+        <p class="card-text" style="height: 30px">1</p>
+      </div>
+      <div>-</div>
+      <div>
+        <p class="card-text" style="height: 30px">0</p>
+        <p class="card-text" style="height: 30px">Italie</p>
+        <img class="card-img-top" src="" alt="Flag_teamOut"/>
+      </div>
+    </div>
+  </div>
+`)
+
+describe("makeDisplayMatch", () => {
+  it("should return a string", () => {
+    chai.assert.typeOf(makeDisplayMatch(oneMatch), 'string')
+  })
+  it('should return an html card of a match',  () => {
+    const result = cleanHtml(makeDisplayMatch(oneMatch))   
+    chai.assert.equal(result, expectedMakeDisplayMatchResult)
   });
 })
