@@ -78,6 +78,6 @@ describe("makeMatch", () => {
     chai.assert.typeOf(makeMatch(oneMatch), 'string')
   })
   it('should return an html string of a match li',  () => {
-    chai.assert.equal(makeMatchsList(someMatchs), expectedMakeMatchsResult)
+    chai.assert.equal(makeMatch(oneMatch), expectedMakeMatchResult)
   });
 })
