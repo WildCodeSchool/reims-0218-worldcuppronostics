@@ -4,8 +4,8 @@ const someMatchs = [
   {
     "name": 1,
     "type": "group",
-    "teamHome": 1,
-    "teamOut": 2,
+    "teamHome": France,
+    "teamOut": Italie,
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-14T18:00:00+03:00",
@@ -16,8 +16,8 @@ const someMatchs = [
   {
     "name": 2,
     "type": "group",
-    "teamHome": 3,
-    "teamOut": 4,
+    "teamHome": Espagne,
+    "teamOut": Belgique,
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-15T17:00:00+05:00",
@@ -28,8 +28,8 @@ const someMatchs = [
   {
     "name": 17,
     "type": "group",
-    "teamHome": 1,
-    "teamOut": 3,
+    "teamHome": Angleterre,
+    "teamOut": Bresil,
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-19T21:00:00+03:00",
@@ -38,6 +38,14 @@ const someMatchs = [
     "finished": false
   },
 ]
+
+const expectedHtml = `
+<ul>
+  <li>France - Italie</li>
+  <li>Espagne - Belgique</li>
+  <li>Angleterre - Bresil</li>
+</ul>
+`
 
 describe('matchs',  () => {
     it('should return string',  () => {
