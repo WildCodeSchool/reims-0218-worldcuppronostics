@@ -1,4 +1,5 @@
 import makeMatchsList from "./matchs.js"
+import makeDisplayMatch from "./matchs.js"
 
 const mainDiv = document.getElementById("main")
 
@@ -167,7 +168,7 @@ const matches = [
     },
 
     "/list-matchs": () =>
-      render(makeMatchsList(matches)),
+      render(makeDisplayMatch(matches)),
 
     "/mon-profil": () =>
       //la route matchs

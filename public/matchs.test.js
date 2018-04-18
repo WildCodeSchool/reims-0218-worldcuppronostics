@@ -1,7 +1,7 @@
 import { makeMatch } from "./matchs.js"
 import makeMatchsList from "./matchs.js"
-import {cleanHtml} from "./utils.js"
-import {makeDisplayMatch} from "./matchs.js"
+import { cleanHtml } from "./utils.js"
+import { makeDisplayMatch } from "./matchs.js"
 
 
 const someMatchs = [
@@ -82,7 +82,7 @@ describe("makeMatch", () => {
   })
   it('should return an html string of a match li',  () => {
     const result = cleanHtml(makeMatch(oneMatch))   
-    chai.assert.equal(makeMatch(oneMatch), expectedMakeMatchResult)
+    chai.assert.equal(result, expectedMakeMatchResult)
   });
 })
 
@@ -91,25 +91,25 @@ const expectedMakeDisplayMatchResult = cleanHtml(`
     <div class="card mb-4 box-shadow">
       <div>
         <img class="card-img-top" src="" alt="Flag_teamHome"/>
-        <p class="card-text col" style="height: 30px">France</p>
-        <p class="card-text col" style="height: 30px">1</p>
+        <p class="card-text" style="height: 30px">Russie</p>
+        <p class="card-text" style="height: 30px">1</p>
       </div>
-      -
+      <div>-</div>
       <div>
-        <p class="card-text col" style="height: 30px">0</p>
-        <p class="card-text col" style="height: 30px">Espagne</p>
+        <p class="card-text" style="height: 30px">0</p>
+        <p class="card-text" style="height: 30px">Italie</p>
         <img class="card-img-top" src="" alt="Flag_teamOut"/>
       </div>
     </div>
-  </div>  
+  </div>
 `)
 
 describe("makeDisplayMatch", () => {
   it("should return a string", () => {
     chai.assert.typeOf(makeDisplayMatch(oneMatch), 'string')
   })
-  // it('should return an html string of a match li',  () => {
-  //   const result = cleanHtml(makeMatch(oneMatch))   
-  //   chai.assert.equal(makeMatch(oneMatch), expectedMakeMatchResult)
-  // });
+  it('should return an html card of a match',  () => {
+    const result = cleanHtml(makeDisplayMatch(oneMatch))   
+    chai.assert.equal(result, expectedMakeDisplayMatchResult)
+  });
 })
