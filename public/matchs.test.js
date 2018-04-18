@@ -1,5 +1,6 @@
 import { makeMatch } from "./matchs.js"
 import makeMatchsList from "./matchs.js"
+import {cleanHtml} from "./utils.js"
 
 
 const someMatchs = [
@@ -41,20 +42,21 @@ const someMatchs = [
   },
 ]
 
-const expectedMakeMatchsResult= `
+const expectedMakeMatchsResult = cleanHtml(`
 	<ul>
 		<li>France - Italie</li>
 		<li>Espagne - Belgique</li>
 		<li>Angleterre - Bresil</li>
 	</ul>
-`
+`)
 
-describe('matchsList',  () => {
+describe('makeMatchsList',  () => {
     it('should return string',  () => {
       chai.assert.typeOf(makeMatchsList(someMatchs), 'string')
     });
     it('should return an html string of a gamers list',  () => {
-      chai.assert.equal(makeMatchsList(someMatchs), expectedMakeMatchsResult)
+      const result = cleanHtml(makeMatchsList(someMatchs))
+      chai.assert.equal(result, expectedMakeMatchsResult)
     });
   });
 
