@@ -49,7 +49,7 @@ const expectedMakeMatchsResult= `
 	</ul>
 `
 
-describe('matchs',  () => {
+describe('matchsList',  () => {
     it('should return string',  () => {
       chai.assert.typeOf(makeMatchsList(someMatchs), 'string')
     });
@@ -77,4 +77,7 @@ describe("makeMatch", () => {
   it("should return a string", () => {
     chai.assert.typeOf(makeMatch(oneMatch), 'string')
   })
+  it('should return an html string of a match li',  () => {
+    chai.assert.equal(makeMatchsList(someMatchs), expectedMakeMatchsResult)
+  });
 })
