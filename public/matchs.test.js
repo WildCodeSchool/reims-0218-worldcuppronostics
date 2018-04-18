@@ -4,8 +4,8 @@ const someMatchs = [
   {
     "name": 1,
     "type": "group",
-    "teamHome": France,
-    "teamOut": Italie,
+    "teamHome": "France",
+    "teamOut": "Italie",
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-14T18:00:00+03:00",
@@ -16,8 +16,8 @@ const someMatchs = [
   {
     "name": 2,
     "type": "group",
-    "teamHome": Espagne,
-    "teamOut": Belgique,
+    "teamHome": "Espagne",
+    "teamOut": "Belgique",
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-15T17:00:00+05:00",
@@ -28,8 +28,8 @@ const someMatchs = [
   {
     "name": 17,
     "type": "group",
-    "teamHome": Angleterre,
-    "teamOut": Bresil,
+    "teamHome": "Angleterre",
+    "teamOut": "Bresil",
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-19T21:00:00+03:00",
@@ -40,15 +40,18 @@ const someMatchs = [
 ]
 
 const expectedHtml = `
-<ul>
-  <li>France - Italie</li>
-  <li>Espagne - Belgique</li>
-  <li>Angleterre - Bresil</li>
-</ul>
+	<ul>
+		<li>France - Italie</li>
+		<li>Espagne - Belgique</li>
+		<li>Angleterre - Bresil</li>
+	</ul>
 `
 
 describe('matchs',  () => {
     it('should return string',  () => {
       chai.assert.typeOf(makeMatchsList(someMatchs), 'string')
+    });
+    it('should return an html string of a gamers list',  () => {
+      chai.assert.equal(makeMatchsList(someMatchs), expectedHtml)
     });
   });
