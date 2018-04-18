@@ -119,12 +119,12 @@ const serializeForm = form => {
           },
           body: JSON.stringify(data)
         })
-          .then(res => res.json())
-          .then(wilder => {
-            const alertBox = document.getElementById("alert-box")
-            alertBox.className = "alert alert-success"
-            alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
-          })
+            .then(res => res.json())
+            .then(wilder => {
+              const alertBox = document.getElementById("alert-box")
+              alertBox.className = "alert alert-success"
+              alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
+            })
       })
     },
     "/mon-profil": () =>
@@ -173,7 +173,6 @@ const serializeForm = form => {
       "/wilders/new",
       "/mon-profil",
       "/mes-pronos",
-      "/test",
       "*"
     ]
     routes.forEach(

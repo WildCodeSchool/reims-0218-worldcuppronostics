@@ -41,7 +41,14 @@ const dbPromise = Promise.resolve()
     let matchs = [] // on définit un tableau vide
     for (let group in matchsSeed.groups) { // une boucle qui cherche les groupes
       //console.log(matchsSeed.groups[group].matches)
-      matchs = [...matchs, ...matchsSeed.groups[group].matches]
+      const groupMatchs = matchsSeed.groups[group].matches.map(
+        match => ({
+          ...match,
+          group
+        })
+      )
+
+      matchs = [...matchs, ...groupMatchs]
     }
     //console.log("res: ", matchs)
     const teams = matchsSeed.teams
