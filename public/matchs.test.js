@@ -1,11 +1,14 @@
-import makeMatchsList from './matchs.js'
+import { makeMatch } from "./matchs.js"
+import makeMatchsList from "./matchs.js"
+import {cleanHtml} from "./utils.js"
+
 
 const someMatchs = [
   {
     "name": 1,
     "type": "group",
-    "teamHome": 1,
-    "teamOut": 2,
+    "teamHome": "France",
+    "teamOut": "Italie",
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-14T18:00:00+03:00",
@@ -16,8 +19,8 @@ const someMatchs = [
   {
     "name": 2,
     "type": "group",
-    "teamHome": 3,
-    "teamOut": 4,
+    "teamHome": "Espagne",
+    "teamOut": "Belgique",
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-15T17:00:00+05:00",
@@ -28,8 +31,8 @@ const someMatchs = [
   {
     "name": 17,
     "type": "group",
-    "teamHome": 1,
-    "teamOut": 3,
+    "teamHome": "Angleterre",
+    "teamOut": "Bresil",
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-19T21:00:00+03:00",
@@ -39,8 +42,45 @@ const someMatchs = [
   },
 ]
 
-describe('matchs',  () => {
+const expectedMakeMatchsResult = cleanHtml(`
+	<ul>
+		<li>France - Italie</li>
+		<li>Espagne - Belgique</li>
+		<li>Angleterre - Bresil</li>
+	</ul>
+`)
+
+describe('makeMatchsList',  () => {
     it('should return string',  () => {
       chai.assert.typeOf(makeMatchsList(someMatchs), 'string')
     });
+    it('should return an html string of a gamers list',  () => {
+      const result = cleanHtml(makeMatchsList(someMatchs))
+      chai.assert.equal(result, expectedMakeMatchsResult)
+    });
   });
+
+const oneMatch = {
+    "name": 1,
+    "type": "group",
+    "teamHome": "Russie",
+    "teamOut": "Italie",
+    "scoreTeamHome": null,
+    "scoreTeamOut": null,
+    "date": "2018-06-14T18:00:00+03:00",
+    "stadium": 1,
+    "channels": [],
+    "finished": false
+}
+
+const expectedMakeMatchResult = cleanHtml(`<li>Russie - Italie</li>`)
+
+describe("makeMatch", () => {
+  it("should return a string", () => {
+    chai.assert.typeOf(makeMatch(oneMatch), 'string')
+  })
+  it('should return an html string of a match li',  () => {
+    const result = cleanHtml(makeMatch(oneMatch))   
+    chai.assert.equal(makeMatch(oneMatch), expectedMakeMatchResult)
+  });
+})
