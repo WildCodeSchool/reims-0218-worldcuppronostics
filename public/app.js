@@ -8,15 +8,16 @@ const render = html => {
 }
 //renvoie le html d'une card bootstrap pour un match
 const makeCard = item =>
-  `<div class="col-md-4">
-    <div class="card mb-4 box-shadow">
-      <div class="card-body">
-        <p class="card-text" style="height: 80px">${item.teamHome}-${item.teamOut}</p>
-        <p class="card-text" style="height: 80px">${item.scoreTeamHome}-${item.scoreTeamOut}</p>
-        <p class="card-text" style="height: 80px">${item.localisation}</p>
+    `<div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <div class="card-body">
+          <p class="card-text" style="height: 80px">${item.teamHome}-${item.teamOut}</p>
+          <p class="card-text" style="height: 80px">${item.scoreTeamHome}-${item.scoreTeamOut}</p>
+          <p class="card-text" style="height: 80px">${item.localisation}</p>
+        </div>
       </div>
-    </div>
-  </div>`
+    </div>`
+
 
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>

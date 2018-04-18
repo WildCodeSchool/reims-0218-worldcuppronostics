@@ -89,6 +89,7 @@ const dbPromise = Promise.resolve()
       }
     })
       Promise.map(matchsToInsert, m => insertMatchs(m))
+      console.log(matchsToInsert)
   })
   .then(() => {
     insertProno({
@@ -165,7 +166,7 @@ app.get("/matchs", (req, res) => {
           return res.json(matchWithProno)
         })
     })
-    
+
 })
 
 
