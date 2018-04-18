@@ -7,16 +7,23 @@ const render = html => {
   mainDiv.innerHTML = html
 }
 //renvoie le html d'une card bootstrap pour un match
-const makeCard = item =>
-    `<div class="col-md-4">
-      <div class="card mb-4 box-shadow">
-        <div class="card-body">
-          <p class="card-text" style="height: 80px">${item.teamHome}-${item.teamOut}</p>
-          <p class="card-text" style="height: 80px">${item.scoreTeamHome}-${item.scoreTeamOut}</p>
-          <p class="card-text" style="height: 80px">${item.localisation}</p>
+
+  const makeCard = item =>
+      `
+      <div class="input-group container m-1">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">${item.teamHome}</span>
+          <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded" ">
         </div>
+        <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
+        <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
+        <div class="input-group-prepend">
+          <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded" >
+          <span class="input-group-text" id="">${item.teamOut}</span>
+        </div>
+        <button type="submit">Pariez !</button>
       </div>
-    </div>`
+      `
 
 
 //renvoie le html d'une card bootstrap pour un wilder
@@ -91,7 +98,7 @@ const matches = [
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
       .then(album => render(
-          `<div class="container">
+          `<div class="container p-0">
             <div class="jumbotron">
               <h1 class="display-3">Hello, world!</h1>
               <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>

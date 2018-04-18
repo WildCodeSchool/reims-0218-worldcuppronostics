@@ -15,8 +15,8 @@ app.use(bodyParser.json())
 
 //inserer un match
 const insertMatchs = m => {
-  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe} = m
-  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe) VALUES(?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe)
+  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut} = m
+  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
@@ -71,7 +71,6 @@ const dbPromise = Promise.resolve()
           group
         })
       )
-      // console.log(groupMatchs)
       matchs = [...matchs, ...groupMatchs]
     }
     const teams = matchsSeed.teams
@@ -85,11 +84,12 @@ const dbPromise = Promise.resolve()
         teamOut: teamOut.name,
         hours: match.date,
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city,
-        groupe: match.group
+        groupe: match.group,
+        drapeauHome: teamHome.flag,
+        drapeauOut: teamOut.flag
       }
     })
       Promise.map(matchsToInsert, m => insertMatchs(m))
-      console.log(matchsToInsert)
   })
   .then(() => {
     insertProno({
@@ -128,7 +128,7 @@ const html = `
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-      <div id="main">
+      <div id="main" class="container">
       </div>
       <script src="/page.js"></script>
       <script type="module" src="/app.js"></script>
@@ -155,7 +155,7 @@ app.get("/matchs", (req, res) => {
         join wilders on pronostics.wilderId = wilders.id
         where wilders.id = 1 OR wilders.id IS NULL`)
         .then(pronos => {
-          console.log(pronos)
+          //console.log(pronos)
           const matchWithProno = matchs.map(
             match => {
               //chercher dans pronos le match

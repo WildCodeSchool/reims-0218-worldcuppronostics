@@ -8,7 +8,9 @@ CREATE TABLE matchs (
   scoreTeamOut INT,
   hours DATE,
   localisation VARCHAR(50),
-  groupe VARCHAR(50)
+  groupe VARCHAR(50),
+  drapeauHome VARCHAR(100),
+  drapeauOut VARCHAR(100)
 );
 
 CREATE TABLE wilders (
