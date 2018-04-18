@@ -22,7 +22,19 @@ CREATE TABLE wilders (
   equipepreferee VARCHAR(50)
 );
 
+CREATE TABLE pronostics (
+  id INTEGER PRIMARY KEY,
+  wilderId INTEGER,
+  matchId INTEGER,
+  pronoTeamHome INTEGER,
+  pronoTeamOut INTEGER,
+  FOREIGN KEY(wilderId) REFERENCES wilders(id),
+  FOREIGN KEY(matchId) REFERENCES matchs(id)
+);
+
+
 -- Down
 
+DROP TABLE pronostics;
 DROP TABLE matchs;
 DROP TABLE wilders;

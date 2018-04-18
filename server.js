@@ -28,12 +28,39 @@ const { nom, prenom, pseudo, mail, motdepasse, city, equipepreferee } = w
     .then(() => db.get("SELECT last_insert_rowid() as id"))
     .then(({ id }) => db.get("SELECT * from wilders WHERE id = ?", id))
 }
+//inserer un pronostic
+const insertProno = p => {
+  const { wilderId, matchId, pronoTeamHome,  pronoTeamOut } = p
+    return db.get("INSERT INTO pronostics(wilderId, matchId, pronoTeamHome, pronoTeamOut) VALUES(?, ?, ?, ?)", wilderId, matchId, pronoTeamHome, pronoTeamOut)
+      .then(() => db.get("SELECT last_insert_rowid() as id"))
+      .then(({ id }) => db.get("SELECT * from pronostics WHERE id = ?", id))
+  }
 //code qui remplit la db exemple
 const dbPromise = Promise.resolve()
   .then(() => sqlite.open("./database.sqlite", { Promise }))
   .then(_db => {
     db = _db
     return db.migrate({ force: "last" })
+  })
+  .then(() => {
+    insertWilders({
+      nom: 'Dumay',
+      prenom: 'Pierre',
+      pseudo: 'radiobierefoot',
+      mail: 'pierre@wild.fr',
+      motdepasse: '1234',
+      city: 'Reims',
+      equipepreferee: 'Monaco'
+    })
+    insertWilders({
+      nom: 'Deschamps',
+      prenom: 'Arnaud',
+      pseudo: 'de',
+      mail: 'arnaud@wild.fr',
+      motdepasse: '1234',
+      city: 'Reims',
+      equipepreferee: 'Reims'
+    })
   })
   .then(() => {
     let matchs = []
@@ -62,6 +89,32 @@ const dbPromise = Promise.resolve()
       }
     })
       Promise.map(matchsToInsert, m => insertMatchs(m))
+  })
+  .then(() => {
+    insertProno({
+      wilderId: 1,
+      matchId: 10,
+      pronoTeamHome: 4,
+      pronoTeamOut: 0
+    })
+    insertProno({
+      wilderId: 1,
+      matchId: 24,
+      pronoTeamHome: 1,
+      pronoTeamOut: 2
+    })
+    insertProno({
+      wilderId: 2,
+      matchId: 10,
+      pronoTeamHome: 2,
+      pronoTeamOut: 6
+    })
+    insertProno({
+      wilderId: 2,
+      matchId: 3,
+      pronoTeamHome: 2,
+      pronoTeamOut: 6
+    })
   })
 
 const html = `
@@ -94,10 +147,25 @@ app.post("/matchs", (req, res) => {
 //READ
 app.get("/matchs", (req, res) => {
   db.all("SELECT * from matchs")
-    .then(records => {
-      //console.log(records)
-      return res.json(records)
+    .then(records => records)
+    .then(matchs => {
+      db.all(`SELECT * from matchs
+        join pronostics on pronostics.matchId = matchs.id
+        join wilders on pronostics.wilderId = wilders.id
+        where wilders.id = 1 OR wilders.id IS NULL`)
+        .then(pronos => {
+          console.log(pronos)
+          const matchWithProno = matchs.map(
+            match => {
+              //chercher dans pronos le match
+              const matchProno = pronos.find(prono => prono.matchId === match.id)
+              return matchProno ? matchProno : match
+            }
+          )
+          return res.json(matchWithProno)
+        })
     })
+    
 })
 
 
