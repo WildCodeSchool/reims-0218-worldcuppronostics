@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 //inserer un match
 const insertMatchs = m => {
-  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation } = m
+  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation} = m
   return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
@@ -36,45 +36,35 @@ const dbPromise = Promise.resolve()
     return db.migrate({ force: "last" })
   })
   .then(() => {
-    //console.log(matchsSeed) // l'objet global du json
-    //console.log(matchsSeed.groups)
-    //const pouleA = matchsSeed.groups.a
-    //console.log(pouleA)
-    let matchs = [] // on définit un tableau vide
-    for (let group in matchsSeed.groups) { // une boucle qui cherche les groupes
-      //console.log(matchsSeed.groups[group].matches)
+    let matchs = []
+    for (let group in matchsSeed.groups) {
       const groupMatchs = matchsSeed.groups[group].matches.map(
         match => ({
           ...match,
           group
         })
       )
-      console.log(groupMatchs)
-      console.log(groupMatchs[0])
-      //console.log(match)
-  }
-
-
-    //console.log("res: ", matchs)
+      // console.log(groupMatchs)
+      matchs = [...matchs, ...groupMatchs]
+    }
+    console.log(matchs)
     const teams = matchsSeed.teams
-    //console.log(teams) // toutes les teams avec id, name et iso2
     const stadiums = matchsSeed.stadiums
-    //console.log(stadiums) // tous les stades avec les city, les names etc
     const matchsToInsert = matchs.map(match => {
-      //console.log(match)
-      //console.log(teams.find(team => team.id === match.teamHome))
-      const teamHome = teams.find(team => team.id === match.teamHome) // renvoie le premier élement de la condition, donc
+      console.log('match', match)
+      const teamHome = teams.find(team => team.id === match.teamHome)
       const teamOut = teams.find(team => team.id === match.teamOut)
-      //console.log(teamHome, teamOut)
-      //console.log(teams[match.teamHome].name)
+      //console.log('match before transorm', match);
+      console.log('home: ', teamHome)
+      console.log('out: ', teamOut)
       return {
         teamHome: teamHome.name,
         teamOut: teamOut.name,
         hours: match.date,
-        localisation: stadiums.find(stadium => stadium.id === match.stadium).city
+        localisation: stadiums.find(stadium => stadium.id === match.stadium).city,
+        group: match.group
       }
     })
-    //console.log(matchsToInsert)
       Promise.map(matchsToInsert, m => insertMatchs(m))
   })
 

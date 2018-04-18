@@ -15,7 +15,7 @@ const makeCard = item =>
       </div>
     </div>
   </div>`
-  
+
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
   `<div class="col-8 mx-auto text-center">
@@ -161,7 +161,7 @@ const serializeForm = form => {
         }
       })
     ,
-    
+
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
