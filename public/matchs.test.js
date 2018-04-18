@@ -1,4 +1,6 @@
-import makeMatchsList from './matchs.js'
+import { makeMatch } from "./matchs.js"
+import makeMatchsList from "./matchs.js"
+
 
 const someMatchs = [
   {
@@ -39,7 +41,7 @@ const someMatchs = [
   },
 ]
 
-const expectedHtml = `
+const expectedMakeMatchsResult= `
 	<ul>
 		<li>France - Italie</li>
 		<li>Espagne - Belgique</li>
@@ -52,6 +54,27 @@ describe('matchs',  () => {
       chai.assert.typeOf(makeMatchsList(someMatchs), 'string')
     });
     it('should return an html string of a gamers list',  () => {
-      chai.assert.equal(makeMatchsList(someMatchs), expectedHtml)
+      chai.assert.equal(makeMatchsList(someMatchs), expectedMakeMatchsResult)
     });
   });
+
+const oneMatch = {
+    "name": 1,
+    "type": "group",
+    "teamHome": "Russie",
+    "teamOut": "Suede",
+    "scoreTeamHome": null,
+    "scoreTeamOut": null,
+    "date": "2018-06-14T18:00:00+03:00",
+    "stadium": 1,
+    "channels": [],
+    "finished": false
+}
+
+const expectedMakeMatchResult = `<li>France - Italie</li>`
+
+describe("makeMatch", () => {
+  it("should return a string", () => {
+    chai.assert.typeOf(makeMatch(oneMatch), 'string')
+  })
+})

@@ -1,3 +1,5 @@
+import makeMatchsList from "./matchs.js"
+
 const mainDiv = document.getElementById("main")
 
 const render = html => {
@@ -127,6 +129,9 @@ const serializeForm = form => {
             })
       })
     },
+    "/list-matchs": () =>
+      render(makeMatchsList)
+    ,
     "/mon-profil": () =>
 
       //la route matchs
@@ -173,6 +178,7 @@ const serializeForm = form => {
       "/wilders/new",
       "/mon-profil",
       "/mes-pronos",
+      "/list-matchs",
       "*"
     ]
     routes.forEach(
