@@ -1,4 +1,5 @@
 -- Up
+
 CREATE TABLE matchs (
   id INTEGER PRIMARY KEY,
   teamHome VARCHAR(50),
@@ -6,14 +7,10 @@ CREATE TABLE matchs (
   scoreTeamHome INT,
   scoreTeamOut INT,
   hours DATE,
-  localisation VARCHAR(50)
+  localisation VARCHAR(50),
+  groupe VARCHAR(50)
 );
 
--- Down
-DROP TABLE matchs;
-
-
--- Up
 CREATE TABLE wilders (
   id INTEGER PRIMARY KEY,
   nom VARCHAR(50),
@@ -26,4 +23,6 @@ CREATE TABLE wilders (
 );
 
 -- Down
+
+DROP TABLE matchs;
 DROP TABLE wilders;

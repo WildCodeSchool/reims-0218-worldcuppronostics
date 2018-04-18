@@ -15,8 +15,8 @@ app.use(bodyParser.json())
 
 //inserer un match
 const insertMatchs = m => {
-  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation} = m
-  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
+  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe} = m
+  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe) VALUES(?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
@@ -62,7 +62,7 @@ const dbPromise = Promise.resolve()
         teamOut: teamOut.name,
         hours: match.date,
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city,
-        group: match.group
+        groupe: match.group
       }
     })
       Promise.map(matchsToInsert, m => insertMatchs(m))
