@@ -12,6 +12,7 @@ const makeCard = item =>
       <div class="card-body">
         <p class="card-text" style="height: 80px">${item.teamHome}-${item.teamOut}</p>
         <p class="card-text" style="height: 80px">${item.scoreTeamHome}-${item.scoreTeamOut}</p>
+        <p class="card-text" style="height: 80px">${item.localisation}</p>
       </div>
     </div>
   </div>`

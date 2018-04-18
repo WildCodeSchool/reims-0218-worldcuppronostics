@@ -47,16 +47,12 @@ const dbPromise = Promise.resolve()
       // console.log(groupMatchs)
       matchs = [...matchs, ...groupMatchs]
     }
-    console.log(matchs)
     const teams = matchsSeed.teams
     const stadiums = matchsSeed.stadiums
     const matchsToInsert = matchs.map(match => {
-      console.log('match', match)
       const teamHome = teams.find(team => team.id === match.teamHome)
       const teamOut = teams.find(team => team.id === match.teamOut)
       //console.log('match before transorm', match);
-      console.log('home: ', teamHome)
-      console.log('out: ', teamOut)
       return {
         teamHome: teamHome.name,
         teamOut: teamOut.name,
@@ -128,4 +124,6 @@ app.get("*", (req, res) => {
   res.end()
 })
 
-app.listen(8000)
+app.listen(8000, () => {
+  console.log("App lancée : ")
+})
