@@ -1,9 +1,5 @@
 
-export const makeMatch = match => `<li>France - Italie</li>`
-
-
-
-
+export const makeMatch = match => `<li>${match.teamHome} - ${match.teamOut}</li>`
 
 const makeMatchsList = matchs => `
 	<ul>

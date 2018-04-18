@@ -62,7 +62,7 @@ const oneMatch = {
     "name": 1,
     "type": "group",
     "teamHome": "Russie",
-    "teamOut": "Suede",
+    "teamOut": "Italie",
     "scoreTeamHome": null,
     "scoreTeamOut": null,
     "date": "2018-06-14T18:00:00+03:00",
@@ -71,7 +71,7 @@ const oneMatch = {
     "finished": false
 }
 
-const expectedMakeMatchResult = `<li>France - Italie</li>`
+const expectedMakeMatchResult = `<li>Russie - Italie</li>`
 
 describe("makeMatch", () => {
   it("should return a string", () => {
