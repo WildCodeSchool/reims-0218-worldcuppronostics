@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 //inserer un match
 const insertMatchs = m => {
   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation } = m
-  return db.get("INSERT INTO matchs(teamHome, teamOut,scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
+  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation) VALUES(?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
@@ -38,13 +38,23 @@ const dbPromise = Promise.resolve()
   .then(() => {
     //console.log(matchsSeed) // l'objet global du json
     //console.log(matchsSeed.groups)
-    const poule = matchsSeed.groups.a
-    console.log(poule)
+    //const pouleA = matchsSeed.groups.a
+    //console.log(pouleA)
     let matchs = [] // on définit un tableau vide
     for (let group in matchsSeed.groups) { // une boucle qui cherche les groupes
       //console.log(matchsSeed.groups[group].matches)
-      matchs = [...matchs, ...matchsSeed.groups[group].matches]
-    }
+      const groupMatchs = matchsSeed.groups[group].matches.map(
+        match => ({
+          ...match,
+          group
+        })
+      )
+      console.log(groupMatchs)
+      console.log(groupMatchs[0])
+      //console.log(match)
+  }
+
+
     //console.log("res: ", matchs)
     const teams = matchsSeed.teams
     //console.log(teams) // toutes les teams avec id, name et iso2
@@ -55,7 +65,6 @@ const dbPromise = Promise.resolve()
       //console.log(teams.find(team => team.id === match.teamHome))
       const teamHome = teams.find(team => team.id === match.teamHome) // renvoie le premier élement de la condition, donc
       const teamOut = teams.find(team => team.id === match.teamOut)
-
       //console.log(teamHome, teamOut)
       //console.log(teams[match.teamHome].name)
       return {
@@ -128,4 +137,5 @@ app.get("*", (req, res) => {
   res.send(html)
   res.end()
 })
+
 app.listen(8000)

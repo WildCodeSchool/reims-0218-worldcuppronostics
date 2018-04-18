@@ -15,7 +15,7 @@ const makeCard = item =>
       </div>
     </div>
   </div>`
-
+  
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
   `<div class="col-8 mx-auto text-center">
@@ -119,15 +119,16 @@ const serializeForm = form => {
           },
           body: JSON.stringify(data)
         })
-          .then(res => res.json())
-          .then(wilder => {
-            const alertBox = document.getElementById("alert-box")
-            alertBox.className = "alert alert-success"
-            alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
-          })
+            .then(res => res.json())
+            .then(wilder => {
+              const alertBox = document.getElementById("alert-box")
+              alertBox.className = "alert alert-success"
+              alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
+            })
       })
     },
     "/mon-profil": () =>
+
       //la route matchs
       fetch("/wilders")
       .then(res => res.json())
@@ -159,8 +160,8 @@ const serializeForm = form => {
           console.log(matchs[i])
         }
       })
-,
-
+    ,
+    
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
