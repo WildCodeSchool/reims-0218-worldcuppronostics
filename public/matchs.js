@@ -16,3 +16,4 @@ const makeMatchsList = matchs => {
     	  
 export default makeMatchsList
 
+export const makeDisplayMatch = display => null
