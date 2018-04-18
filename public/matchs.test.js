@@ -73,13 +73,14 @@ const oneMatch = {
     "finished": false
 }
 
-const expectedMakeMatchResult = `<li>Russie - Italie</li>`
+const expectedMakeMatchResult = cleanHtml(`<li>Russie - Italie</li>`)
 
 describe("makeMatch", () => {
   it("should return a string", () => {
     chai.assert.typeOf(makeMatch(oneMatch), 'string')
   })
   it('should return an html string of a match li',  () => {
+    const result = cleanHtml(makeMatch(oneMatch))   
     chai.assert.equal(makeMatch(oneMatch), expectedMakeMatchResult)
   });
 })

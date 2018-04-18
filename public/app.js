@@ -5,7 +5,6 @@ const mainDiv = document.getElementById("main")
 const render = html => {
   mainDiv.innerHTML = html
 }
-
 //renvoie le html d'une card bootstrap pour un match
 const makeCard = item =>
   `<div class="col-md-4">
@@ -43,6 +42,44 @@ const serializeForm = form => {
   return data
 }
 
+const matches = [
+{
+  "name": 20,
+  "type": "group",
+  "teamHome": 8,
+  "teamOut": 6,
+  "scoreTeamHome": null,
+  "scoreTeamOut": null,
+  "date": "2018-06-20T21:00:00+03:00",
+  "stadium": 5,
+  "channels": [],
+  "finished": false
+},
+{
+  "name": 35,
+  "type": "group",
+  "teamHome": 8,
+  "teamOut": 5,
+  "scoreTeamHome": null,
+  "scoreTeamOut": null,
+  "date": "2018-06-25T21:00:00+03:00",
+  "stadium": 9,
+  "channels": [],
+  "finished": false
+},
+{
+  "name": 36,
+  "type": "group",
+  "teamHome": 6,
+  "teamOut": 7,
+  "scoreTeamHome": null,
+  "scoreTeamOut": null,
+  "date": "2018-06-25T20:00:00+02:00",
+  "stadium": 4,
+  "channels": [],
+  "finished": false
+}
+]
   //routing côté client
   const controllers = {
     "/": () =>
@@ -129,11 +166,11 @@ const serializeForm = form => {
             })
       })
     },
-    "/list-matchs": () =>
-      render(makeMatchsList)
-    ,
-    "/mon-profil": () =>
 
+    "/list-matchs": () =>
+      render(makeMatchsList(matches)),
+
+    "/mon-profil": () =>
       //la route matchs
       fetch("/wilders")
         .then(res => res.json())
