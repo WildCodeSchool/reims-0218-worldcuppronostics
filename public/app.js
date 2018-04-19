@@ -108,8 +108,6 @@ const matches = [
               <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
               <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
             </div>
-            <div>
-            </div>
             <div class="row">${album}</div>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
@@ -119,22 +117,35 @@ const matches = [
                       <div class="input-group-prepend">
                         <span class="input-group-text" id=""></span>
                       </div>
+                      <p id="nameTeamHomeModal"></p>
+                      <img src="" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
                       <form>
                         <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
                         <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
                         <input type="hidden" value="35">
                       </form>
+                      <img src="" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
+                      <p id="nameTeamOutModal"></p>
                       <span class="input-group-text"></span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div> `)
+            </div>
+          </div>`)
             const buttons = document.getElementsByClassName("button-bet")
-            for (let i = 0; i < buttons.length; i ++) {
-            buttons[i].addEventListener("click", () => {
-              console.log(buttons[i].dataset.index)
-              console.log(buttons[i].dataset)
+            for (let button of buttons) {
+            button.addEventListener("click", () => {
+              console.log(button.dataset)
+              const nameTeamHome = document.getElementById("nameTeamHomeModal")
+              const nameTeamOut = document.getElementById("nameTeamOutModal")
+              const flagTeamHome = document.getElementById("flagTeamHome")
+              const flagTeamOut = document.getElementById("flagTeamOut")
+              nameTeamOut.innerHTML = `${button.dataset.teamout}`
+              nameTeamHome.innerHTML = `${button.dataset.teamhome}`
+              flagTeamHome.src = `${button.dataset.drapeauhome}`
+              flagTeamOut.src = `${button.dataset.drapeauout}`
+              console.log(nameTeamHome)
             })
           }
         })
