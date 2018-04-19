@@ -15,12 +15,13 @@ const render = html => {
           <p> ${item.teamHome} </p>
           <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
           <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
-          <p> ${item.teamOut}
-            <p class="idmatch"> ${item.id} </p>
+          <p> ${item.teamOut} </p>
+          <p class="idmatch"> ${item.id} </p>
+          <p> ${item.localisation} </p>
         </div>
         <!-- Large modal -->
         <div class="text-center">
-          <button type="button" data-index="${item.id}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+          <button type="button" data-index="${item.id}" data-teamHome="${item.teamHome}" data-teamOut="${item.teamOut}" data-drapeauHome="${item.drapeauHome}" data-drapeauOut="${item.drapeauOut}" data-localisation="${item.localisation}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
         </div>
       </div>
       `
@@ -118,8 +119,11 @@ const matches = [
                       <div class="input-group-prepend">
                         <span class="input-group-text" id=""></span>
                       </div>
-                      <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
-                      <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
+                      <form>
+                        <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
+                        <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
+                        <input type="hidden" value="35">
+                      </form>
                       <span class="input-group-text"></span>
                     </div>
                   </div>
@@ -130,6 +134,7 @@ const matches = [
             for (let i = 0; i < buttons.length; i ++) {
             buttons[i].addEventListener("click", () => {
               console.log(buttons[i].dataset.index)
+              console.log(buttons[i].dataset)
             })
           }
         })
