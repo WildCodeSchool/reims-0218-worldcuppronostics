@@ -1,4 +1,4 @@
-import makeMatchsList, { makeMatch, makeDisplayMatch, makeHiddenButton } from "./matchs.js"
+import makeHiddenButton , { makeMatch, makeDisplayMatch,makeMatchsList } from "./matchs.js"
 import { cleanHtml } from "./utils.js"
 
 const someMatchs = [
@@ -113,24 +113,19 @@ describe("makeDisplayMatch", () => {
 
 
 const cardNoPronostic = cleanHtml(`
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="container">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id=""></span>
-          </div>
-          <form>
-            <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
-            <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
-            <input type="hidden" value="35">
-          </form>
-          <span class="input-group-text"></span>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card mx-auto mb-3" style="width: 18rem;">
+	<div class="card-body text-center">
+		<p> Russie </p>
+		<img src="" style="width: 48px; height: 48px; class="rounded">
+		<img src="" style="width: 48px; height: 48px;" class="rounded">
+		<p> Italie </p>
+		<p class="idmatch"> 1</p>
+		<p>Moscou</p>
+	</div>
+	<!-- Large modal -->
+	<div class="text-center">
+		<button type="button" data-index="1" data-teamHome="Russie" data-teamOut="Italie" data-drapeauHome="" data-drapeauOut="" data-localisation="" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+	</div>
 </div>
 `)
 
@@ -143,3 +138,4 @@ describe("makeHiddenCard", () => {
     chai.assert.equal(cardWithButton, cardNoPronostic)
   })
 })
+

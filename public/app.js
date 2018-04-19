@@ -1,5 +1,5 @@
 import makeMatchsList from "./matchs.js"
-import { makeDisplayMatch }  from "./matchs.js"
+import makeHiddenButton, { makeDisplayMatch }  from "./matchs.js"
 
 const mainDiv = document.getElementById("main")
 
@@ -65,7 +65,13 @@ const matches = [
   "date": "2018-06-20T21:00:00+03:00",
   "stadium": 5,
   "channels": [],
-  "finished": false
+  "finished": false,
+  "localisation": "Moscow",
+  "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
+  "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
+
+
+
 },
 {
   "name": 35,
@@ -207,7 +213,7 @@ const matches = [
     },
 
     "/list-matchs": () =>
-      render(makeDisplayMatch(matches[0])),
+      render(makeHiddenButton(matches[0])),
 
     "/mon-profil": () =>
       //la route matchs
