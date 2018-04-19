@@ -1,5 +1,5 @@
 import makeMatchsList from "./matchs.js"
-import makeDisplayMatch from "./matchs.js"
+import { makeDisplayMatch }  from "./matchs.js"
 
 const mainDiv = document.getElementById("main")
 
@@ -48,8 +48,8 @@ const matches = [
   "type": "group",
   "teamHome": "France",
   "teamOut": "Espagne",
-  "scoreTeamHome": null,
-  "scoreTeamOut": null,
+  "scoreTeamHome": 0,
+  "scoreTeamOut": 3,
   "date": "2018-06-20T21:00:00+03:00",
   "stadium": 5,
   "channels": [],
@@ -168,7 +168,7 @@ const matches = [
     },
 
     "/list-matchs": () =>
-      render(makeDisplayMatch(matches)),
+      render(makeDisplayMatch(matches[0])),
 
     "/mon-profil": () =>
       //la route matchs

@@ -1,8 +1,5 @@
-import { makeMatch } from "./matchs.js"
-import makeMatchsList from "./matchs.js"
+import makeMatchsList, { makeMatch, makeDisplayMatch } from "./matchs.js"
 import { cleanHtml } from "./utils.js"
-import { makeDisplayMatch } from "./matchs.js"
-
 
 const someMatchs = [
   {
