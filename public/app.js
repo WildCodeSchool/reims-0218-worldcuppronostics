@@ -18,8 +18,9 @@ const render = html => {
           <p> ${item.teamOut}
             <p class="idmatch"> ${item.id} </p>
         </div>
-        <button type="submit" class="buttons-parier">Pariez !</button>
-      </div>
+        <!-- Large modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+     </div>
       `
 
 
@@ -106,8 +107,28 @@ const matches = [
               <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
               <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
             </div>
+            <div>
+            
+            </div>
             <div class="row">${album}</div>
-          </div>`)
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="container">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id=""></span>
+                </div>
+                <input type="text" class="form-control">
+                <input type="text" class="form-control">
+                <span class="input-group-text" id=""></span>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div> `)
+
+          
           const buttons = getElementsByClassName("buttons-parier")
           buttons.addEventListener("click", () => {
             console.log("cucu");
