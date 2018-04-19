@@ -16,10 +16,13 @@ const render = html => {
           <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
           <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
           <p> ${item.teamOut}
+            <p class="idmatch"> ${item.id} </p>
         </div>
-        <button type="submit">Pariez !</button>
+        <button type="submit" class="buttons-parier">Pariez !</button>
       </div>
       `
+
+
 
 
 //renvoie le html d'une card bootstrap pour un wilder
@@ -93,7 +96,8 @@ const matches = [
       fetch("/matchs")
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
-      .then(album => render(
+      .then(album => {
+        render(
           `<div class="container p-0">
             <div class="jumbotron">
               <h1 class="display-3">Hello, world!</h1>
@@ -104,7 +108,11 @@ const matches = [
             </div>
             <div class="row">${album}</div>
           </div>`)
-        )
+          const buttons = getElementsByClassName("buttons-parier")
+          buttons.addEventListener("click", () => {
+            console.log("cucu");
+          })
+        })
   ,
 
     "/wilders/new": () => {
