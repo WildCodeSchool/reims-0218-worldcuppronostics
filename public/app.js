@@ -128,7 +128,9 @@ const matches = [
             </div> `)
             const buttons = document.getElementsByClassName("button-bet")
             for (let i = 0; i < buttons.length; i ++) {
-            console.log(buttons[i].dataset.index)
+            buttons[i].addEventListener("click", () => {
+              console.log(buttons[i].dataset.index)
+            })
           }
         })
       },
