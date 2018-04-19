@@ -10,16 +10,12 @@ const render = html => {
 
   const makeCard = item =>
       `
-      <div class="input-group container m-1">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="">${item.teamHome}</span>
-          <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded" ">
-        </div>
-        <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
-        <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
-        <div class="input-group-prepend">
-          <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded" >
-          <span class="input-group-text" id="">${item.teamOut}</span>
+      <div class="card mx-auto mb-3" style="width: 18rem;">
+        <div class="card-body text-center">
+          <p> ${item.teamHome} </p>
+          <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
+          <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
+          <p> ${item.teamOut}
         </div>
         <button type="submit">Pariez !</button>
       </div>
@@ -201,16 +197,6 @@ const matches = [
 
     "/mes-pronos": () =>
     fetch("/matchs")
-      .then(res => res.json())
-      .then(matchs => {
-        // for (match of matchs) {
-        //   console.log(match)
-        // }
-        console.log("poule A")
-        for (let i = 0; i < 6; i ++) {
-          console.log(matchs[i])
-        }
-      })
     ,
 
     "*": () => render("<h1>Not Found</h1>")
