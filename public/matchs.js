@@ -50,7 +50,21 @@ export const makeHiddenButton = match =>`
 </div>
 `
 
-const makePronoDone = match => ""
+const makePronoDone = match => `
+<div class="card mx-auto mb-3" style="width: 18rem;">
+	<div class="card-body text-center">
+	<p>${match.teamHome}</p>
+	<img src="${match.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
+	<img src="${match.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
+	<p>${match.teamOut}</p>
+	<p class="idmatch">1</p>
+	<p>${match.localisation}</p>
+	</div>
+  <div>
+  <p>Vous avez déjà fait votre pronostic pour ce match !</p>
+</div>
+`
+
 
 
 export default makePronoDone 

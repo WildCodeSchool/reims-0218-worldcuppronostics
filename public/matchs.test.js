@@ -137,8 +137,8 @@ describe("makeHiddenCard", () => {
     chai.assert.typeOf(makeHiddenButton(oneMatch), "string")
   })
   it('should return an html card of a match with a button to bet',  () => {
-    const cardWithButton = cleanHtml(makeHiddenButton(oneMatch))   
-    chai.assert.equal(cardWithButton, cardNoPronostic)
+    const cardHiddenButton = cleanHtml(makeHiddenButton(oneMatch))   
+    chai.assert.equal(cardHiddenButton, cardNoPronostic)
   })
 })
 
@@ -160,5 +160,9 @@ const cardWithPronostic = cleanHtml(`
 describe("makePronoDone", () => {
   it("should return a string", () => {
     chai.assert.typeOf(makePronoDone(oneMatch), "string")
+  })
+  it('should return an html card of a match without a button to bet',  () => {
+    const cardWithButton = cleanHtml(makePronoDone(oneMatch))   
+    chai.assert.equal(cardWithButton, cardWithPronostic)
   })
 })
