@@ -128,10 +128,11 @@ const matches = [
                       </div>
                       <p id="nameTeamHomeModal"></p>
                       <img src="" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
-                      <form>
+                      <form id="formprono">
                         <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
                         <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
                         <input type="hidden" value="35">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
                       <img src="" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
                       <p id="nameTeamOutModal"></p>
@@ -157,6 +158,25 @@ const matches = [
               console.log(nameTeamHome)
             })
           }
+              const form = document.getElementById("formprono")
+              form.addEventListener("submit", e => {
+                e.preventDefault() //à tester sans et avec
+                const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+                fetch("/pronostics", {
+                  method: "POST",
+                  headers: {
+                    "Accept": "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(res => res.json())
+                  .then(pronostic => {
+                    const alertBox = document.getElementById("alert-box")
+                    alertBox.className = "alert alert-success"
+                    alertBox.innerHTML = `Successfully PRONO DONE ${pronostic.teamhome}`
+                  })
+              })
         })
       },
 
@@ -224,6 +244,8 @@ const matches = [
             })
       })
     },
+
+
 
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),

@@ -171,6 +171,21 @@ app.get("/matchs", (req, res) => {
     })
 })
 
+//LA ROUTE /pronostics
+//CREATE
+app.post("/pronostics", (req, res) => {
+  return insertProno(req.body)
+    .then(record => res.json(record))
+})
+
+//READ
+app.get("/pronostics", (req, res) => {
+  db.all("SELECT * from pronostics")
+    .then(records => {
+      //console.log(records)
+      return res.json(records)
+    })
+})
 
 //LA ROUTE /wilders
 //CREATE
