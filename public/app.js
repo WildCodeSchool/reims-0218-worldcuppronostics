@@ -20,7 +20,7 @@ const render = html => {
         </div>
         <!-- Large modal -->
         <div class="text-center">
-          <button type="button" data-index="${item.id}"  class="btn btn-primary " data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+          <button type="button" data-index="${item.id}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
         </div>
       </div>
       `
@@ -108,25 +108,28 @@ const matches = [
               <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
             </div>
             <div>
-
             </div>
             <div class="row">${album}</div>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            <div class="container">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id=""></span>
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="container">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id=""></span>
+                      </div>
+                      <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
+                      <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
+                      <span class="input-group-text"></span>
+                    </div>
+                  </div>
                 </div>
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <span class="input-group-text" id=""></span>
               </div>
-            </div>
-          </div>
-        </div>
             </div> `)
+            const buttons = document.getElementsByClassName("button-bet")
+            for (let i = 0; i < buttons.length; i ++) {
+            console.log(buttons[i].dataset.index)
+          }
         })
       },
 
