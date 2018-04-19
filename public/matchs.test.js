@@ -1,4 +1,4 @@
-import makeMatchsList, { makeMatch, makeDisplayMatch } from "./matchs.js"
+import makeMatchsList, { makeMatch, makeDisplayMatch, makeHiddenButton } from "./matchs.js"
 import { cleanHtml } from "./utils.js"
 
 const someMatchs = [
@@ -110,3 +110,9 @@ describe("makeDisplayMatch", () => {
     chai.assert.equal(result, expectedMakeDisplayMatchResult)
   });
 })
+
+
+const CardNoPronostic = cleanHtml(`
+
+
+`)

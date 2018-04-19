@@ -34,4 +34,5 @@ const makeMatchsList = matchs => {
 	 
 export default makeMatchsList
 
+const makeHiddenButton = hiddenButton => null
 

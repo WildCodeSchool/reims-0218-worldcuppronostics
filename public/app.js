@@ -6,6 +6,10 @@ const mainDiv = document.getElementById("main")
 const render = html => {
   mainDiv.innerHTML = html
 }
+
+
+
+
 //renvoie le html d'une card bootstrap pour un match
 
   const makeCard = item =>
@@ -18,27 +22,23 @@ const render = html => {
           <p> ${item.teamOut}
             <p class="idmatch"> ${item.id} </p>
         </div>
-        <!-- Large modal -->
-        <div class="text-center">
-          <button type="button" data-index="${item.id}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
-        </div>
+        <button type="submit" class="buttonsparier">Pariez !</button>
       </div>
       `
-
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
-  `<div class="col-8 mx-auto text-center">
-    <div class="card mb-4 box-shadow">
-      <div class="card-body">
-        <p class="card-text" style="height: 30px">Nom : ${profil.nom}</p>
-        <p class="card-text" style="height: 30px">Prénom : ${profil.prenom}</p>
-        <p class="card-text" style="height: 30px">Nom du profil :${profil.pseudo}</p>
-        <p class="card-text" style="height: 30px">Mail : ${profil.mail}</p>
-        <p class="card-text" style="height: 30px">Ville: ${profil.city}</p>
-        <p class="card-text" style="height: 30px">Tu supportes ${profil.equipepreferee}</p>
-      </div>
-    </div>
-  </div>`
+`<div class="col-8 mx-auto text-center">
+<div class="card mb-4 box-shadow">
+  <div class="card-body">
+    <p class="card-text" style="height: 30px">Nom : ${profil.nom}</p>
+    <p class="card-text" style="height: 30px">Prénom : ${profil.prenom}</p>
+    <p class="card-text" style="height: 30px">Nom du profil :${profil.pseudo}</p>
+    <p class="card-text" style="height: 30px">Mail : ${profil.mail}</p>
+    <p class="card-text" style="height: 30px">Ville: ${profil.city}</p>
+    <p class="card-text" style="height: 30px">Tu supportes ${profil.equipepreferee}</p>
+  </div>
+</div>
+</div>`
 
 //récuperer tous les champs d'un formulaire pour en faire un object js
 const serializeForm = form => {
@@ -97,7 +97,7 @@ const matches = [
       fetch("/matchs")
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
-      .then(album => {
+      .then(album =>
         render(
           `<div class="container p-0">
             <div class="jumbotron">
@@ -107,33 +107,22 @@ const matches = [
               <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
               <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
             </div>
-            <div>
-            </div>
             <div class="row">${album}</div>
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="container">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id=""></span>
-                      </div>
-                      <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
-                      <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
-                      <span class="input-group-text"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> `)
-            const buttons = document.getElementsByClassName("button-bet")
-            for (let i = 0; i < buttons.length; i ++) {
-            buttons[i].addEventListener("click", () => {
-              console.log(buttons[i].dataset.index)
-            })
-          }
-        })
-      },
+          </div>`)
+      )
+      const buttons = document.getElementsByClassName("buttons-parier")
+      const itemid = document.getElementsByClassName("idmatch")
+      console.log(buttons)
+      console.log(itemid)
+     
+      for (let button of buttons) {
+        button.addEventListener("click", () => {
+          console.log("hello")
+          
+      })
+    }
+  }
+  ,
 
     "/wilders/new": () => {
       //construit le formulaire
@@ -206,28 +195,37 @@ const matches = [
     "/mon-profil": () =>
       //la route matchs
       fetch("/wilders")
-      .then(res => res.json())
-      .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
-      .then(album => render(
+        .then(res => res.json())
+        .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
+        .then(album => render(
           `<div class="container">
-            <div class="jumbotron">
-              <h1 class="display-3">PAGE MON PROFIL</h1>
-              <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-              <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/" role="button">Retour à l'accueil »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
-            </div>
-            <div class="row">${album}</div>
-          </div>`)
-      )
+      <div class="jumbotron">
+        <h1 class="display-3">PAGE MON PROFIL</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
+        <p><a class="btn btn-success btn-lg" href="/" role="button">Retour à l'accueil »</a></p>
+        <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
+        <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
+        </div>
+      <div class="row">${album}</div>
+    </div>`)
+        )
     ,
 
     "/mes-pronos": () =>
     fetch("/matchs")
+      .then(res => res.json())
+      .then(matchs => {
+        // for (match of matchs) {
+        //   console.log(match)
+        // }
+        console.log("poule A")
+        for (let i = 0; i < 6; i ++) {
+          console.log(matchs[i])
+        }
+      })
     ,
-
-
+    
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
