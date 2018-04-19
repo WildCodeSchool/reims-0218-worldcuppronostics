@@ -23,9 +23,6 @@ const render = html => {
      </div>
       `
 
-
-
-
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
   `<div class="col-8 mx-auto text-center">
@@ -89,15 +86,16 @@ const matches = [
   "finished": false
 }
 ]
+
   //routing côté client
   const controllers = {
-    "/": () =>
+    "/": () => {
 
       //la route matchs
       fetch("/matchs")
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
-      .then(album => {
+      .then(album =>
         render(
           `<div class="container p-0">
             <div class="jumbotron">
@@ -127,14 +125,13 @@ const matches = [
           </div>
         </div>
             </div> `)
-
+      )
           
           const buttons = getElementsByClassName("buttons-parier")
           buttons.addEventListener("click", () => {
             console.log("cucu");
           })
-        })
-  ,
+        },
 
     "/wilders/new": () => {
       //construit le formulaire
