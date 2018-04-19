@@ -18,7 +18,7 @@ const render = html => {
           <p> ${item.teamOut}
             <p class="idmatch"> ${item.id} </p>
         </div>
-        <button type="submit" class="buttons-parier">Pariez !</button>
+        <button data-index="${item.id}" type="submit" class="buttons-parier">Pariez !</button>
       </div>
       `
 
@@ -94,7 +94,7 @@ const matches = [
       fetch("/matchs")
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
-      .then(album =>
+      .then(album => {
         render(
           `<div class="container p-0">
             <div class="jumbotron">
@@ -106,15 +106,11 @@ const matches = [
             </div>
             <div class="row">${album}</div>
           </div>`)
-      )
       const buttons = document.getElementsByClassName("buttons-parier")
-      const itemid = document.getElementsByClassName("idmatch")
-      for (let id of itemid) {
-        id.addEventListener("click", () => {
-          console.log("click", id)
-      })
-    }
-  }
+      console.log(buttons)
+      let itemid = document.getElementsByClassName("idmatch")
+    })
+}
   ,
 
     "/wilders/new": () => {
@@ -208,6 +204,7 @@ const matches = [
     "/mes-pronos": () =>
     fetch("/matchs")
     ,
+
 
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
