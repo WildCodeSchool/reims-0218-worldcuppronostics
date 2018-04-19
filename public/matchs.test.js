@@ -1,4 +1,4 @@
-import makeHiddenButton , { makeMatch, makeDisplayMatch,makeMatchsList } from "./matchs.js"
+import makePronoDone , { makeMatch, makeDisplayMatch, makeMatchsList,  makeHiddenButton } from "./matchs.js"
 import { cleanHtml } from "./utils.js"
 
 const someMatchs = [
@@ -68,7 +68,10 @@ const oneMatch = {
     "date": "2018-06-14T18:00:00+03:00",
     "stadium": 1,
     "channels": [],
-    "finished": false
+    "finished": false,
+    "localisation": "Moscou",
+    "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
+    "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
 }
 
 const expectedMakeMatchResult = cleanHtml(`<li>Russie - Italie</li>`)
@@ -115,11 +118,11 @@ describe("makeDisplayMatch", () => {
 const cardNoPronostic = cleanHtml(`
 <div class="card mx-auto mb-3" style="width: 18rem;">
 	<div class="card-body text-center">
-		<p> Russie </p>
-		<img src="" style="width: 48px; height: 48px; class="rounded">
-		<img src="" style="width: 48px; height: 48px;" class="rounded">
-		<p> Italie </p>
-		<p class="idmatch"> 1</p>
+		<p>Russie</p>
+		<img src="http://flags.fmcdn.net/data/flags/w580/ru.png" style="width: 48px; height: 48px; class="rounded">
+		<img src="http://flags.fmcdn.net/data/flags/w580/ru.png" style="width: 48px; height: 48px;" class="rounded">
+		<p>Italie</p>
+		<p class="idmatch">1</p>
 		<p>Moscou</p>
 	</div>
 	<!-- Large modal -->
@@ -131,11 +134,31 @@ const cardNoPronostic = cleanHtml(`
 
 describe("makeHiddenCard", () => {
   it("should return a string", () => {
-    chai.assert.typeOf(makeHiddenButton(cardNoPronostic), "string")
+    chai.assert.typeOf(makeHiddenButton(oneMatch), "string")
   })
   it('should return an html card of a match with a button to bet',  () => {
-    const cardWithButton = cleanHtml(makeHiddenButton(cardNoPronostic))   
+    const cardWithButton = cleanHtml(makeHiddenButton(oneMatch))   
     chai.assert.equal(cardWithButton, cardNoPronostic)
   })
 })
 
+const cardWithPronostic = cleanHtml(`
+<div class="card mx-auto mb-3" style="width: 18rem;">
+	<div class="card-body text-center">
+		<p>Russie</p>
+		<img src="http://flags.fmcdn.net/data/flags/w580/ru.png" style="width: 48px; height: 48px; class="rounded">
+		<img src="http://flags.fmcdn.net/data/flags/w580/ru.png" style="width: 48px; height: 48px;" class="rounded">
+		<p>Italie</p>
+		<p class="idmatch">1</p>
+		<p>Moscou</p>
+	</div>
+  <div>
+  <p>Vous avez déjà fait votre pronostic pour ce match !</p>
+</div>
+`)
+
+describe("makePronoDone", () => {
+  it("should return a string", () => {
+    chai.assert.typeOf(makePronoDone(oneMatch), "string")
+  })
+})

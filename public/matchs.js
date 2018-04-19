@@ -31,21 +31,26 @@ export const makeMatchsList = matchs => {
 			</ul>
 	`
 }
-	 
-const makeHiddenButton = match =>`
+
+ 
+export const makeHiddenButton = match =>`
 <div class="card mx-auto mb-3" style="width: 18rem;">
 	<div class="card-body text-center">
-		<p> ${match.teamHome}</p>
-		<img src="http://flags.fmcdn.net/data/flags/w580/ru.png" style="width: 48px; height: 48px; class="rounded">
-		<img src="http://flags.fmcdn.net/data/flags/w580/ru.png" style="width: 48px; height: 48px;" class="rounded">
-		<p> ${match.teamOut} </p>
-		<p class="idmatch"> ${match.name}</p>
+		<p>${match.teamHome}</p>
+		<img src="${match.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
+		<img src="${match.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
+		<p>${match.teamOut}</p>
+		<p class="idmatch">1</p>
 		<p>${match.localisation}</p>
 	</div>
 	<!-- Large modal -->
 	<div class="text-center">
-		<button type="button" data-index="1" data-teamHome="Russie" data-teamOut="Italie" data-drapeauHome="" data-drapeauOut="" data-localisation="" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+		<button type="button" data-index="1" data-teamHome="${match.teamHome}" data-teamOut="${match.teamOut}" data-drapeauHome="" data-drapeauOut="" data-localisation="" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
 	</div>
 </div>
 `
-export default makeHiddenButton
+
+const makePronoDone = match => ""
+
+
+export default makePronoDone 
