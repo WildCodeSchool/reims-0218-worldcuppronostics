@@ -19,10 +19,14 @@ const render = html => {
           <p> ${item.teamHome} </p>
           <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
           <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
-          <p> ${item.teamOut}
-            <p class="idmatch"> ${item.id} </p>
+          <p> ${item.teamOut} </p>
+          <p class="idmatch"> ${item.id} </p>
+          <p> ${item.localisation} </p>
         </div>
-        <button type="submit" class="buttonsparier">Pariez !</button>
+        <!-- Large modal -->
+        <div class="text-center">
+          <button type="button" data-index="${item.id}" data-teamHome="${item.teamHome}" data-teamOut="${item.teamOut}" data-drapeauHome="${item.drapeauHome}" data-drapeauOut="${item.drapeauOut}" data-localisation="${item.localisation}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+        </div>
       </div>
       `
 //renvoie le html d'une card bootstrap pour un wilder
@@ -97,7 +101,7 @@ const matches = [
       fetch("/matchs")
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
-      .then(album =>
+      .then(album => {
         render(
           `<div class="container p-0">
             <div class="jumbotron">
@@ -108,21 +112,34 @@ const matches = [
               <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
             </div>
             <div class="row">${album}</div>
-          </div>`)
-      )
-      const buttons = document.getElementsByClassName("buttons-parier")
-      const itemid = document.getElementsByClassName("idmatch")
-      console.log(buttons)
-      console.log(itemid)
-     
-      for (let button of buttons) {
-        button.addEventListener("click", () => {
-          console.log("hello")
-          
-      })
-    }
-  }
-  ,
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="container">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id=""></span>
+                      </div>
+                      <form>
+                        <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
+                        <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
+                        <input type="hidden" value="35">
+                      </form>
+                      <span class="input-group-text"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> `)
+            const buttons = document.getElementsByClassName("button-bet")
+            for (let i = 0; i < buttons.length; i ++) {
+            buttons[i].addEventListener("click", () => {
+              console.log(buttons[i].dataset.index)
+              console.log(buttons[i].dataset)
+            })
+          }
+        })
+      },
 
     "/wilders/new": () => {
       //construit le formulaire
