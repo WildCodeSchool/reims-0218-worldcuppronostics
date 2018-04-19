@@ -34,5 +34,25 @@ const makeMatchsList = matchs => {
 	 
 export default makeMatchsList
 
-export const makeHiddenButton = hiddenButton => ""
+export const makeHiddenButton = hiddenButton => `
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="container">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id=""></span>
+          </div>
+          <form>
+            <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="form-control">
+            <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="form-control">
+            <input type="hidden" value="35">
+          </form>
+          <span class="input-group-text"></span>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>
+`
 

@@ -112,7 +112,7 @@ describe("makeDisplayMatch", () => {
 })
 
 
-const CardNoPronostic = cleanHtml(`
+const cardNoPronostic = cleanHtml(`
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -131,10 +131,15 @@ const CardNoPronostic = cleanHtml(`
       </div>
     </div>
   </div>
+</div>
 `)
 
 describe("makeHiddenCard", () => {
   it("should return a string", () => {
-    chai.assert.typeOf(makeHiddenButton(CardNoPronostic), "string")
+    chai.assert.typeOf(makeHiddenButton(cardNoPronostic), "string")
+  })
+  it('should return an html card of a match with a button to bet',  () => {
+    const cardWithButton = cleanHtml(makeHiddenButton(cardNoPronostic))   
+    chai.assert.equal(cardWithButton, cardNoPronostic)
   })
 })
