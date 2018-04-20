@@ -7,9 +7,6 @@ const render = html => {
   mainDiv.innerHTML = html
 }
 
-
-
-
 //renvoie le html d'une card bootstrap pour un match
 
   const makeCard = item =>
@@ -146,8 +143,6 @@ const matches = [
   "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
   "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
 
-
-
 },
 {
   "name": 35,
@@ -196,7 +191,7 @@ const matches = [
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content" id="modal-prono">
-                  
+
                 </div>
               </div>
             </div>
@@ -216,14 +211,16 @@ const matches = [
               // flagTeamOut.src = `${button.dataset.drapeauout}`
               // console.log(nameTeamHome)
               document.getElementById("modal-prono").innerHTML = `
+              <div id="alert-box" class="hidden">
+              </div>
               <div id="match-details-curtain">
               <div id="match-details-container">
                   <div id="title">TON PRONOS</div>
                   <div id="teams-container">
                     <div class="homecomming-team flexbox-items">
-                    <img src="" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
+                    <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
                         <br />
-                        <p id="nameTeamHomeModal"></p>
+                        <p id="nameTeamHomeModal">${button.dataset.teamhome}</p>
                     </div>
                     <div class="flexbox-items">
                         <div id="time-of-match"></div>
@@ -232,20 +229,21 @@ const matches = [
                         <div id="vs"><div class="circle"></div><hr id="vs-line"/><div class="circle"></div></div>
                     </div>
                     <div class="away-team flexbox-items">
-                    <img src="" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
+                    <img src="${button.dataset.drapeauout}" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
                         <br />
-                        <p id="nameTeamOutModal"></p>
+                        <p id="nameTeamOutModal">${button.dataset.teamout}</p>
                     </div>
                 </div>
-                <form id="score-container">
+                <form id="form-prono">
                     <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
                     <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
+                    <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                 </form>
-                <hr/>
-                <button type="submit" class="btn btn-outline-success prono"> Valider </button>
               </div>
               `
-              const form = document.getElementById("score-container")
+              console.log("début form")
+              const form = document.getElementById("form-prono")
+              console.log(form)
               form.addEventListener("submit", e => {
                 e.preventDefault() //à tester sans et avec
                 const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
@@ -257,17 +255,17 @@ const matches = [
                   },
                   body: JSON.stringify(data)
                 })
-                  .then(res => res.json())
-                  .then(pronostic => {
-                    const alertBox = document.getElementById("alert-box")
-                    alertBox.className = "alert alert-success"
-                    alertBox.innerHTML = `Votre prono est bien enregistré`
-                  })
+                    .then(res => res.json())
+                    .then(pronostic => {
+                      const alertBox = document.getElementById("alert-box")
+                      alertBox.className = "alert alert-success"
+                      alertBox.innerHTML = `Votre prono est bien enregistré`
+                    })
               })
-
             })
+            
           }
-          
+        
         })
       },
 
@@ -366,7 +364,7 @@ const matches = [
         }
       })
     ,
-    
+
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
