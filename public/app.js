@@ -1,11 +1,12 @@
 import makeMatchsList from "./matchs.js"
-import makeDisplayMatch from "./matchs.js"
+import makeHiddenButton, { makeDisplayMatch }  from "./matchs.js"
 
 const mainDiv = document.getElementById("main")
 
 const render = html => {
   mainDiv.innerHTML = html
 }
+
 //renvoie le html d'une card bootstrap pour un match
 
   const makeCard = item =>
@@ -25,7 +26,6 @@ const render = html => {
         </div>
       </div>
       `
-
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
   `
@@ -133,12 +133,18 @@ const matches = [
   "type": "group",
   "teamHome": "France",
   "teamOut": "Espagne",
-  "scoreTeamHome": null,
-  "scoreTeamOut": null,
+  "scoreTeamHome": 0,
+  "scoreTeamOut": 3,
   "date": "2018-06-20T21:00:00+03:00",
   "stadium": 5,
   "channels": [],
-  "finished": false
+  "finished": false,
+  "localisation": "Moscow",
+  "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
+  "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
+
+
+
 },
 {
   "name": 35,
@@ -186,37 +192,8 @@ const matches = [
             <div class="row">${album}</div>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div id="match-details-curtain">
-                    <div id="match-details-container">
-                        <div id="title">TON PRONOS</div>
-                        <div id="teams-container">
-                          <div class="homecomming-team flexbox-items">
-                          <img src="" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
-                              <br />
-                              <p id="nameTeamHomeModal"></p>
-                          </div>
-                          <div class="flexbox-items">
-                              <div id="time-of-match"></div>
-                              <p id="date"></p>
-                              <br />
-                              <div id="vs"><div class="circle"></div><hr id="vs-line"/><div class="circle"></div></div>
-                          </div>
-                          <div class="away-team flexbox-items">
-                          <img src="" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
-                              <br />
-                              <p id="nameTeamOutModal"></p>
-                          </div>
-                      </div>
-                      <form id="score-container">
-                          <input type="number" id="pronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
-                          <input type="number" id="pronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
-                          <input name="matchId" type="hidden" class="form-control" id="matchId" value="">
-                      </form>
-                      <hr id="bottom-devider" />
-                      <div id="close-details"></div>
-                      <button type="submit" class="btn btn-outline-success prono"> Valider </button>
-                  </div>
+                <div class="modal-content" id="modal-prono">
+
                 </div>
               </div>
             </div>
@@ -225,19 +202,52 @@ const matches = [
           const buttons = document.getElementsByClassName("button-bet")
             for (let button of buttons) {
             button.addEventListener("click", () => {
-              console.log(button.dataset)
-              const nameTeamHome = document.getElementById("nameTeamHomeModal")
-              const nameTeamOut = document.getElementById("nameTeamOutModal")
-              const flagTeamHome = document.getElementById("flagTeamHome")
-              const flagTeamOut = document.getElementById("flagTeamOut")
-              nameTeamOut.innerHTML = `${button.dataset.teamout}`
-              nameTeamHome.innerHTML = `${button.dataset.teamhome}`
-              flagTeamHome.src = `${button.dataset.drapeauhome}`
-              flagTeamOut.src = `${button.dataset.drapeauout}`
-              document.getElementById("matchId").value = `${button.dataset.index}`;
+              // console.log(button.dataset)
+              // const nameTeamHome = document.getElementById("nameTeamHomeModal")
+              // const nameTeamOut = document.getElementById("nameTeamOutModal")
+              // const flagTeamHome = document.getElementById("flagTeamHome")
+              // const flagTeamOut = document.getElementById("flagTeamOut")
+              // nameTeamOut.innerHTML = `${button.dataset.teamout}`
+              // nameTeamHome.innerHTML = `${button.dataset.teamhome}`
+              // flagTeamHome.src = `${button.dataset.drapeauhome}`
+              // flagTeamOut.src = `${button.dataset.drapeauout}`
+              // console.log(nameTeamHome)
+              document.getElementById("modal-prono").innerHTML = `
+              <div id="match-details-curtain">
+              <div id="match-details-container">
+                  <div id="title">TON PRONOS</div>
+                  <div id="teams-container">
+                    <div class="homecomming-team flexbox-items">
+                    <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
+                        <br />
+                        <p id="nameTeamHomeModal">${button.dataset.teamhome}</p>
+                    </div>
+                    <div class="flexbox-items">
+                        <div id="time-of-match"></div>
+                        <p id="date"></p>
+                        <br />
+                        <div id="vs"><div class="circle"></div><hr id="vs-line"/><div class="circle"></div></div>
+                    </div>
+                    <div class="away-team flexbox-items">
+                    <img src="${button.dataset.drapeauout}" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
+                        <br />
+                        <p id="nameTeamOutModal">${button.dataset.teamout}</p>
+                    </div>
+                </div>
+                <form id="form-prono">
+                    <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
+                    <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
+                </form>
+                <hr/>
+                <button type="submit" class="btn btn-outline-success prono"> Valider </button>
+              </div>
+              `
+
+
+
             })
           }
-          const form = document.getElementById("score-container")
+          const form = document.getElementById("form-prono")
           form.addEventListener("submit", e => {
             e.preventDefault() //à tester sans et avec
             const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
@@ -324,8 +334,10 @@ const matches = [
       })
     },
 
+
+
     "/list-matchs": () =>
-      render(makeDisplayMatch(matches)),
+      render(makeHiddenButton(matches[0])),
 
     "/mon-profil": () =>
       //la route matchs
@@ -341,8 +353,17 @@ const matches = [
 
     "/mes-pronos": () =>
     fetch("/matchs")
+      .then(res => res.json())
+      .then(matchs => {
+        // for (match of matchs) {
+        //   console.log(match)
+        // }
+        console.log("poule A")
+        for (let i = 0; i < 6; i ++) {
+          console.log(matchs[i])
+        }
+      })
     ,
-
 
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
