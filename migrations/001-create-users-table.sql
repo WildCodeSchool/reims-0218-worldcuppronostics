@@ -1,4 +1,5 @@
 -- Up
+
 CREATE TABLE matchs (
   id INTEGER PRIMARY KEY,
   teamHome VARCHAR(50),
@@ -6,11 +7,12 @@ CREATE TABLE matchs (
   scoreTeamHome INT,
   scoreTeamOut INT,
   hours DATE,
-  localisation VARCHAR(50)
+  localisation VARCHAR(50),
+  groupe VARCHAR(50),
+  drapeauHome VARCHAR(100),
+  drapeauOut VARCHAR(100)
 );
 
-
--- Up
 CREATE TABLE wilders (
   id INTEGER PRIMARY KEY,
   nom VARCHAR(50),
@@ -22,8 +24,19 @@ CREATE TABLE wilders (
   equipepreferee VARCHAR(50)
 );
 
--- Down
-DROP TABLE matchs;
+CREATE TABLE pronostics (
+  id INTEGER PRIMARY KEY,
+  wilderId INTEGER,
+  matchId INTEGER,
+  pronoTeamHome INTEGER,
+  pronoTeamOut INTEGER,
+  FOREIGN KEY(wilderId) REFERENCES wilders(id),
+  FOREIGN KEY(matchId) REFERENCES matchs(id)
+);
+
 
 -- Down
+
+DROP TABLE pronostics;
+DROP TABLE matchs;
 DROP TABLE wilders;

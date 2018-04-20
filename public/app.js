@@ -1,3 +1,6 @@
+import makeMatchsList from "./matchs.js"
+import makeHiddenButton, { makeDisplayMatch }  from "./matchs.js"
+
 const mainDiv = document.getElementById("main")
 
 const render = html => {
@@ -5,63 +8,266 @@ const render = html => {
 }
 
 //renvoie le html d'une card bootstrap pour un match
-const makeCard = item =>
-  `<div class="col-md-4">
-    <div class="card mb-4 box-shadow">
-      <img class="card-img-top" src="${item.image}" alt="Match" />
-      <div class="card-body">
-        <p class="card-text" style="height: 80px">${item.teamHome}-${item.teamOut}</p>
-        <p class="card-text" style="height: 80px">${item.scoreTeamHome}-${item.scoreTeamOut}</p>
-      </div>
-    </div>
-  </div>`
 
+  const makeCard = item =>
+      `
+      <div class="card mx-auto mb-3" style="width: 18rem;">
+        <div class="card-body text-center">
+          <p> ${item.teamHome} </p>
+          <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
+          <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
+          <p> ${item.teamOut} </p>
+          <p class="idmatch"> ${item.id} </p>
+          <p> ${item.localisation} </p>
+        </div>
+        <!-- Large modal -->
+        <div class="text-center">
+          <button type="button" data-index="${item.id}" data-teamHome="${item.teamHome}" data-teamOut="${item.teamOut}" data-drapeauHome="${item.drapeauHome}" data-drapeauOut="${item.drapeauOut}" data-localisation="${item.localisation}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+        </div>
+      </div>
+      `
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
-  `<div class="col-8 mx-auto text-center">
-    <div class="card mb-4 box-shadow">
-      <div class="card-body">
-        <p class="card-text" style="height: 30px">Nom : ${profil.nom}</p>
-        <p class="card-text" style="height: 30px">Prénom : ${profil.prenom}</p>
-        <p class="card-text" style="height: 30px">Nom du profil :${profil.pseudo}</p>
-        <p class="card-text" style="height: 30px">Mail : ${profil.mail}</p>
-        <p class="card-text" style="height: 30px">Ville: ${profil.city}</p>
-        <p class="card-text" style="height: 30px">Tu supportes ${profil.equipepreferee}</p>
+  `
+<div class="container" style="padding-top: 60px;">
+
+  <div class="row">
+      <!-- left column -->
+      <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="text-center">
+              <img src="https://media.licdn.com/dms/image/C4D03AQE1f8XY5CkayQ/profile-displayphoto-shrink_800_800/0?e=1528707600&v=beta&t=5rLhsfXCegNLMpxjWWXyGfrkBHLHZCI9tIa9gYfbd5g"
+                  class="avatar img-circle img-thumbnail" alt="avatar">
+              <p>Changer d'avatar ci-dessous</p>
+              <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile">
+                  <label class="custom-file-label" for="customFile">Choisis ton avatar</label>
+              </div>
+          </div>
       </div>
-    </div>
-  </div>`
+      <!-- edit form column -->
+      <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+          <div class="alert alert-info alert-dismissable">
+              <a class="panel-close close" data-dismiss="alert">×</a>
+              <i class="fa fa-coffee"></i>
+              Tu as modifier ton
+              <strong>profil</strong> avec succès!
+          </div>
+          <h3>Mes informations:</h3>
+          <form class="form-horizontal" role="form">
+              <div class="form-group">
+                  <label class="col-lg-3 control-label">Prénom:</label>
+                  <div class="col-lg-8">
+                      <input class="form-control" value="${profil.prenom}" type="text">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-3 control-label">Nom:</label>
+                  <div class="col-lg-8">
+                      <input class="form-control" value="${profil.nom}" type="text">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-3 control-label">Pseudo:</label>
+                  <div class="col-lg-8">
+                      <input class="form-control" value="${profil.pseudo}" type="text">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-3 control-label">Email:</label>
+                  <div class="col-lg-8">
+                      <input class="form-control" value="${profil.mail}" type="text">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-3 control-label">Ville:</label>
+                  <div class="col-lg-8">
+                      <input class="form-control" value="${profil.city}" type="text">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Ton équipe favorite:</label>
+                  <div class="col-md-8">
+                      <input class="form-control" value="${profil.equipepreferee}" type="text">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Mot de passe:</label>
+                  <div class="col-md-8">
+                      <input class="form-control" value="11111122333" type="password">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Confirmation du mot de passe:</label>
+                  <div class="col-md-8">
+                      <input class="form-control" value="11111122333" type="password">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-8">
+                      <input class="btn btn-outline-success" value="Valider" type="button">
+                      <input class="btn btn-outline-danger" value="Annuler" type="button">
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+</div>
+
+  `
 
 //récuperer tous les champs d'un formulaire pour en faire un object js
 const serializeForm = form => {
   const data = {}
   const elements = form.getElementsByClassName("form-control")
-  for (el of elements) {
+  for (let el of elements) {
     data[el.name] = el.value
   }
   return data
 }
 
+const matches = [
+{
+  "name": 20,
+  "type": "group",
+  "teamHome": "France",
+  "teamOut": "Espagne",
+  "scoreTeamHome": 0,
+  "scoreTeamOut": 3,
+  "date": "2018-06-20T21:00:00+03:00",
+  "stadium": 5,
+  "channels": [],
+  "finished": false,
+  "localisation": "Moscow",
+  "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
+  "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
+
+
+
+},
+{
+  "name": 35,
+  "type": "group",
+  "teamHome": "Irlande",
+  "teamOut": "Colombie",
+  "scoreTeamHome": null,
+  "scoreTeamOut": null,
+  "date": "2018-06-25T21:00:00+03:00",
+  "stadium": 9,
+  "channels": [],
+  "finished": false
+},
+{
+  "name": 36,
+  "type": "group",
+  "teamHome": "Allemagne",
+  "teamOut": "Pays-Bas",
+  "scoreTeamHome": null,
+  "scoreTeamOut": null,
+  "date": "2018-06-25T20:00:00+02:00",
+  "stadium": 4,
+  "channels": [],
+  "finished": false
+}
+]
+
   //routing côté client
   const controllers = {
-    "/": () =>
+    "/": () => {
 
       //la route matchs
       fetch("/matchs")
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
-      .then(album => render(
-          `<div class="container">
-            <div class="jumbotron">
-              <h1 class="display-3">Hello, world!</h1>
-              <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-              <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
-            </div>
+      .then(album => {
+        render(
+          `
+          <div class="jumbotron jumbotron-fluid bg-jumbotron">
+          <div class="container">
+            <h1 class="display-3">Mes pronos</h1>
+          </div>
+        </div>
+        <div class="container">
             <div class="row">${album}</div>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="modal-prono">
+
+                </div>
+              </div>
+            </div>
           </div>`)
-        )
-  ,
+
+          const buttons = document.getElementsByClassName("button-bet")
+            for (let button of buttons) {
+            button.addEventListener("click", () => {
+              // console.log(button.dataset)
+              // const nameTeamHome = document.getElementById("nameTeamHomeModal")
+              // const nameTeamOut = document.getElementById("nameTeamOutModal")
+              // const flagTeamHome = document.getElementById("flagTeamHome")
+              // const flagTeamOut = document.getElementById("flagTeamOut")
+              // nameTeamOut.innerHTML = `${button.dataset.teamout}`
+              // nameTeamHome.innerHTML = `${button.dataset.teamhome}`
+              // flagTeamHome.src = `${button.dataset.drapeauhome}`
+              // flagTeamOut.src = `${button.dataset.drapeauout}`
+              // console.log(nameTeamHome)
+              document.getElementById("modal-prono").innerHTML = `
+              <div id="match-details-curtain">
+                <div id="match-details-container">
+                  <div id="alert-box" class="hidden">
+                  </div>
+                  <div id="title">TON PRONO</div>
+                  <div id="teams-container">
+                    <div class="homecomming-team flexbox-items">
+                    <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
+                        <br />
+                        <p id="nameTeamHomeModal">${button.dataset.teamhome}</p>
+                    </div>
+                    <div class="flexbox-items">
+                        <div id="time-of-match"></div>
+                        <p id="date"></p>
+                        <br />
+                        <div id="vs"><div class="circle"></div><hr id="vs-line"/><div class="circle"></div></div>
+                    </div>
+                    <div class="away-team flexbox-items">
+                    <img src="${button.dataset.drapeauout}" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
+                        <br />
+                        <p id="nameTeamOutModal">${button.dataset.teamout}</p>
+                    </div>
+                </div>
+                <form id="form-prono">
+                    <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
+                    <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
+                </form>
+                <hr/>
+                <button type="submit" class="btn btn-outline-success prono"> Valider </button>
+              </div>
+            </div>
+              `
+              const form = document.getElementById("form-prono")
+              form.addEventListener("submit", e => {
+                e.preventDefault() //à tester sans et avec
+                const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+                fetch("/pronostics", {
+                  method: "POST",
+                  headers: {
+                    "Accept": "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(res => res.json())
+                  .then(pronostic => {
+                      const alertBox = document.getElementById("alert-box")
+                      alertBox.className = "alert alert-success"
+                      alertBox.innerHTML = `Votre prono est bien enregistré`
+                  })
+              })
+            })
+          }
+        })
+      },
 
     "/wilders/new": () => {
       //construit le formulaire
@@ -100,7 +306,7 @@ const serializeForm = form => {
         </div>
         <div class="form-group">
           <label for="inputEquipePreferee">Votre équipe supportée pour le Mondial</label>
-          <input name="equipepreferee" type="text" class="form-control" id="inputEquioePreferee" placeholder="Entrez votre équipe supportée" required>
+          <input name="equipepreferee" type="text" class="form-control" id="inputEquipePreferee" placeholder="Entrez votre équipe supportée" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -119,34 +325,28 @@ const serializeForm = form => {
           },
           body: JSON.stringify(data)
         })
-          .then(res => res.json())
-          .then(wilder => {
-            const alertBox = document.getElementById("alert-box")
-            alertBox.className = "alert alert-success"
-            alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
-          })
+            .then(res => res.json())
+            .then(wilder => {
+              const alertBox = document.getElementById("alert-box")
+              alertBox.className = "alert alert-success"
+              alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
+            })
       })
     },
+    "/list-matchs": () =>
+      render(makeHiddenButton(matches[0])),
+
     "/mon-profil": () =>
       //la route matchs
       fetch("/wilders")
       .then(res => res.json())
       .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
       .then(album => render(
-          `<div class="container">
-            <div class="jumbotron">
-              <h1 class="display-3">PAGE MON PROFIL</h1>
-              <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-              <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/" role="button">Retour à l'accueil »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a></p>
-              <p><a class="btn btn-success btn-lg" href="/mon-profil" role="button">Mon profil »</a></p>
-            </div>
+          `
             <div class="row">${album}</div>
           </div>`)
       )
     ,
-
     "/mes-pronos": () =>
     fetch("/matchs")
       .then(res => res.json())
@@ -159,12 +359,10 @@ const serializeForm = form => {
           console.log(matchs[i])
         }
       })
-,
-
+    ,
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
-
   //gère l'éxécution du routing côté client
   const routing = () => {
     const routes = [ //ne pas mettre les routes du côté serveur (fetch)
@@ -172,6 +370,7 @@ const serializeForm = form => {
       "/wilders/new",
       "/mon-profil",
       "/mes-pronos",
+      "/list-matchs",
       "*"
     ]
     routes.forEach(
