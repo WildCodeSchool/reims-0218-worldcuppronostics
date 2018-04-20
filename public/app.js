@@ -187,40 +187,36 @@ const matches = [
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                <body>
                 <div id="match-details-curtain">
                     <div id="match-details-container">
                         <div id="title">TON PRONOS</div>
                         <div id="teams-container">
-                            <div class="homecomming-team flexbox-items">
-                            <img src="" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
-                                <br />
-                                <p id="nameTeamHomeModal"></p>
-                            </div>
-                            <div class="flexbox-items">
-                                <div id="time-of-match"></div>
-                                <p id="date"></p>
-                                <br />
-                                <div id="vs"><div class="circle"></div><hr id="vs-line"/><div class="circle"></div></div>
-                            </div>
-                            <div class="away-team flexbox-items">
-                            <img src="" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
-                                <br />
-                                <p id="nameTeamOutModal"></p>
-                            </div>
-                        </div>
-                        <form id="score-container">
-                            <input type="number" id="pronoTeamHome" name="equipeOne" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
-                            <input type="number" id="pronoTeamOut" name="equipeTwo" value="0" min="0" max="15" class="away-team score form-control"></input>
-                        </form>
-                        <hr id="bottom-devider" />
-                        <div id="close-details"></div>
-                        <button type="submit" class="btn btn-outline-success prono"> Valider </button>
-                    </div>
-                </div>
-
-            </body>
-
+                          <div class="homecomming-team flexbox-items">
+                          <img src="" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
+                              <br />
+                              <p id="nameTeamHomeModal"></p>
+                          </div>
+                          <div class="flexbox-items">
+                              <div id="time-of-match"></div>
+                              <p id="date"></p>
+                              <br />
+                              <div id="vs"><div class="circle"></div><hr id="vs-line"/><div class="circle"></div></div>
+                          </div>
+                          <div class="away-team flexbox-items">
+                          <img src="" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
+                              <br />
+                              <p id="nameTeamOutModal"></p>
+                          </div>
+                      </div>
+                      <form id="score-container">
+                          <input type="number" id="pronoTeamHome" name="equipeOne" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
+                          <input type="number" id="pronoTeamOut" name="equipeTwo" value="0" min="0" max="15" class="away-team score form-control"></input>
+                      </form>
+                      <hr id="bottom-devider" />
+                      <div id="close-details"></div>
+                      <button type="submit" class="btn btn-outline-success prono"> Valider </button>
+                  </div>
+              </div>
             </div>
           </div>
           </div>`)
