@@ -245,30 +245,29 @@ const matches = [
                 <button type="submit" class="btn btn-outline-success prono"> Valider </button>
               </div>
               `
-
-              
+              const form = document.getElementById("score-container")
+              form.addEventListener("submit", e => {
+                e.preventDefault() //à tester sans et avec
+                const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+                fetch("/pronostics", {
+                  method: "POST",
+                  headers: {
+                    "Accept": "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(res => res.json())
+                  .then(pronostic => {
+                    const alertBox = document.getElementById("alert-box")
+                    alertBox.className = "alert alert-success"
+                    alertBox.innerHTML = `Votre prono est bien enregistré`
+                  })
+              })
 
             })
           }
-          const form = document.getElementById("score-container")
-          form.addEventListener("submit", e => {
-            e.preventDefault() //à tester sans et avec
-            const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
-            fetch("/pronostics", {
-              method: "POST",
-              headers: {
-                "Accept": "application/json, text/plain, */*",
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(data)
-            })
-                .then(res => res.json())
-                .then(pronostic => {
-                  const alertBox = document.getElementById("alert-box")
-                  alertBox.className = "alert alert-success"
-                  alertBox.innerHTML = `Votre prono est bien enregistré`
-                })
-          })
+          
         })
       },
 
