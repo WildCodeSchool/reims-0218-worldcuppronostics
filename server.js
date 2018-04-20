@@ -52,15 +52,7 @@ const dbPromise = Promise.resolve()
       city: 'Reims',
       equipepreferee: 'Monaco'
     })
-    insertWilders({
-      nom: 'Deschamps',
-      prenom: 'Arnaud',
-      pseudo: 'de',
-      mail: 'arnaud@wild.fr',
-      motdepasse: '1234',
-      city: 'Reims',
-      equipepreferee: 'Reims'
-    })
+
   })
   .then(() => {
     let matchs = []
@@ -124,11 +116,41 @@ const html = `
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Pronostics Woorld Cup</title>
+      <title>Pronostics World Cup</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
+      <link rel="stylesheet" href="/styles.css">
+      </head>
     <body>
-      <div id="main" class="container">
+   
+    <nav class="navbar navbar-expand-lg navbar-defaultnavbar navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="/"><img src="https://championnatdefrancedespronos.fr/scontent/images/FDJ_CFP_logo.png"></img></a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Mes pronos<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/classement">Classement</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tableau de bord">Tableau de bord</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/mon-profil">Mon profil</a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+       
+        <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
+      </form>
+    </div>
+  </nav>
+ 
+
+      <div id="main">
       </div>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
