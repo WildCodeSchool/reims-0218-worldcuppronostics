@@ -121,7 +121,7 @@ const html = `
       <link rel="stylesheet" href="/styles.css">
       </head>
     <body>
-   
+
     <nav class="navbar navbar-expand-lg navbar-defaultnavbar navbar-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -143,12 +143,12 @@ const html = `
           </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-       
+
         <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
       </form>
     </div>
   </nav>
- 
+
 
       <div id="main">
       </div>
@@ -193,6 +193,19 @@ app.get("/matchs", (req, res) => {
     })
 })
 
+//CREATE
+app.post("/pronostics", (req, res) => {
+  return insertProno(req.body)
+    .then(record => res.json(record))
+})
+
+// READ
+app.get("/pronostics", (req, res) => {
+  db.all("SELECT * FROM pronostics")
+    .then(records => {
+      return res.json(records)
+    })
+})
 
 //LA ROUTE /wilders
 //CREATE

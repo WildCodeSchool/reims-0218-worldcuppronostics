@@ -28,7 +28,7 @@ const render = html => {
 
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
-  `   
+  `
 <div class="container" style="padding-top: 60px;">
 
   <div class="row">
@@ -121,7 +121,7 @@ const makeProfil = profil =>
 const serializeForm = form => {
   const data = {}
   const elements = form.getElementsByClassName("form-control")
-  for (el of elements) {
+  for (let el of elements) {
     data[el.name] = el.value
   }
   return data
@@ -209,25 +209,22 @@ const matches = [
                                 <p id="nameTeamOutModal"></p>
                             </div>
                         </div>
-                        <div id="score-container">
-                            <input type="number" id="scoreTeamOne" name="equipeOne" value="0" min="0" max="15" class="homecomming-team score"></input>
-                            <input type="number" id="scoreTeamTwo" name="equipeTwo" value="0" min="0" max="15" class="away-team score"></input>
-                        </div>
-                        
-                       
-                      
+                        <form id="score-container">
+                            <input type="number" id="pronoTeamHome" name="equipeOne" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
+                            <input type="number" id="pronoTeamOut" name="equipeTwo" value="0" min="0" max="15" class="away-team score form-control"></input>
+                        </form>
                         <hr id="bottom-devider" />
                         <div id="close-details"></div>
-                        <input class="btn btn-outline-success prono" value="Valider" type="button">
+                        <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                     </div>
                 </div>
-                
+
             </body>
-          
+
             </div>
           </div>
           </div>`)
-        
+
           const buttons = document.getElementsByClassName("button-bet")
             for (let button of buttons) {
             button.addEventListener("click", () => {
@@ -243,6 +240,25 @@ const matches = [
               console.log(nameTeamHome)
             })
           }
+          const form = document.getElementById("score-container")
+          form.addEventListener("submit", e => {
+            e.preventDefault() //à tester sans et avec
+            const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+            fetch("/pronostics", {
+              method: "POST",
+              headers: {
+                "Accept": "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(pronostic => {
+                  const alertBox = document.getElementById("alert-box")
+                  alertBox.className = "alert alert-success"
+                  alertBox.innerHTML = `Votre prono est bien enregistré`
+                })
+          })
         })
       },
 
