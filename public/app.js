@@ -214,8 +214,10 @@ const matches = [
               // console.log(nameTeamHome)
               document.getElementById("modal-prono").innerHTML = `
               <div id="match-details-curtain">
-              <div id="match-details-container">
-                  <div id="title">TON PRONOS</div>
+                <div id="match-details-container">
+                  <div id="alert-box" class="hidden">
+                  </div>
+                  <div id="title">TON PRONO</div>
                   <div id="teams-container">
                     <div class="homecomming-team flexbox-items">
                     <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
@@ -241,31 +243,29 @@ const matches = [
                 <hr/>
                 <button type="submit" class="btn btn-outline-success prono"> Valider </button>
               </div>
+            </div>
               `
-
-
-
+              const form = document.getElementById("form-prono")
+              form.addEventListener("submit", e => {
+                e.preventDefault() //à tester sans et avec
+                const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+                fetch("/pronostics", {
+                  method: "POST",
+                  headers: {
+                    "Accept": "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(res => res.json())
+                  .then(pronostic => {
+                      const alertBox = document.getElementById("alert-box")
+                      alertBox.className = "alert alert-success"
+                      alertBox.innerHTML = `Votre prono est bien enregistré`
+                  })
+              })
             })
           }
-          const form = document.getElementById("form-prono")
-          form.addEventListener("submit", e => {
-            e.preventDefault() //à tester sans et avec
-            const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
-            fetch("/pronostics", {
-              method: "POST",
-              headers: {
-                "Accept": "application/json, text/plain, */*",
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(data)
-            })
-                .then(res => res.json())
-                .then(pronostic => {
-                  const alertBox = document.getElementById("alert-box")
-                  alertBox.className = "alert alert-success"
-                  alertBox.innerHTML = `Votre prono est bien enregistré`
-                })
-          })
         })
       },
 
@@ -333,9 +333,6 @@ const matches = [
             })
       })
     },
-
-
-
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),
 
@@ -350,7 +347,6 @@ const matches = [
           </div>`)
       )
     ,
-
     "/mes-pronos": () =>
     fetch("/matchs")
       .then(res => res.json())
@@ -364,11 +360,9 @@ const matches = [
         }
       })
     ,
-
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
-
   //gère l'éxécution du routing côté client
   const routing = () => {
     const routes = [ //ne pas mettre les routes du côté serveur (fetch)

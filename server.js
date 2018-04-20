@@ -140,10 +140,10 @@ const html = `
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/mon-profil">Mon profil</a>
-          </li>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-
+          <a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire</a>
         <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
       </form>
     </div>
