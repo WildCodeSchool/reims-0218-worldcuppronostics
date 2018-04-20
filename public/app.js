@@ -187,7 +187,7 @@ const matches = [
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                <div id="match-details-curtain">
+                  <div id="match-details-curtain">
                     <div id="match-details-container">
                         <div id="title">TON PRONOS</div>
                         <div id="teams-container">
@@ -209,16 +209,17 @@ const matches = [
                           </div>
                       </div>
                       <form id="score-container">
-                          <input type="number" id="pronoTeamHome" name="equipeOne" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
-                          <input type="number" id="pronoTeamOut" name="equipeTwo" value="0" min="0" max="15" class="away-team score form-control"></input>
+                          <input type="number" id="pronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
+                          <input type="number" id="pronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
+                          <input name="matchId" type="hidden" class="form-control" id="matchId" value="">
                       </form>
                       <hr id="bottom-devider" />
                       <div id="close-details"></div>
                       <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                   </div>
+                </div>
               </div>
             </div>
-          </div>
           </div>`)
 
           const buttons = document.getElementsByClassName("button-bet")
@@ -233,7 +234,7 @@ const matches = [
               nameTeamHome.innerHTML = `${button.dataset.teamhome}`
               flagTeamHome.src = `${button.dataset.drapeauhome}`
               flagTeamOut.src = `${button.dataset.drapeauout}`
-              console.log(nameTeamHome)
+              document.getElementById("matchId").value = `${button.dataset.index}`;
             })
           }
           const form = document.getElementById("score-container")
@@ -295,7 +296,7 @@ const matches = [
         </div>
         <div class="form-group">
           <label for="inputEquipePreferee">Votre équipe supportée pour le Mondial</label>
-          <input name="equipepreferee" type="text" class="form-control" id="inputEquioePreferee" placeholder="Entrez votre équipe supportée" required>
+          <input name="equipepreferee" type="text" class="form-control" id="inputEquipePreferee" placeholder="Entrez votre équipe supportée" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
