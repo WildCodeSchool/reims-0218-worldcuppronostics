@@ -143,8 +143,6 @@ const matches = [
   "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
   "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
 
-
-
 },
 {
   "name": 35,
@@ -213,6 +211,8 @@ const matches = [
               // flagTeamOut.src = `${button.dataset.drapeauout}`
               // console.log(nameTeamHome)
               document.getElementById("modal-prono").innerHTML = `
+              <div id="alert-box" class="hidden">
+              </div>
               <div id="match-details-curtain">
                 <div id="match-details-container">
                   <div id="alert-box" class="hidden">
@@ -239,13 +239,14 @@ const matches = [
                 <form id="form-prono">
                     <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
                     <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
+                    <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                 </form>
-                <hr/>
-                <button type="submit" class="btn btn-outline-success prono"> Valider </button>
               </div>
             </div>
               `
+              console.log("début form")
               const form = document.getElementById("form-prono")
+              console.log(form)
               form.addEventListener("submit", e => {
                 e.preventDefault() //à tester sans et avec
                 const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
@@ -257,15 +258,17 @@ const matches = [
                   },
                   body: JSON.stringify(data)
                 })
-                  .then(res => res.json())
-                  .then(pronostic => {
+                    .then(res => res.json())
+                    .then(pronostic => {
                       const alertBox = document.getElementById("alert-box")
                       alertBox.className = "alert alert-success"
                       alertBox.innerHTML = `Votre prono est bien enregistré`
-                  })
+                    })
               })
             })
+            
           }
+        
         })
       },
 
