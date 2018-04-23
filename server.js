@@ -15,8 +15,8 @@ app.use(bodyParser.json())
 
 //inserer un match
 const insertMatchs = m => {
-  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut} = m
-  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut)
+  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch} = m
+  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
@@ -78,10 +78,12 @@ const dbPromise = Promise.resolve()
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city,
         groupe: match.group,
         drapeauHome: teamHome.flag,
-        drapeauOut: teamOut.flag
+        drapeauOut: teamOut.flag,
+        numberMatch: match.name
       }
     })
       Promise.map(matchsToInsert, m => insertMatchs(m))
+
   })
   .then(() => {
     insertProno({
@@ -195,6 +197,11 @@ app.get("/matchs", (req, res) => {
 
 //CREATE
 app.post("/pronostics", (req, res) => {
+  const prono = {
+    wilderId: 1, // En attendant l'authentification
+    //matchId:
+  }
+  console.log(req.body);
   return insertProno(req.body)
     .then(record => res.json(record))
 })

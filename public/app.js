@@ -14,15 +14,16 @@ const render = html => {
       <div class="card mx-auto mb-3" style="width: 18rem;">
         <div class="card-body text-center">
           <p> ${item.teamHome} </p>
-          <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
-          <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
+          <img src="${item.drapeauHome}" style="width: 48px; height: 48px" class="rounded">
+          <img src="${item.drapeauOut}" style="width: 48px; height: 48px" class="rounded">
           <p> ${item.teamOut} </p>
           <p class="idmatch"> ${item.id} </p>
           <p> ${item.localisation} </p>
+          <p> ${item.numberMatch} </p>
         </div>
         <!-- Large modal -->
         <div class="text-center">
-          <button type="button" data-index="${item.id}" data-teamHome="${item.teamHome}" data-teamOut="${item.teamOut}" data-drapeauHome="${item.drapeauHome}" data-drapeauOut="${item.drapeauOut}" data-localisation="${item.localisation}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
+          <button type="button" data-index="${item.id}" data-teamHome="${item.teamHome}" data-teamOut="${item.teamOut}" data-drapeauHome="${item.drapeauHome}" data-drapeauOut="${item.drapeauOut}" data-localisation="${item.localisation}" data-numbermatch="${item.numberMatch}" class="btn btn-primary button-bet" data-toggle="modal" data-target=".bd-example-modal-lg">Pariez !</button>
         </div>
       </div>
       `
@@ -143,8 +144,6 @@ const matches = [
   "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
   "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
 
-
-
 },
 {
   "name": 35,
@@ -213,6 +212,8 @@ const matches = [
               // flagTeamOut.src = `${button.dataset.drapeauout}`
               // console.log(nameTeamHome)
               document.getElementById("modal-prono").innerHTML = `
+              <div id="alert-box" class="hidden">
+              </div>
               <div id="match-details-curtain">
                 <div id="match-details-container">
                   <div id="alert-box" class="hidden">
@@ -220,7 +221,7 @@ const matches = [
                   <div id="title">TON PRONO</div>
                   <div id="teams-container">
                     <div class="homecomming-team flexbox-items">
-                    <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
+                    <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px" class="rounded">
                         <br />
                         <p id="nameTeamHomeModal">${button.dataset.teamhome}</p>
                     </div>
@@ -231,7 +232,7 @@ const matches = [
                         <div id="vs"><div class="circle"></div><hr id="vs-line"/><div class="circle"></div></div>
                     </div>
                     <div class="away-team flexbox-items">
-                    <img src="${button.dataset.drapeauout}" id="flagTeamOut" style="width: 48px; height: 48px; class="rounded">
+                    <img src="${button.dataset.drapeauout}" id="flagTeamOut" style="width: 48px; height: 48px" class="rounded">
                         <br />
                         <p id="nameTeamOutModal">${button.dataset.teamout}</p>
                     </div>
@@ -239,12 +240,13 @@ const matches = [
                 <form id="form-prono">
                     <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
                     <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
+                    <!-- <input type="hidden" id="numberMatch" name="matchId" value="${button.dataset.numbermatch}"> -->
+                    <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                 </form>
-                <hr/>
-                <button type="submit" class="btn btn-outline-success prono"> Valider </button>
               </div>
             </div>
               `
+              console.log(button.dataset.numbermatch);
               const form = document.getElementById("form-prono")
               form.addEventListener("submit", e => {
                 e.preventDefault() //à tester sans et avec
@@ -257,15 +259,16 @@ const matches = [
                   },
                   body: JSON.stringify(data)
                 })
-                  .then(res => res.json())
-                  .then(pronostic => {
+                    .then(res => res.json())
+                    .then(pronostic => {
                       const alertBox = document.getElementById("alert-box")
                       alertBox.className = "alert alert-success"
                       alertBox.innerHTML = `Votre prono est bien enregistré`
-                  })
+                    })
               })
             })
           }
+
         })
       },
 
@@ -347,19 +350,20 @@ const matches = [
           </div>`)
       )
     ,
-    "/mes-pronos": () =>
-    fetch("/matchs")
-      .then(res => res.json())
-      .then(matchs => {
-        // for (match of matchs) {
-        //   console.log(match)
-        // }
-        console.log("poule A")
-        for (let i = 0; i < 6; i ++) {
-          console.log(matchs[i])
-        }
-      })
-    ,
+    // "/addScoreReal": () =>
+    // fetch("/matchs")
+    //   .then(res => res.json())
+    //   .then(matchs => {
+    //     for (let i = 0; i < matchs.length; i ++) {
+    //       console.log(matchs[i].numberMatch)
+    //     }
+    //   .then(scoreReal => {
+    //     const listhtml = scoreReal.numberMatch.reduce(
+    //       (acc, scoreRealNumberMatch) => acc + `<li> ${scoreRealNumberMatch} </li>`
+    //     )
+    //   })
+    // })
+
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
@@ -369,7 +373,6 @@ const matches = [
       "/",
       "/wilders/new",
       "/mon-profil",
-      "/mes-pronos",
       "/list-matchs",
       "*"
     ]
