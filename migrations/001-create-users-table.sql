@@ -14,6 +14,7 @@ CREATE TABLE matchs (
   numberMatch INTEGER
 );
 
+
 CREATE TABLE wilders (
   id INTEGER PRIMARY KEY,
   nom VARCHAR(50),

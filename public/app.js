@@ -240,17 +240,19 @@ const matches = [
                 <form id="form-prono">
                     <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
                     <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
-                    <input type="hidden" id="numberMatch" name="matchId" value="${button.dataset.numbermatch}" class="form-control">
-                    <button type="submit" class="btn btn-outline-success prono button-prono"> Valider </button>
+                    <input type="hidden" id="numberMatch" name="matchId" class="form-control" value="${button.dataset.numbermatch}">
+                    <input type="hidden" id="wilderId" name="wilderId" class="form-control" value="1">
+                    <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                 </form>
               </div>
             </div>
               `
-              console.log(button.dataset.numbermatch);
+              console.log(button.dataset);
               const form = document.getElementById("form-prono")
               form.addEventListener("submit", e => {
                 e.preventDefault() //à tester sans et avec
                 const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+                console.log(data)
                 fetch("/pronostics", {
                   method: "POST",
                   headers: {

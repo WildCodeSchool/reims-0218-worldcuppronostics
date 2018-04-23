@@ -21,6 +21,14 @@ const insertMatchs = m => {
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
 
+// //inserer un score réel
+// const insertMatchReal = r => {
+//   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut} = r
+//   return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut)
+//     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
+//     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
+// }
+
 //inserer un wilder
 const insertWilders = w => {
 const { nom, prenom, pseudo, mail, motdepasse, city, equipepreferee } = w
@@ -199,7 +207,6 @@ app.get("/matchs", (req, res) => {
 app.post("/pronostics", (req, res) => {
   const prono = {
     wilderId: 1, // En attendant l'authentification
-    //matchId:
   }
   console.log(req.body);
   return insertProno(req.body)
@@ -213,6 +220,23 @@ app.get("/pronostics", (req, res) => {
       return res.json(records)
     })
 })
+
+//LA ROUTE /add score d'un match réel
+//CREATE
+app.post("/addScoreMatch", (req, res) => {
+  return insertMatchs(req.body)
+    .then(record => res.json(record))
+    })
+
+
+//READ
+app.get("/addScoreMatch", (req, res) => {
+  db.all("SELECT * FROM matchs")
+  .then (records => {
+    return res.json(records)
+  })
+})
+
 
 //LA ROUTE /wilders
 //CREATE
