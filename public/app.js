@@ -240,8 +240,8 @@ const matches = [
                 <form id="form-prono">
                     <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
                     <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
-                    <!-- <input type="hidden" id="numberMatch" name="matchId" value="${button.dataset.numbermatch}"> -->
-                    <button type="submit" class="btn btn-outline-success prono"> Valider </button>
+                    <input type="hidden" id="numberMatch" name="matchId" value="${button.dataset.numbermatch}" class="form-control">
+                    <button type="submit" class="btn btn-outline-success prono button-prono"> Valider </button>
                 </form>
               </div>
             </div>
@@ -264,6 +264,10 @@ const matches = [
                       const alertBox = document.getElementById("alert-box")
                       alertBox.className = "alert alert-success"
                       alertBox.innerHTML = `Votre prono est bien enregistré`
+                    })
+                    .then(button => {
+
+                        const buttonblabla = document.getElementsByClassName("button-bet")[3].style.display="none"
                     })
               })
             })
