@@ -15,8 +15,8 @@ app.use(bodyParser.json())
 
 //inserer un match
 const insertMatchs = m => {
-  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut} = m
-  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut)
+  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch} = m
+  return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
@@ -86,10 +86,12 @@ const dbPromise = Promise.resolve()
         localisation: stadiums.find(stadium => stadium.id === match.stadium).city,
         groupe: match.group,
         drapeauHome: teamHome.flag,
-        drapeauOut: teamOut.flag
+        drapeauOut: teamOut.flag,
+        numberMatch: match.name
       }
     })
       Promise.map(matchsToInsert, m => insertMatchs(m))
+
   })
   .then(() => {
     insertProno({
@@ -148,13 +150,10 @@ const html = `
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/mon-profil">Mon profil</a>
-          </li>
+        </li>
       </ul>
-      <li class="nav-item">
-        <a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire »</a>
-      </li>
       <form class="form-inline my-2 my-lg-0">
-
+          <a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire</a>
         <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
       </form>
     </div>
@@ -206,6 +205,11 @@ app.get("/matchs", (req, res) => {
 
 //CREATE
 app.post("/pronostics", (req, res) => {
+  const prono = {
+    wilderId: 1, // En attendant l'authentification
+    //matchId:
+  }
+  console.log(req.body);
   return insertProno(req.body)
     .then(record => res.json(record))
 })

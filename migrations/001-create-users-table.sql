@@ -4,15 +4,14 @@ CREATE TABLE matchs (
   id INTEGER PRIMARY KEY,
   teamHome VARCHAR(50),
   teamOut VARCHAR(50),
-  scoreTeamHome INT,
-  scoreTeamOut INT,
-  scoreTeamHomeReal INT,
-  scoreTeamOutReal INT,
+  scoreTeamHome INTEGER,
+  scoreTeamOut INTEGER,
   hours DATE,
   localisation VARCHAR(50),
   groupe VARCHAR(50),
   drapeauHome VARCHAR(100),
-  drapeauOut VARCHAR(100)
+  drapeauOut VARCHAR(100),
+  numberMatch INTEGER
 );
 
 
