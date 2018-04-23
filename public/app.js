@@ -267,8 +267,13 @@ const matches = [
                       alertBox.className = "alert alert-success"
                       alertBox.innerHTML = `Votre prono est bien enregistré`
                     })
+                    .then(button => {
+                      console.log("button")
+                      const buttonModify = document.getElementsByClassName("button-bet").style.color="red"
+                    })
               })
             })
+                      
           }
 
         })
