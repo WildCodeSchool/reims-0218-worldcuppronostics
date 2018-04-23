@@ -241,12 +241,13 @@ const matches = [
                     <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
                     <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
                     <input type="hidden" id="numberMatch" name="matchId" class="form-control" value="${button.dataset.numbermatch}">
+                    <input type="hidden" id="wilderId" name="wilderId" class="form-control" value="1">
                     <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                 </form>
               </div>
             </div>
               `
-              //console.log(button.dataset.numbermatch);
+              console.log(button.dataset);
               const form = document.getElementById("form-prono")
               form.addEventListener("submit", e => {
                 e.preventDefault() //à tester sans et avec

@@ -207,7 +207,6 @@ app.get("/matchs", (req, res) => {
 app.post("/pronostics", (req, res) => {
   const prono = {
     wilderId: 1, // En attendant l'authentification
-    //matchId:
   }
   console.log(req.body);
   return insertProno(req.body)
