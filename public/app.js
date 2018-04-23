@@ -14,7 +14,7 @@ const render = html => {
       <div class="card mx-auto mb-3" style="width: 18rem;">
         <div class="card-body text-center">
           <p> ${item.teamHome} </p>
-          <img src="${item.drapeauHome}" style="width: 48px; height: 48px; class="rounded">
+          <img src="${item.drapeauHome}" style="width: 48px; height: 48px;" class="rounded">
           <img src="${item.drapeauOut}" style="width: 48px; height: 48px;" class="rounded">
           <p> ${item.teamOut} </p>
           <p class="idmatch"> ${item.id} </p>
@@ -218,9 +218,9 @@ const matches = [
                   <div id="title">TON PRONOS</div>
                   <div id="teams-container">
                     <div class="homecomming-team flexbox-items">
-                    <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
-                        <br />
-                        <p id="nameTeamHomeModal">${button.dataset.teamhome}</p>
+                      <img src="${button.dataset.drapeauhome}" id="flagTeamHome" style="width: 48px; height: 48px; class="rounded">
+                      <br />
+                      <p id="nameTeamHomeModal">${button.dataset.teamhome}</p>
                     </div>
                     <div class="flexbox-items">
                         <div id="time-of-match"></div>
@@ -241,6 +241,7 @@ const matches = [
                 </form>
               </div>
               `
+              console.log(button.dataset)
               console.log("début form")
               const form = document.getElementById("form-prono")
               console.log(form)
@@ -375,6 +376,7 @@ const matches = [
       "/",
       "/wilders/new",
       "/mon-profil",
+      
       "/mes-pronos",
       "/list-matchs",
       "*"

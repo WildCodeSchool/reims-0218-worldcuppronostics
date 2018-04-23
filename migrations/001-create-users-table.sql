@@ -6,12 +6,15 @@ CREATE TABLE matchs (
   teamOut VARCHAR(50),
   scoreTeamHome INT,
   scoreTeamOut INT,
+  scoreTeamHomeReal INT,
+  scoreTeamOutReal INT,
   hours DATE,
   localisation VARCHAR(50),
   groupe VARCHAR(50),
   drapeauHome VARCHAR(100),
   drapeauOut VARCHAR(100)
 );
+
 
 CREATE TABLE wilders (
   id INTEGER PRIMARY KEY,
