@@ -4,14 +4,19 @@ const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
 const Promise = require("bluebird")
+const passport = require('passport')
 //chargement des fichiers dans public
 const matchsSeed = require("./public/matchs.json")
 // database
 let db
 
+require('./passport-strategy')
+const auth = require('./auth')
+
 //permet de servir les ressources statiques du dossier public
 app.use(express.static("public"))
 app.use(bodyParser.json())
+app.use('/auth', auth)
 
 //inserer un match
 const insertMatchs = m => {
@@ -171,7 +176,12 @@ const html = `
   </html>`
 
 //routing côté serveur
-//routes de l'api REST qui répondent par du
+
+//LA ROUTE /test
+app.get('/test', passport.authenticate('jwt', {session: false}), (req, res) => {
+  res.send(`authorized for user ${req.user.username} with id ${req.user.id}`)
+})
+
 
 //LA ROUTE /matchs
 //CREATE

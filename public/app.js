@@ -261,17 +261,20 @@ const matches = [
                   },
                   body: JSON.stringify(data)
                 })
-                    .then(res => res.json())
-                    .then(pronostic => {
-                      const alertBox = document.getElementById("alert-box")
-                      alertBox.className = "alert alert-success"
-                      alertBox.innerHTML = `Votre prono est bien enregistré`
-                    })
-                    .then(buttons => {
-                      const buttonsHidden = document.getElementsByClassName("button-bet")
-                    })
+                .then(res => res.json())
+                .then(pronostic => {
+                  const alertBox = document.getElementById("alert-box")
+                  alertBox.className = "alert alert-success"
+                  alertBox.innerHTML = `Votre prono est bien enregistré`
+                })
+                .then(button => {
+                  console.log("Je suis ici")
+                  //const buttonModify = document.getElementsByClassName("button-bet")[0].style.color="red"
+    
+                })
               })
             })
+
           }
 
         })
