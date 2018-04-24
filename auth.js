@@ -3,6 +3,15 @@ const router  = express.Router()
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 
+
+/*GET login. */
+router.get("/login", (req, res) => {
+  res.json ({
+    message: "Welcome to the API"
+  })
+})
+
+
 /* POST login. */
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', {session: false}, (err, user, info) => {
