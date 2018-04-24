@@ -94,13 +94,13 @@ const makeProfil = profil =>
               <div class="form-group">
                   <label class="col-md-3 control-label">Mot de passe:</label>
                   <div class="col-md-8">
-                      <input class="form-control" value="11111122333" type="password">
+                      <input type="password" class="form-control" value="11111122333" name="passport">
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-md-3 control-label">Confirmation du mot de passe:</label>
                   <div class="col-md-8">
-                      <input class="form-control" value="11111122333" type="password">
+                      <input type="password" class="form-control" value="11111122333" name="passport">
                   </div>
               </div>
               <div class="form-group">
@@ -270,7 +270,7 @@ const matches = [
                 .then(button => {
                   console.log("Je suis ici")
                   //const buttonModify = document.getElementsByClassName("button-bet")[0].style.color="red"
-    
+
                 })
               })
             })
@@ -305,11 +305,11 @@ const matches = [
         </div>
         <div class="form-group">
           <label for="inputMotDePasse">Mot de passe</label>
-          <input name="motdepasse" type="text" class="form-control" id="inputMotDePasse" placeholder="Choississez votre mot de passe" required>
+          <input name="motdepasse" type="password" class="form-control" id="inputMotDePasse" placeholder="Choississez votre mot de passe" required>
         </div>
         <div class="form-group">
           <label for="inputConfirmationMotDePasse">Confirmation de mot de passe</label>
-          <input name="confirmationmotdepasse" type="text" class="form-control" id="inputConfirmationMotDePasse" placeholder="Veuillez confirmer votre mot de passe" required>
+          <input name="confirmationmotdepasse" type="password" class="form-control" id="inputConfirmationMotDePasse" placeholder="Veuillez confirmer votre mot de passe" required>
         </div>
         <div class="form-group">
           <label for="inputCity">Votre ville</label>

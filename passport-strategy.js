@@ -7,7 +7,7 @@ const ExtractJWT = passportJWT.ExtractJwt
 passport.use(new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password'
-    }, 
+    },
     function (username, password, cb) {
         //this one is typically a DB call. Assume that the returned user object is pre-formatted and ready for storing in JWT
         if (password !== 'wildcode') {
@@ -24,6 +24,7 @@ passport.use(new JWTStrategy({
 },
 function (jwtPayload, cb) {
     const user = jwtPayload
+    console.log(user)
     //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
     return cb(null, user)
 }))
