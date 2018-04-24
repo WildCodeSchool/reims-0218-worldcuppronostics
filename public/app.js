@@ -267,9 +267,8 @@ const matches = [
                       alertBox.className = "alert alert-success"
                       alertBox.innerHTML = `Votre prono est bien enregistré`
                     })
-                    .then(button => {
-
-                        const buttonblabla = document.getElementsByClassName("button-bet")[3].style.display="none"
+                    .then(buttons => {
+                      const buttonsHidden = document.getElementsByClassName("button-bet")
                     })
               })
             })
