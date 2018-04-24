@@ -167,7 +167,28 @@ const html = `
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire</a>
-        <button type="button" href="/wilders/login" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Se connecter</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Se connecter</button>
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="login-modal" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="container">
+                <div id="alert-box" class="hidden">
+                </div>
+                <form id="add-wilder">
+                  <div class="form-group">
+                    <label for="inputMail">Email</label>
+                    <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword">Mot de passe</label>
+                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Entrez votre mot de passe" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
         <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
       </form>
     </div>

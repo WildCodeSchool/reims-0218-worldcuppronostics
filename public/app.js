@@ -344,9 +344,6 @@ const matches = [
             })
       })
     },
-
-
-    
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),
 
