@@ -227,7 +227,7 @@ const matches = [
         })
       })
       const callTest = document.getElementById("test")
-      callTest.addEventListener( "click", () => {
+      callTest.addEventListener("click", () => {
         fetch("/test")
         .then(res => res.json())
         .catch(err => console.log(err))
