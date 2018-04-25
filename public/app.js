@@ -211,8 +211,9 @@ const matches = [
           },
           body: JSON.stringify(data)
         })
-        .then(res => res.json() )
+        .then(res => res.json())
         .then(data => {
+          console.log(data)
           const alert = document.getElementById("alert-login")
           if(!data.user) {
             //alet class danger
@@ -221,16 +222,18 @@ const matches = [
             alert.innerHTML = `Vous êtes bien identifié`
             //stores the token
             localStorage.setItem("token", data.token)
-            loginWilder.style.display = "none"
+            document.getElementById("login-wilder").style.display = "none"
             buttonLogin.style.display = "none"
           }
+          const callTest = document.getElementById("test")
+          callTest.addEventListener("click", () => {
+            const token = localStorage.getItem("token")
+            console.log(token);
+            fetch("test")
+            .then(res => res.json())
+            .catch(err => console.log(err))
+          })
         })
-      })
-      const callTest = document.getElementById("test")
-      callTest.addEventListener("click", () => {
-        fetch("/test")
-        .then(res => res.json())
-        .catch(err => console.log(err))
       })
   }
   ,
@@ -331,7 +334,6 @@ const matches = [
                 .then(button => {
                   console.log("Je suis ici")
                   //const buttonModify = document.getElementsByClassName("button-bet")[0].style.color="red"
-
                 })
               })
             })
