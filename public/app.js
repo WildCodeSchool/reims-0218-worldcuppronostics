@@ -202,6 +202,7 @@ const loginWilderHtml = `
         <div id="test">CALL TEST</div>
         `
       })
+
       const loginWilder = document.getElementById("modal-login")
       loginWilder.addEventListener("submit", e => {
         e.preventDefault()
@@ -228,10 +229,9 @@ const loginWilderHtml = `
             alert.innerHTML = `Vous êtes bien identifié`
             //stores the token
             localStorage.setItem("token", data.token)
-            document.getElementById("link-signin").style.display = "none"
-            document.getElementById("login-wilder").style.display = "none"
-            buttonLogin.style.display = "none"
-
+            // document.getElementById("link-signin").style.display = "none"
+            // document.getElementById("login-wilder").style.display = "none"
+            // buttonLogin.style.display = "none"
           }
           const callTest = document.getElementById("test")
           callTest.addEventListener("click", () => {
