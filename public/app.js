@@ -194,6 +194,7 @@ const matches = [
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div id="alert-login" class="hidden">
+        <div id="test">CALL TEST</div> 
         `
       })
       const loginWilder = document.getElementById("modal-login")
@@ -225,7 +226,14 @@ const matches = [
           }
         })
       })
-    }
+    
+
+    document.getElementById("test").addEventListener( "click", () => {
+      fetch("test")
+      .then(res => res.json())
+      .catch(err => console.log(err))
+    })
+  }
   ,
     "/domyprono": () => {
 
