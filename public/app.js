@@ -178,15 +178,15 @@ const matches = [
       render(
         `${navBarNoLogin}`
       )
-      const buttonLogin = document.getElementById("button-login")
+      const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
       buttonLogin.addEventListener("click", () => {
         document.getElementById("modal-login").innerHTML = `
         <div id="alert-box" class="hidden">
         </div>
-        <form id="add-wilder">
+        <form id="login-wilder">
           <div class="form-group">
             <label for="inputMail">Email</label>
-            <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
+            <input name="username" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
           </div>
           <div class="form-group">
             <label for="inputPassword">Mot de passe</label>
@@ -195,6 +195,23 @@ const matches = [
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         `
+      })
+      const loginWilder = document.getElementById("modal-login")
+      loginWilder.addEventListener("submit", e => {
+        e.preventDefault()
+        // data ?
+        const data = serializeForm(loginWilder)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+        console.log(data)
+        // post sur le serveur /auth/login
+        fetch("/auth/login", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => console.log(response))
       })
     }
   ,
@@ -207,7 +224,7 @@ const matches = [
       .then(album => {
         render(
           `
-            ${navBarNoLogin}
+            ${navBarLogin}
           <div class="jumbotron jumbotron-fluid bg-jumbotron">
           <div class="container">
             <h1 class="display-3">Mes pronos</h1>

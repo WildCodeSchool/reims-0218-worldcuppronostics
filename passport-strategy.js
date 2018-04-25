@@ -5,7 +5,7 @@ const JWTStrategy   = passportJWT.Strategy
 const ExtractJWT = passportJWT.ExtractJwt
 
 passport.use(new LocalStrategy({
-        usernameField: 'username',
+        emailField: 'email',
         passwordField: 'password'
     },
     function (username, password, cb) {

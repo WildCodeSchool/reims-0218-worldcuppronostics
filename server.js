@@ -128,7 +128,6 @@ const dbPromise = Promise.resolve()
 const html = `
 <!doctype html>
 <html class="no-js" lang="fr">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -137,7 +136,6 @@ const html = `
     crossorigin="anonymous">
   <link rel="stylesheet" href="/styles.css">
 </head>
-
 <body>
   <div id="navBar">
   </div>
@@ -152,7 +150,6 @@ const html = `
   <script src="/page.js"></script>
   <script type="module" src="/app.js"></script>
 </body>
-
 </html>
 `
 
