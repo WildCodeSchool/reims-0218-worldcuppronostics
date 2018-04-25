@@ -240,11 +240,6 @@ const matches = [
             </div>
           </div>`)
 
-          const buttonLogin = document.getElementById("button-login")
-          buttonLogin.addEventListener("click", e => {
-            console.log("le bouton login marche")
-          })
-
           const buttons = document.getElementsByClassName("button-bet")
             for (let button of buttons) {
             button.addEventListener("click", () => {
