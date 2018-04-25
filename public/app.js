@@ -181,7 +181,6 @@ const matches = [
       const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
       buttonLogin.addEventListener("click", () => {
         document.getElementById("modal-login").innerHTML = `
-        <div id="alert-box" class="hidden">
         </div>
         <form id="login-wilder">
           <div class="form-group">
@@ -194,6 +193,7 @@ const matches = [
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <div id="alert-login" class="hidden">
         `
       })
       const loginWilder = document.getElementById("modal-login")
@@ -211,7 +211,19 @@ const matches = [
           },
           body: JSON.stringify(data)
         })
-        .then(response => console.log(response))
+        .then(res => res.json() )
+        .then(data => {
+          const alert = document.getElementById("alert-login")
+          if(!data.user) {
+            //alet class danger
+            alert.innerHTML = `échec du login`
+          } else {
+            alert.innerHTML = `Vous êtes bien identifié`
+            //stores the token
+            localStorage.setItem("token", data.token)
+            loginWilder.style.display = 'none'
+          }
+        })
       })
     }
   ,
