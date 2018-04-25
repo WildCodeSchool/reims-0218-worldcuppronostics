@@ -172,6 +172,22 @@ const matches = [
 }
 ]
 
+const token = localStorage.getItem("token")
+
+const loginWilderHtml = `
+<form id="login-wilder">
+  <div class="form-group">
+    <label for="inputMail">Email</label>
+    <input name="username" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Mot de passe</label>
+    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Entrez votre mot de passe" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+`
+
   //routing côté client
   const controllers = {
     "/": () => {
@@ -181,17 +197,7 @@ const matches = [
       const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
       buttonLogin.addEventListener("click", () => {
         document.getElementById("modal-login").innerHTML = `
-        <form id="login-wilder">
-          <div class="form-group">
-            <label for="inputMail">Email</label>
-            <input name="username" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword">Mot de passe</label>
-            <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Entrez votre mot de passe" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            ${!token ? loginWilderHtml : ""}
         <div id="alert-login" class="hidden"></div>
         <div id="test">CALL TEST</div>
         `
@@ -222,8 +228,10 @@ const matches = [
             alert.innerHTML = `Vous êtes bien identifié`
             //stores the token
             localStorage.setItem("token", data.token)
+            document.getElementById("link-signin").style.display = "none"
             document.getElementById("login-wilder").style.display = "none"
             buttonLogin.style.display = "none"
+
           }
           const callTest = document.getElementById("test")
           callTest.addEventListener("click", () => {
