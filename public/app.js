@@ -173,7 +173,7 @@ const matches = [
 
   //routing côté client
   const controllers = {
-    "/": () => {
+    "/domyprono": () => {
 
       //la route matchs
       fetch("/matchs")
@@ -192,11 +192,15 @@ const matches = [
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content" id="modal-prono">
-
                 </div>
               </div>
             </div>
           </div>`)
+          
+          const buttonLogin = document.getElementById("button-login")
+          buttonLogin.addEventListener("click", e => {
+            console.log("le bouton login marche")
+          })
 
           const buttons = document.getElementsByClassName("button-bet")
             for (let button of buttons) {
@@ -378,7 +382,7 @@ const matches = [
   //gère l'éxécution du routing côté client
   const routing = () => {
     const routes = [ //ne pas mettre les routes du côté serveur (fetch)
-      "/",
+      "/domyprono",
       "/wilders/new",
       "/mon-profil",
       "/list-matchs",
