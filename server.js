@@ -157,7 +157,7 @@ const html = `
 
 //LA ROUTE /test
 app.get('/test', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.send(`authorized for user ${req.user.username} with id ${req.user.id}`)
+  res.send(`authorized for user ${req.user.email} with id ${req.user.id}`)
 })
 
 

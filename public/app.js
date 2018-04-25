@@ -181,7 +181,6 @@ const matches = [
       const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
       buttonLogin.addEventListener("click", () => {
         document.getElementById("modal-login").innerHTML = `
-        </div>
         <form id="login-wilder">
           <div class="form-group">
             <label for="inputMail">Email</label>
@@ -193,8 +192,8 @@ const matches = [
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <div id="alert-login" class="hidden">
-        <div id="test">CALL TEST</div> 
+        <div id="alert-login" class="hidden"></div>
+        <div id="test">CALL TEST</div>
         `
       })
       const loginWilder = document.getElementById("modal-login")
@@ -222,17 +221,17 @@ const matches = [
             alert.innerHTML = `Vous êtes bien identifié`
             //stores the token
             localStorage.setItem("token", data.token)
-            loginWilder.style.display = 'none'
+            loginWilder.style.display = "none"
+            buttonLogin.style.display = "none"
           }
         })
       })
-    
-
-    document.getElementById("test").addEventListener( "click", () => {
-      fetch("test")
-      .then(res => res.json())
-      .catch(err => console.log(err))
-    })
+      const callTest = document.getElementById("test")
+      callTest.addEventListener( "click", () => {
+        fetch("/test")
+        .then(res => res.json())
+        .catch(err => console.log(err))
+      })
   }
   ,
     "/domyprono": () => {
