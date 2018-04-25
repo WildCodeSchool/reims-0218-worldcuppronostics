@@ -25,7 +25,7 @@ const navBarNoLogin = () => {
           <a class="nav-link" href="/mon-profil">Mon profil</a>
         </li>
       </ul>
-        <button class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire</button>
+        <a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire</a>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm" id="button-login">Se connecter</button>
     </div>
   </nav>`

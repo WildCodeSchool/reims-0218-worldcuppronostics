@@ -175,7 +175,9 @@ const matches = [
   //routing côté client
   const controllers = {
     "/": () => {
-
+      render(
+        `${navBarNoLogin}`
+      )
     }
   ,
     "/domyprono": () => {
