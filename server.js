@@ -174,7 +174,7 @@ const html = `
               <div class="container">
                 <div id="alert-box" class="hidden">
                 </div>
-                <form id="add-wilder">
+                <form id="login-wilder">
                   <div class="form-group">
                     <label for="inputMail">Email</label>
                     <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
