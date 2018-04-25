@@ -27,6 +27,11 @@ const navBarNoLogin = () => {
       </ul>
         <a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire</a>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm" id="button-login">Se connecter</button>
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="login-modal" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content" id="modal-login">
+          </div>
+        </div>
     </div>
   </nav>`
 }

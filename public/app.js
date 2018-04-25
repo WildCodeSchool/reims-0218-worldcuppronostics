@@ -178,6 +178,24 @@ const matches = [
       render(
         `${navBarNoLogin}`
       )
+      const buttonLogin = document.getElementById("button-login")
+      buttonLogin.addEventListener("click", () => {
+        document.getElementById("modal-login").innerHTML = `
+        <div id="alert-box" class="hidden">
+        </div>
+        <form id="add-wilder">
+          <div class="form-group">
+            <label for="inputMail">Email</label>
+            <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Mot de passe</label>
+            <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Entrez votre mot de passe" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        `
+      })
     }
   ,
     "/domyprono": () => {
