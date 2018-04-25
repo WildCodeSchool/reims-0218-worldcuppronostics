@@ -10,10 +10,8 @@ const navBarNoLogin = () => {
         <img src="https://championnatdefrancedespronos.fr/scontent/images/FDJ_CFP_logo.png"></img>
       </a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="/domyprono">Mes pronos
-            <span class="sr-only">(current)</span>
-          </a>
+        <li class="nav-item">
+          <a class="nav-link" href="/domyprono">Mes pronos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/classement">Classement</a>
@@ -49,8 +47,7 @@ const navBarLogin = () => {
       </a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Mes pronos
-            <span class="sr-only">(current)</span>
+          <a class="nav-link" href="/domyprono">Mes pronos
           </a>
         </li>
         <li class="nav-item">
