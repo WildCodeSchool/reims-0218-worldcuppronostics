@@ -1,5 +1,6 @@
 import makeMatchsList from "./matchs.js"
 import makeHiddenButton, { makeDisplayMatch }  from "./matchs.js"
+import {navBarLogin, navBarNoLogin} from "./navbar.js"
 
 const mainDiv = document.getElementById("main")
 
@@ -173,6 +174,10 @@ const matches = [
 
   //routing côté client
   const controllers = {
+    "/": () => {
+
+    }
+  ,
     "/domyprono": () => {
 
       //la route matchs
@@ -182,6 +187,7 @@ const matches = [
       .then(album => {
         render(
           `
+            ${navBarNoLogin}
           <div class="jumbotron jumbotron-fluid bg-jumbotron">
           <div class="container">
             <h1 class="display-3">Mes pronos</h1>
@@ -196,7 +202,7 @@ const matches = [
               </div>
             </div>
           </div>`)
-          
+
           const buttonLogin = document.getElementById("button-login")
           buttonLogin.addEventListener("click", e => {
             console.log("le bouton login marche")
@@ -358,6 +364,7 @@ const matches = [
       .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
       .then(album => render(
           `
+            ${navBarLogin}
             <div class="row">${album}</div>
           </div>`)
       )
@@ -382,6 +389,7 @@ const matches = [
   //gère l'éxécution du routing côté client
   const routing = () => {
     const routes = [ //ne pas mettre les routes du côté serveur (fetch)
+      "/",
       "/domyprono",
       "/wilders/new",
       "/mon-profil",
