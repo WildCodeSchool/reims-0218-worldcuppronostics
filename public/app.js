@@ -229,7 +229,14 @@ const matches = [
           callTest.addEventListener("click", () => {
             const token = localStorage.getItem("token")
             console.log(token);
-            fetch("test")
+            fetch("test", {
+              method: "GET",
+              headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer" + token,
+              }
+            })
             .then(res => res.json())
             .catch(err => console.log(err))
           })
