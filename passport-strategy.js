@@ -10,7 +10,7 @@ sqlite.open("./database.sqlite", { Promise })
 .then(_db => db = _db)
 
 getUserWithPassword = (email, password) => {
-    return db.get('SELECT...')
+    return db.get(`SELECT mail, motdepasse FROM wilders WHERE mail ="${email}"`)
 }
 
 passport.use(new LocalStrategy({

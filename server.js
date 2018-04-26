@@ -189,21 +189,18 @@ app.get("/matchs", (req, res) => {
         })
     })
 })
- 
+
 //UPDATE
 app.put("/matchs", (req, res) => {
   console.log("app.put marche")
 })
-
-
-
 
 //A delete apres authentification
 
 //CREATE
 app.post("/pronostics", (req, res) => {
   const prono = {
-    wilderId: req.user.id, // En attendant l'authentification
+    wilderId: req.user.id, // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
   }
   console.log(req.body);
   // if req.user.admin update match

@@ -249,6 +249,7 @@ const loginWilderHtml = `
               const alertBox = document.getElementById("alert-box")
               alertBox.className = "alert alert-success"
               alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
+              setTimeout(() => {location.href="/domyprono"} , 3000) // direction la page /domyprono quand il est inscrit
             })
       })
     },
@@ -267,27 +268,6 @@ const loginWilderHtml = `
             <div class="row">${album}</div>
           </div>`)
       )
-    ,
-
-    "/addNewScore": () => {
-      render(
-        `
-        <select>
-          <option> coucou</option>
-        </select>
-        `
-      )
-    fetch("/matchs")
-    .then(res => res.json())
-    .then(matchs => {
-      //console.log(matchs);
-      for (let match of matchs) {
-        const numberMatchUpdateScore = match.numberMatch
-        console.log(numberMatchUpdateScore);
-      }
-    })
-
-  }
   ,
 
     "*": () => render("<h1>Not Found</h1>")
@@ -301,7 +281,6 @@ const loginWilderHtml = `
       "/wilders/new",
       "/mon-profil",
       "/list-matchs",
-      "/addNewScore",
       "*"
     ]
     routes.forEach(
