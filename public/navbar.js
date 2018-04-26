@@ -1,5 +1,5 @@
 
-const navBarNoLogin = () => {
+const navBarNoLogin =
   `<nav class="navbar navbar-expand-lg navbar-defaultnavbar navbar-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -32,9 +32,8 @@ const navBarNoLogin = () => {
         </div>
     </div>
   </nav>`
-}
 
-const navBarLogin = () => {
+const navBarLogin =
   `
   <nav class="navbar navbar-expand-lg navbar-defaultnavbar navbar-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
@@ -64,7 +63,6 @@ const navBarLogin = () => {
     </div>
   </nav>
   `
-}
 
 
 export { navBarLogin, navBarNoLogin}
