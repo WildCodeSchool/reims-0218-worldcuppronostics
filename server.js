@@ -65,6 +65,15 @@ const dbPromise = Promise.resolve()
       city: 'Reims',
       equipepreferee: 'Monaco'
     })
+    insertWilders({
+      nom: 'Dumay',
+      prenom: 'Pierre',
+      pseudo: 'radiobierefoot',
+      mail: 'arnaud@wild.fr',
+      motdepasse: 'deschamps',
+      city: 'Reims',
+      equipepreferee: 'Monaco'
+    })
 
   })
   .then(() => {
