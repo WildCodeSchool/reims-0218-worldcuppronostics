@@ -288,12 +288,6 @@ const loginWilderHtml = `
     </form>
   </div>`
     )
-  
-  
-  
-  
-  
-  
   }
     ,
 
