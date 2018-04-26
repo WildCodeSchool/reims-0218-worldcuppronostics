@@ -203,9 +203,11 @@ app.put("/matchs", (req, res) => {
 //CREATE
 app.post("/pronostics", (req, res) => {
   const prono = {
-    wilderId: 1, // En attendant l'authentification
+    wilderId: req.user.id, // En attendant l'authentification
   }
   console.log(req.body);
+  // if req.user.admin update match
+  //else
   return insertProno(req.body)
     .then(record => res.json(record))
 })

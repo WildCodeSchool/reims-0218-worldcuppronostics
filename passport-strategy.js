@@ -3,19 +3,37 @@ const LocalStrategy = require('passport-local').Strategy
 const passportJWT = require("passport-jwt")
 const JWTStrategy   = passportJWT.Strategy
 const ExtractJWT = passportJWT.ExtractJwt
+const sqlite = require("sqlite")
+
+let db
+sqlite.open("./database.sqlite", { Promise })
+.then(_db => db = _db)
+
+getUserWithPassword = (email, password) => {
+    return db.get('SELECT...')
+}
 
 passport.use(new LocalStrategy({
-        emailField: 'email',
+        usernameField: 'email',
         passwordField: 'password'
     },
     function (email, password, cb) {
       console.log(email, password)
         //this one is typically a DB call. Assume that the returned user object is pre-formatted and ready for storing in JWT
-        if (password !== 'wildcode') {
-            return cb(null, false, {message: 'Incorrect email or password.'})
-        } else {
-            return cb(null, { id: 1, email }, {message: 'Logged In Successfully'})
-        }
+        // if (password !== 'wildcode') {
+        //     return cb(null, false, {message: 'Incorrect email or password.'})
+        // } else {
+        //     return cb(null, { id: 1, email }, {message: 'Logged In Successfully'})
+        // }
+
+        getUserWithPassword(email, password)
+        .then( user => {
+            if (!user) {
+                return cb(null, false, {message: 'Incorrect email or password.'})
+            } else {
+                return cb(null, user, {message: 'Logged In Successfully'})
+            }
+        })
     }
 ))
 
