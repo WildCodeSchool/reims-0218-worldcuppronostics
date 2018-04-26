@@ -250,6 +250,7 @@ const loginWilderHtml = `
             })
       })
     },
+    // TEST DE ARNAUD DESCHAMPS
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),
 
@@ -267,29 +268,25 @@ const loginWilderHtml = `
     ,
 
     "/addNewScore": () => {
+      render(
+        `
+        <select>
+          <option> coucou</option>
+        </select>
+        `
+      )
     fetch("/matchs")
     .then(res => res.json())
-    .then(res => console.log("nous sommes sur la route /addNewScore avec Tanguy et Pierre")
-    )
-    render(
-      `<div class="container">
-    <div id="alert-box" class="hidden">
-    </div>
-    <form id="add-scorereal">
-      <div class="form-group">
-        <label for="inputScoreTeamHomeReal">Score réel de l'équipe à domicile</label>
-        <input name="nom" type="text" class="form-control" id="inputName" placeholder="Entrez votre nom" required>
-      </div>
-      <div class="form-group">
-        <label for="inputPrenom">Prénom</label>
-        <input name="prenom" type="text" class="form-control" id="inputPrenom" placeholder="Entrez votre prénom" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>`
-    )
+    .then(matchs => {
+      //console.log(matchs);
+      for (let match of matchs) {
+        const numberMatchUpdateScore = match.numberMatch
+        console.log(numberMatchUpdateScore);
+      }
+    })
+
   }
-    ,
+  ,
 
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
