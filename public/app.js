@@ -18,7 +18,7 @@ const loginWilderHtml = `
 <form id="login-wilder">
   <div class="form-group">
     <label for="inputMail">Email</label>
-    <input name="username" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
+    <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
   </div>
   <div class="form-group">
     <label for="inputPassword">Mot de passe</label>
