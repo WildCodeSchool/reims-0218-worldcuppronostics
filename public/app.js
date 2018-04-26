@@ -11,48 +11,6 @@ const render = html => {
   mainDiv.innerHTML = html
 }
 
-const matches = [
-{
-  "name": 20,
-  "type": "group",
-  "teamHome": "France",
-  "teamOut": "Espagne",
-  "scoreTeamHome": 0,
-  "scoreTeamOut": 3,
-  "date": "2018-06-20T21:00:00+03:00",
-  "stadium": 5,
-  "channels": [],
-  "finished": false,
-  "localisation": "Moscow",
-  "drapeauHome": "http://flags.fmcdn.net/data/flags/w580/ru.png",
-  "drapeauOut": "http://flags.fmcdn.net/data/flags/w580/ru.png"
-
-},
-{
-  "name": 35,
-  "type": "group",
-  "teamHome": "Irlande",
-  "teamOut": "Colombie",
-  "scoreTeamHome": null,
-  "scoreTeamOut": null,
-  "date": "2018-06-25T21:00:00+03:00",
-  "stadium": 9,
-  "channels": [],
-  "finished": false
-},
-{
-  "name": 36,
-  "type": "group",
-  "teamHome": "Allemagne",
-  "teamOut": "Pays-Bas",
-  "scoreTeamHome": null,
-  "scoreTeamOut": null,
-  "date": "2018-06-25T20:00:00+02:00",
-  "stadium": 4,
-  "channels": [],
-  "finished": false
-}
-]
 
 const token = localStorage.getItem("token")
 
@@ -307,19 +265,37 @@ const loginWilderHtml = `
           </div>`)
       )
     ,
-    // "/addScoreReal": () =>
-    // fetch("/matchs")
-    //   .then(res => res.json())
-    //   .then(matchs => {
-    //     for (let i = 0; i < matchs.length; i ++) {
-    //       console.log(matchs[i].numberMatch)
-    //     }
-    //   .then(scoreReal => {
-    //     const listhtml = scoreReal.numberMatch.reduce(
-    //       (acc, scoreRealNumberMatch) => acc + `<li> ${scoreRealNumberMatch} </li>`
-    //     )
-    //   })
-    // })
+
+    "/addNewScore": () => {
+    fetch("/matchs")
+    .then(res => res.json())
+    .then(res => console.log("nous sommes sur la route /addNewScore avec Tanguy et Pierre")
+    )
+    render(
+      `<div class="container">
+    <div id="alert-box" class="hidden">
+    </div>
+    <form id="add-scorereal">
+      <div class="form-group">
+        <label for="inputScoreTeamHomeReal">Score réel de l'équipe à domicile</label>
+        <input name="nom" type="text" class="form-control" id="inputName" placeholder="Entrez votre nom" required>
+      </div>
+      <div class="form-group">
+        <label for="inputPrenom">Prénom</label>
+        <input name="prenom" type="text" class="form-control" id="inputPrenom" placeholder="Entrez votre prénom" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>`
+    )
+  
+  
+  
+  
+  
+  
+  }
+    ,
 
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
@@ -332,6 +308,7 @@ const loginWilderHtml = `
       "/wilders/new",
       "/mon-profil",
       "/list-matchs",
+      "/addNewScore",
       "*"
     ]
     routes.forEach(

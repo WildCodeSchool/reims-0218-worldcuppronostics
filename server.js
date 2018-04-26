@@ -28,8 +28,8 @@ const insertMatchs = m => {
 
 // //inserer un score réel
 // const insertMatchReal = r => {
-//   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut} = r
-//   return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut)
+//   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut } = r
+//   return db.get("UPDATE INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut ) VALUES(?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut)
 //     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
 //     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 // }
@@ -189,6 +189,16 @@ app.get("/matchs", (req, res) => {
         })
     })
 })
+ 
+//UPDATE
+app.put("/matchs", (req, res) => {
+  console.log("app.put marche")
+})
+
+
+
+
+//A delete apres authentification
 
 //CREATE
 app.post("/pronostics", (req, res) => {
@@ -203,22 +213,6 @@ app.post("/pronostics", (req, res) => {
 // READ
 app.get("/pronostics", (req, res) => {
   db.all("SELECT * FROM pronostics")
-    .then(records => {
-      return res.json(records)
-    })
-})
-
-//LA ROUTE /add score d'un match réel
-//CREATE
-app.post("/addScoreMatch", (req, res) => {
-  return insertMatchs(req.body)
-    .then(record => res.json(record))
-})
-
-
-//READ
-app.get("/addScoreMatch", (req, res) => {
-  db.all("SELECT * FROM matchs")
     .then(records => {
       return res.json(records)
     })
