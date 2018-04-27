@@ -101,7 +101,7 @@ const loginWilderHtml = `
       .then(album => {
         render(
           `
-            ${navBarLogin}
+            ${navBarNoLogin}
           <div class="jumbotron jumbotron-fluid bg-jumbotron">
           <div class="container">
             <h1 class="display-3">Mes pronos</h1>
@@ -265,7 +265,7 @@ const loginWilderHtml = `
       .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
       .then(album => render(
           `
-            ${navBarLogin}
+            ${navBarNoLogin}
             <div class="row">${album}</div>
           </div>`)
       )
