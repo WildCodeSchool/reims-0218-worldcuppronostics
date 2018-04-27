@@ -156,15 +156,6 @@ const loginWilderHtml = `
               </div>
             </div>
               `
-              fetch("/pronostics", {
-                method: "GET",
-                headers: {
-                  "Accept": "application/json, text/plain, */*",
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + token, // send token
-                },
-                body: JSON.stringify(data)
-              })
               console.log(button.dataset);
               const form = document.getElementById("form-prono")
               form.addEventListener("submit", e => {
