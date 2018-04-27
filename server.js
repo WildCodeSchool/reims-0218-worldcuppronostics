@@ -207,9 +207,9 @@ app.put("/matchs", (req, res) => {
 //A delete apres authentification
 
 //CREATE
-app.post("/pronostics", (req, res) => {
+app.post("/pronostics", passport.authenticate('jwt', { session: false }), (req, res) => {
   const prono = {
-    wilderId: req.user.id, // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
+    wilderId: 1, //req.user.id, // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
   }
   console.log(req.body);
   // if req.user.admin update match

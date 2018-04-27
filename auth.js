@@ -13,7 +13,9 @@ router.get("/login", (req, res) => {
 
 /* POST login. */
 router.post('/login', function (req, res, next) {
+  console.log("ssasa");
     passport.authenticate('local', {session: false}, (err, user, info) => {
+      console.log("user", user);
         if (err || !user) {
             return res.status(400).json({
                 message: 'Something is not right',

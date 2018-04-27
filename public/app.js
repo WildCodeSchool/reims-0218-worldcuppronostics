@@ -117,6 +117,7 @@ const loginWilderHtml = `
             </div>
           </div>`)
 
+          console.log(token)
           const buttons = document.getElementsByClassName("button-bet")
             for (let button of buttons) {
             button.addEventListener("click", () => {
@@ -249,7 +250,7 @@ const loginWilderHtml = `
               const alertBox = document.getElementById("alert-box")
               alertBox.className = "alert alert-success"
               alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
-              setTimeout(() => {location.href="/domyprono"} , 3000) // direction la page /domyprono quand il est inscrit
+              setTimeout(() => {location.href="/domyprono"}, 3000) // direction la page /domyprono quand il est inscrit
             })
       })
     },
@@ -268,6 +269,7 @@ const loginWilderHtml = `
             <div class="row">${album}</div>
           </div>`)
       )
+
   ,
 
     "*": () => render("<h1>Not Found</h1>")

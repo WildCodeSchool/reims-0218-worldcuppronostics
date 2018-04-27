@@ -25,14 +25,15 @@ passport.use(new LocalStrategy({
         // } else {
         //     return cb(null, { id: 1, email }, {message: 'Logged In Successfully'})
         // }
-
         getUserWithPassword(email, password)
         .then( user => {
+          console.log("user", user);
             if (!user) {
                 return cb(null, false, {message: 'Incorrect email or password.'})
             } else {
                 return cb(null, user, {message: 'Logged In Successfully'})
             }
+
         })
     }
 ))
