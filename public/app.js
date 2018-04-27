@@ -163,13 +163,13 @@ const loginWilderHtml = `
                 e.preventDefault() //à tester sans et avec
                 const data = serializeForm(form)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
                 console.log(data)
-                //getToken
+                const token = localStorage.getItem("token") // get token
                 fetch("/pronostics", {
                   method: "POST",
                   headers: {
                     "Accept": "application/json, text/plain, */*",
-                    "Content-Type": "application/json"
-                    // send token
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token, // send token
                   },
                   body: JSON.stringify(data)
                 })

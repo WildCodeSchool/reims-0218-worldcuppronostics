@@ -56,27 +56,6 @@ const dbPromise = Promise.resolve()
     return db.migrate({ force: "last" })
   })
   .then(() => {
-    insertWilders({
-      nom: 'Dumay',
-      prenom: 'Pierre',
-      pseudo: 'radiobierefoot',
-      mail: 'pierre@wild.fr',
-      motdepasse: '1234',
-      city: 'Reims',
-      equipepreferee: 'Monaco'
-    })
-    insertWilders({
-      nom: 'Dumay',
-      prenom: 'Pierre',
-      pseudo: 'radiobierefoot',
-      mail: 'arnaud@wild.fr',
-      motdepasse: 'deschamps',
-      city: 'Reims',
-      equipepreferee: 'Monaco'
-    })
-
-  })
-  .then(() => {
     let matchs = []
     for (let group in matchsSeed.groups) {
       const groupMatchs = matchsSeed.groups[group].matches.map(
@@ -106,32 +85,6 @@ const dbPromise = Promise.resolve()
     })
     Promise.map(matchsToInsert, m => insertMatchs(m))
 
-  })
-  .then(() => {
-    insertProno({
-      wilderId: 1,
-      matchId: 10,
-      pronoTeamHome: 4,
-      pronoTeamOut: 0
-    })
-    insertProno({
-      wilderId: 1,
-      matchId: 24,
-      pronoTeamHome: 1,
-      pronoTeamOut: 2
-    })
-    insertProno({
-      wilderId: 2,
-      matchId: 10,
-      pronoTeamHome: 2,
-      pronoTeamOut: 6
-    })
-    insertProno({
-      wilderId: 2,
-      matchId: 3,
-      pronoTeamHome: 2,
-      pronoTeamOut: 6
-    })
   })
 
 const html = `
@@ -210,10 +163,10 @@ app.put("/matchs", (req, res) => {
 app.post("/pronostics", passport.authenticate('jwt', { session: false }), (req, res) => {
   console.log(req.user)
   const prono = {
-    wilderId: 1, //req.user.id, // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
+    wilderId: req.user.id // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
   }
-  console.log(req.body);
-  console.log(prono)
+  console.log(req.body.wilderId);
+  // console.log(prono)
   // if req.user.admin update match
   //else
   return insertProno(req.body)
