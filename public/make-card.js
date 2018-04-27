@@ -1,7 +1,8 @@
 //renvoie le html d'une card bootstrap pour un match
 
-  const makeCard = item =>
-      `
+  const makeCard = item => {
+    console.log(item);
+      return `
       <div class="card mx-auto mb-3" style="width: 18rem;">
         <div class="card-body text-center">
           <p> ${item.teamHome} </p>
@@ -19,4 +20,5 @@
       </div>
       `
 
+    }
 export default makeCard

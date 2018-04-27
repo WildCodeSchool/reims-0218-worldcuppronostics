@@ -151,12 +151,20 @@ const loginWilderHtml = `
                     <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
                     <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
                     <input type="hidden" id="numberMatch" name="matchId" class="form-control" value="${button.dataset.numbermatch}">
-                    <input type="hidden" id="wilderId" name="wilderId" class="form-control" value="1">
                     <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                 </form>
               </div>
             </div>
               `
+              fetch("/pronostics", {
+                method: "GET",
+                headers: {
+                  "Accept": "application/json, text/plain, */*",
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + token, // send token
+                },
+                body: JSON.stringify(data)
+              })
               console.log(button.dataset);
               const form = document.getElementById("form-prono")
               form.addEventListener("submit", e => {
@@ -178,10 +186,6 @@ const loginWilderHtml = `
                   const alertBox = document.getElementById("alert-box")
                   alertBox.className = "alert alert-success"
                   alertBox.innerHTML = `Votre prono est bien enregistré`
-                })
-                .then(button => {
-                  console.log("Je suis ici")
-                  //const buttonModify = document.getElementsByClassName("button-bet")[0].style.color="red"
                 })
               })
             })

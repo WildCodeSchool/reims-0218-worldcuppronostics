@@ -137,7 +137,7 @@ app.get("/matchs", (req, res) => {
       db.all(`SELECT * from matchs
         join pronostics on pronostics.matchId = matchs.id
         join wilders on pronostics.wilderId = wilders.id
-        where wilders.id = 1 OR wilders.id IS NULL`)
+        where wilders.id = req.user.id OR wilders.id IS NULL`)
         .then(pronos => {
           //console.log(pronos)
           const matchWithProno = matchs.map(
@@ -161,21 +161,23 @@ app.put("/matchs", (req, res) => {
 
 //CREATE
 app.post("/pronostics", passport.authenticate('jwt', { session: false }), (req, res) => {
-  console.log(req.user)
+  console.log("req.user", req.user)
   const prono = {
-    wilderId: req.user.id // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
+    wilderId: req.user.id, // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
+    ...req.body
   }
-  console.log(req.body.wilderId);
-  // console.log(prono)
+
+  console.log("req.body", req.body);
+  console.log("prono: ", prono)
   // if req.user.admin update match
   //else
-  return insertProno(req.body)
+  return insertProno(prono)
     .then(record => res.json(record))
 })
 
 // READ
-app.get("/pronostics", (req, res) => {
-  db.all("SELECT * FROM pronostics")
+app.get("/pronostics", passport.authenticate('jwt', { session: false }), (req, res) => {
+  db.all("SELECT * FROM pronostics WHERE wilderId === req.user.id")
     .then(records => {
       return res.json(records)
     })
