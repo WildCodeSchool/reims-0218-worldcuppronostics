@@ -207,11 +207,13 @@ app.put("/matchs", (req, res) => {
 //A delete apres authentification
 
 //CREATE
-app.post("/pronostics", (req, res) => {
+app.post("/pronostics", passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log(req.user)
   const prono = {
     wilderId: req.user.id, // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
   }
   console.log(req.body);
+  console.log(prono)
   // if req.user.admin update match
   //else
   return insertProno(req.body)
@@ -226,6 +228,10 @@ app.get("/pronostics", (req, res) => {
     })
 })
 
+// //LA ROUTE /test
+// app.get('/test', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   res.send(`authorized for user ${req.user.email} with id ${req.user.id}`)
+// })
 
 //LA ROUTE /wilders
 //CREATE
