@@ -2,28 +2,28 @@
   "stadiums": [
     {
       "id": 1,
-      "name": "Luzhniki Stadium",
-      "city": "Moscow",
+      "name": "Stade Loujniki",
+      "city": "Moscou",
       "lat": 55.715765,
       "lng": 37.5515217
     },
     {
       "id": 2,
-      "name": "Otkrytiye Arena",
-      "city": "Moscow",
+      "name": "Otkrytie Arena",
+      "city": "Moscou",
       "lat": 55.817765,
       "lng": 37.440363
     },
     {
       "id": 3,
-      "name": "Krestovsky Stadium",
-      "city": "Saint Petersburg",
+      "name": "Stade de Saint-Pétersbourg",
+      "city": "Saint-Pétersbourg",
       "lat": 59.972740,
       "lng": 30.221408
     },
     {
       "id": 4,
-      "name": "Kaliningrad Stadium",
+      "name": "Baltika Arena",
       "city": "Kaliningrad",
       "lat": 54.698157,
       "lng": 20.533859
@@ -37,8 +37,8 @@
     },
     {
       "id": 6,
-      "name": "Nizhny Novgorod Stadium",
-      "city": "Nizhny Novgorod",
+      "name": "Stade de Nijni Novgorod",
+      "city": "Nijni Novgorod",
       "lat": 56.337287,
       "lng": 43.963251
     },
@@ -72,14 +72,14 @@
     },
     {
       "id": 11,
-      "name": "Fisht Olympic Stadium",
+      "name": "Stade olympique Ficht",
       "city": "Sochi",
       "lat": 43.402011,
       "lng": 39.955709
     },
     {
       "id": 12,
-      "name": "Central Stadium",
+      "name": "Stade central",
       "city": "Yekaterinburg",
       "lat": 56.832490,
       "lng": 60.573585
@@ -100,19 +100,19 @@
   "teams": [
     {
       "id": 1,
-      "name": "Russia",
+      "name": "Russie",
       "iso2": "ru",
       "flag": "http://flags.fmcdn.net/data/flags/w580/ru.png"
     },
     {
       "id": 2,
-      "name": "Saudi Arabia",
+      "name": "Arabie Saoudite",
       "iso2": "sa",
       "flag": "http://flags.fmcdn.net/data/flags/w580/sa.png"
     },
     {
       "id": 3,
-      "name": "Egypt",
+      "name": "Égypte",
       "iso2": "eg",
       "flag": "http://flags.fmcdn.net/data/flags/w580/eg.png"
     },
@@ -130,13 +130,13 @@
     },
     {
       "id": 6,
-      "name": "Spain",
+      "name": "Espagne",
       "iso2": "es",
       "flag": "http://flags.fmcdn.net/data/flags/w580/es.png"
     },
     {
       "id": 7,
-      "name": "Morocco",
+      "name": "Maroc",
       "iso2": "ma",
       "flag": "http://flags.fmcdn.net/data/flags/w580/ma.png"
     },
@@ -154,37 +154,37 @@
     },
     {
       "id": 10,
-      "name": "Australia",
+      "name": "Australie",
       "iso2": "au",
       "flag": "http://flags.fmcdn.net/data/flags/w580/au.png"
     },
     {
       "id": 11,
-      "name": "Peru",
+      "name": "Pérou",
       "iso2": "pe",
       "flag": "http://flags.fmcdn.net/data/flags/w580/pe.png"
     },
     {
       "id": 12,
-      "name": "Denmark",
+      "name": "Danemark",
       "iso2": "dk",
       "flag": "http://flags.fmcdn.net/data/flags/w580/dk.png"
     },
     {
       "id": 13,
-      "name": "Argentina",
+      "name": "Argentine",
       "iso2": "ar",
       "flag": "http://flags.fmcdn.net/data/flags/w580/ar.png"
     },
     {
       "id": 14,
-      "name": "Iceland",
+      "name": "Islande",
       "iso2": "is",
       "flag": "http://flags.fmcdn.net/data/flags/w580/is.png"
     },
     {
       "id": 15,
-      "name": "Croatia",
+      "name": "Croatie",
       "iso2": "hr",
       "flag": "http://flags.fmcdn.net/data/flags/w580/hr.png"
     },
@@ -196,13 +196,13 @@
     },
     {
       "id": 17,
-      "name": "Brazil",
+      "name": "Brésil",
       "iso2": "br",
       "flag": "http://flags.fmcdn.net/data/flags/w580/br.png"
     },
     {
       "id": 18,
-      "name": "Switzerland",
+      "name": "Suisse",
       "iso2": "ch",
       "flag": "http://flags.fmcdn.net/data/flags/w580/ch.png"
     },
@@ -214,37 +214,37 @@
     },
     {
       "id": 20,
-      "name": "Serbia",
+      "name": "Serbie",
       "iso2": "rs",
       "flag": "http://flags.fmcdn.net/data/flags/w580/rs.png"
     },
     {
       "id": 21,
-      "name": "Germany",
+      "name": "Allemagne",
       "iso2": "de",
       "flag": "http://flags.fmcdn.net/data/flags/w580/de.png"
     },
     {
       "id": 22,
-      "name": "Mexico",
+      "name": "Mexique",
       "iso2": "mx",
       "flag": "http://flags.fmcdn.net/data/flags/w580/mx.png"
     },
     {
       "id": 23,
-      "name": "Sweden",
+      "name": "Suède",
       "iso2": "se",
       "flag": "http://flags.fmcdn.net/data/flags/w580/se.png"
     },
     {
       "id": 24,
-      "name": "South Korea",
+      "name": "Corée du Sud",
       "iso2": "kr",
       "flag": "http://flags.fmcdn.net/data/flags/w580/kr.png"
     },
     {
       "id": 25,
-      "name": "Belgium",
+      "name": "Belgique",
       "iso2": "be",
       "flag": "http://flags.fmcdn.net/data/flags/w580/be.png"
     },
@@ -256,37 +256,37 @@
     },
     {
       "id": 27,
-      "name": "Tunisia",
+      "name": "Tunisie",
       "iso2": "tn",
       "flag": "http://flags.fmcdn.net/data/flags/w580/tn.png"
     },
     {
       "id": 28,
-      "name": "England",
+      "name": "Angleterre",
       "iso2": "gb-eng",
       "flag": "http://icdn.pro/images/fr/a/n/angleterre-drapeau-icone-4482-32.png"
     },
     {
       "id": 29,
-      "name": "Poland",
+      "name": "Pologne",
       "iso2": "pl",
       "flag": "http://flags.fmcdn.net/data/flags/w580/pl.png"
     },
     {
       "id": 30,
-      "name": "Senegal",
+      "name": "Sénégal",
       "iso2": "sn",
       "flag": "http://flags.fmcdn.net/data/flags/w580/sn.png"
     },
     {
       "id": 31,
-      "name": "Colombia",
+      "name": "Colombie",
       "iso2": "co",
       "flag": "http://flags.fmcdn.net/data/flags/w580/co.png"
     },
     {
       "id": 32,
-      "name": "Japan",
+      "name": "Japon",
       "iso2": "jp",
       "flag": "http://flags.fmcdn.net/data/flags/w580/jp.png"
     }
