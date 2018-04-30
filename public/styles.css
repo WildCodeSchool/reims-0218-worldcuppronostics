@@ -306,3 +306,21 @@ body {
 .prono {
   margin-left: 170px;
 }
+
+
+
+#logo_accueil {
+  height: 12vw;
+  background-image: url(../ressources/logoaccueil.jpg);
+  background-size: cover;
+}
+
+#logo_accueil a  {
+  color: white;
+  font-size: 4.5vw;
+  text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
+}
+
+#explication_1 {
+  background-color: white;
+}
