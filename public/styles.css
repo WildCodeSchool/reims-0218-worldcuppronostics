@@ -307,7 +307,7 @@ body {
   margin-left: 170px;
 }
 
-
+/* logo accueil */
 
 #logo_accueil {
   height: 12vw;
@@ -315,7 +315,7 @@ body {
   background-size: cover;
 }
 
-#logo_accueil a  {
+#logo_accueil p  {
   color: white;
   font-size: 4.5vw;
   text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
@@ -325,6 +325,12 @@ body {
   background-color: white;
 }
 
-#explication_3 img {
+#explication_1 p, #explication_2 p, #explication_3 p {
+ color: black;
+}
+
+/* encadre_rules */
+#encadre_rules {
 
 }
+

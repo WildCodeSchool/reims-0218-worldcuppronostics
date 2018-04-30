@@ -33,7 +33,10 @@ const loginWilderHtml = `
   const controllers = {
     "/": () => {
       render(
-        `${navBarNoLogin}`
+        `${navBarNoLogin}
+         ${homepage}
+        `
+
       )
       const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
       buttonLogin.addEventListener("click", () => {
