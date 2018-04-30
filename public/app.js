@@ -5,6 +5,8 @@ import makeCard from "./make-card.js"
 import makeProfil from "./make-profil.js"
 import serializeForm from "./serializeForm.js"
 import homepage from "./homepage.js"
+import rulespage from "./rules.js"
+
 
 const mainDiv = document.getElementById("main")
 
@@ -268,7 +270,14 @@ const loginWilderHtml = `
             <div class="row">${album}</div>
           </div>`)
       )
-
+    ,
+    "/regles": () =>
+      render (
+        `
+        ${navBarNoLogin} 
+        ${rulespage}
+        `
+    )
   ,
 
     "*": () => render("<h1>Not Found</h1>")
@@ -281,6 +290,7 @@ const loginWilderHtml = `
       "/domyprono",
       "/wilders/new",
       "/mon-profil",
+      "/regles",
       "/list-matchs",
       "*"
     ]
