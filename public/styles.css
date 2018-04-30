@@ -321,6 +321,6 @@ body {
   text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
 }
 
-#explication_1 {
+#explication_1, #explication_2, #explication_3 {
   background-color: white;
 }
