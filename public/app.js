@@ -4,6 +4,7 @@ import {navBarLogin, navBarNoLogin} from "./navbar.js"
 import makeCard from "./make-card.js"
 import makeProfil from "./make-profil.js"
 import serializeForm from "./serializeForm.js"
+import homepage from "./homepage.js"
 
 const mainDiv = document.getElementById("main")
 
