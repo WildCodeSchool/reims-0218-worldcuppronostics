@@ -6,6 +6,7 @@ import makeProfil from "./make-profil.js"
 import serializeForm from "./serializeForm.js"
 import homepage from "./homepage.js"
 import rulespage from "./rules.js"
+import exampleMatch from "./dashboard.js"
 
 
 const mainDiv = document.getElementById("main")
@@ -283,6 +284,7 @@ const loginWilderHtml = `
       render (
         `
         ${navBarLogin}
+        ${exampleMatch}
         `
       )
     ,
