@@ -255,7 +255,7 @@ const loginWilderHtml = `
             })
       })
     },
-    // TEST DE ARNAUD DESCHAMPS
+    // Test
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),
 
@@ -271,15 +271,29 @@ const loginWilderHtml = `
           </div>`)
       )
     ,
-    "/regles": () =>
+    "/rules": () =>
       render (
         `
         ${navBarNoLogin} 
         ${rulespage}
         `
-    )
-  ,
+      )
+    ,
+    "/dashboard": () =>
+      render (
+        `
+        ${navBarLogin}
+        `
+      )
+    ,
+    "/ranking": () =>
+      render (
+        `
+        ${navBarLogin}
+        `
+      )
 
+    ,
     "*": () => render("<h1>Not Found</h1>")
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
@@ -290,7 +304,9 @@ const loginWilderHtml = `
       "/domyprono",
       "/wilders/new",
       "/mon-profil",
-      "/regles",
+      "/rules",
+      "/dashboard",
+      "/ranking",
       "/list-matchs",
       "*"
     ]

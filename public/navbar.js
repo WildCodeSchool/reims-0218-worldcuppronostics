@@ -14,13 +14,16 @@ const navBarNoLogin =
           <a class="nav-link" href="/domyprono">Mes pronos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classement">Classement</a>
+          <a class="nav-link" href="/ranking">Classement</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/tableau de bord">Tableau de bord</a>
+          <a class="nav-link" href="/dashboard">Tableau de bord</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/mon-profil">Mon profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rules">Règles</a>
         </li>
       </ul>
         <a class="btn btn-success btn-lg" href="/wilders/new" role="button" id="link-signin">S'inscrire</a>
@@ -50,13 +53,16 @@ const navBarLogin =
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classement">Classement</a>
+          <a class="nav-link" href="/ranking">Classement</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/tableau de bord">Tableau de bord</a>
+          <a class="nav-link" href="/dashboard">Tableau de bord</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/mon-profil">Mon profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rules">Règles</a>
         </li>
       </ul>
         <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
