@@ -103,6 +103,50 @@ const html = `
   </div>
   <div id="main">
   </div>
+  <footer class="container-fluid text-center pt-5">
+    <div class="footer-above">
+      <h2 class="pb-3"> World Cup Pronostics</h6>
+      <a href="/" id="icone-ballon" class="mx-auto mb-3"></a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h3 class="footer-title-h3">Les projets WildCodeSchool</h3>
+            <ul class="list-project-wild">
+              <li><a href="#">ArteZic</a></li>
+              <li><a href="#">WildBook</a></li>
+              <li><a href="#">MarioKart</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h3 class="footer-title-h3">Réseaux Sociaux</h3>
+            <ul class="list-inline mt-3">
+              <a href="#"><img src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_facebook-128.png" alt="facebook" class="social-footer"></a>
+              <a href="#"><img src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/twitter_online_social_media-256.png" alt="twitter" class="social-footer"></a>
+              <a href="#"><img src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/instagram_online_social_media_photo-256.png" alt="instagram" class="social-footer"></a>
+              <a href="#"><img src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/linked_in_online_social_media-256.png" alt="linkedin" class="social-footer"></a>
+            </ul>
+          </div>
+          <div class="col-md-4">
+          <h3 class="footer-title-h3" >Les liens utiles</h3>
+            <ul class="list-project-wild">
+              <li><a href="/"> Ton compte </a></li>
+              <li><a href="/"> Nos règles </a></li>
+              <li><a href="/"> Le classement général </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-below">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            Copyright &copy; WildCodeSchool-REIMS
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"

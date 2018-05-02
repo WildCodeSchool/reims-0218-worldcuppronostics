@@ -310,7 +310,22 @@ const loginWilderHtml = `
       )
 
     ,
-    "*": () => render("<h1>Not Found</h1>")
+    "*": () => render(
+      `
+      <div id="notfound" class="text-center">
+        <h1 class="pt-5 mb-5"> Oups ! Tu t'es perdu ! </h1>
+        <nav class="d-flex justify-content-center">
+          <a href="/" class="links-notfound">Retour à l'accueil </a>
+          <a href="" class="links-notfound">Classement</a>
+          <a href="/rules" class="links-notfound">Les règles</a>
+        </nav>
+        <div class="coulou">
+          <h2 id="notfound404"> 404 </h2>
+          <h3 id="notfoundText"> Not Found </h3>
+        <div id="border-bottom-notfound" class="mx-auto"></div>
+        </div>
+      </div>
+  `)
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
   //gère l'éxécution du routing côté client
