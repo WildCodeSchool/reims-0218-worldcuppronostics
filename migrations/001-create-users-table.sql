@@ -39,7 +39,3 @@ CREATE TABLE pronostics (
 
 
 -- Down
-
-DROP TABLE pronostics;
-DROP TABLE matchs;
-DROP TABLE wilders;

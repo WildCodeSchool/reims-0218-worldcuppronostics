@@ -173,7 +173,7 @@ app.post("/pronostics", passport.authenticate('jwt', { session: false }), (req, 
   console.log("prono: ", prono)
   // if req.user.admin update match
   //else
-  return insertProno(req.body)
+  return insertProno(prono)
     .then(record => res.json(record))
 })
 
