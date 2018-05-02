@@ -7,7 +7,7 @@
     // else prono
     // !item.pronoTeamHome return true if undefined or 0
     // object has key ?
-      console.log("pas de prono")
+      // console.log("pas de prono")
       return `
       <div class="card mx-auto mb-3" style="width: 18rem;">
         <div class="card-body text-center">
