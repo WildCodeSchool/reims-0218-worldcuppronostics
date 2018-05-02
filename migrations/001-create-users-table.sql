@@ -14,6 +14,7 @@ CREATE TABLE matchs (
   numberMatch INTEGER
 );
 
+
 CREATE TABLE wilders (
   id INTEGER PRIMARY KEY,
   nom VARCHAR(50),
@@ -22,7 +23,8 @@ CREATE TABLE wilders (
   mail VARCHAR(50),
   motdepasse VARCHAR(50) ,
   city VARCHAR(50),
-  equipepreferee VARCHAR(50)
+  equipepreferee VARCHAR(50),
+  admin BOOLEAN DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE pronostics (
@@ -37,7 +39,3 @@ CREATE TABLE pronostics (
 
 
 -- Down
-
-DROP TABLE pronostics;
-DROP TABLE matchs;
-DROP TABLE wilders;

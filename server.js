@@ -4,55 +4,56 @@ const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
 const Promise = require("bluebird")
+const passport = require('passport')
 //chargement des fichiers dans public
 const matchsSeed = require("./public/matchs.json")
 // database
 let db
 
+require('./passport-strategy')
+const auth = require('./auth')
+
 //permet de servir les ressources statiques du dossier public
 app.use(express.static("public"))
 app.use(bodyParser.json())
+app.use('/auth', auth)
 
 //inserer un match
 const insertMatchs = m => {
-  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch} = m
+  const { teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch } = m
   return db.get("INSERT INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut, hours, localisation, groupe, drapeauHome, drapeauOut, numberMatch)
     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
 }
 
+// //inserer un score réel
+// const insertMatchReal = r => {
+//   const { teamHome, teamOut, scoreTeamHome, scoreTeamOut } = r
+//   return db.get("UPDATE INTO matchs(teamHome, teamOut, scoreTeamHome, scoreTeamOut ) VALUES(?, ?, ?, ?)", teamHome, teamOut, scoreTeamHome, scoreTeamOut)
+//     .then(() => db.get("SELECT last_insert_rowid() as id")) //on récupère le dernier enregistrement
+//     .then(({ id }) => db.get("SELECT * from matchs WHERE id = ?", id))
+// }
+
 //inserer un wilder
 const insertWilders = w => {
-const { nom, prenom, pseudo, mail, motdepasse, city, equipepreferee } = w
+  const { nom, prenom, pseudo, mail, motdepasse, city, equipepreferee } = w
   return db.get("INSERT INTO wilders(nom, prenom, pseudo, mail, motdepasse, city, equipepreferee) VALUES(?, ?, ?, ?, ?, ?, ?)", nom, prenom, pseudo, mail, motdepasse, city, equipepreferee)
     .then(() => db.get("SELECT last_insert_rowid() as id"))
     .then(({ id }) => db.get("SELECT * from wilders WHERE id = ?", id))
 }
 //inserer un pronostic
 const insertProno = p => {
-  const { wilderId, matchId, pronoTeamHome,  pronoTeamOut } = p
-    return db.get("INSERT INTO pronostics(wilderId, matchId, pronoTeamHome, pronoTeamOut) VALUES(?, ?, ?, ?)", wilderId, matchId, pronoTeamHome, pronoTeamOut)
-      .then(() => db.get("SELECT last_insert_rowid() as id"))
-      .then(({ id }) => db.get("SELECT * from pronostics WHERE id = ?", id))
-  }
+  const { wilderId, matchId, pronoTeamHome, pronoTeamOut } = p
+  return db.get("INSERT INTO pronostics(wilderId, matchId, pronoTeamHome, pronoTeamOut) VALUES(?, ?, ?, ?)", wilderId, matchId, pronoTeamHome, pronoTeamOut)
+    .then(() => db.get("SELECT last_insert_rowid() as id"))
+    .then(({ id }) => db.get("SELECT * from pronostics WHERE id = ?", id))
+}
 //code qui remplit la db exemple
 const dbPromise = Promise.resolve()
   .then(() => sqlite.open("./database.sqlite", { Promise }))
   .then(_db => {
     db = _db
     return db.migrate({ force: "last" })
-  })
-  .then(() => {
-    insertWilders({
-      nom: 'Dumay',
-      prenom: 'Pierre',
-      pseudo: 'radiobierefoot',
-      mail: 'pierre@wild.fr',
-      motdepasse: '1234',
-      city: 'Reims',
-      equipepreferee: 'Monaco'
-    })
-
   })
   .then(() => {
     let matchs = []
@@ -82,88 +83,45 @@ const dbPromise = Promise.resolve()
         numberMatch: match.name
       }
     })
-      Promise.map(matchsToInsert, m => insertMatchs(m))
+    Promise.map(matchsToInsert, m => insertMatchs(m))
 
-  })
-  .then(() => {
-    insertProno({
-      wilderId: 1,
-      matchId: 10,
-      pronoTeamHome: 4,
-      pronoTeamOut: 0
-    })
-    insertProno({
-      wilderId: 1,
-      matchId: 24,
-      pronoTeamHome: 1,
-      pronoTeamOut: 2
-    })
-    insertProno({
-      wilderId: 2,
-      matchId: 10,
-      pronoTeamHome: 2,
-      pronoTeamOut: 6
-    })
-    insertProno({
-      wilderId: 2,
-      matchId: 3,
-      pronoTeamHome: 2,
-      pronoTeamOut: 6
-    })
   })
 
 const html = `
-  <!doctype html>
-  <html class="no-js" lang="fr">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Pronostics World Cup</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link rel="stylesheet" href="/styles.css">
-      </head>
-    <body>
-
-    <nav class="navbar navbar-expand-lg navbar-defaultnavbar navbar-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="/"><img src="https://championnatdefrancedespronos.fr/scontent/images/FDJ_CFP_logo.png"></img></a>
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Mes pronos<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/classement">Classement</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/tableau de bord">Tableau de bord</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/mon-profil">Mon profil</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-          <a class="btn btn-success btn-lg" href="/wilders/new" role="button">S'inscrire</a>
-        <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
-      </form>
-    </div>
-  </nav>
-
-
-      <div id="main">
-      </div>
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-      <script src="/page.js"></script>
-      <script type="module" src="/app.js"></script>
-    </body>
-  </html>`
+<!doctype html>
+<html class="no-js" lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Pronostics World Cup</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="navBar">
+  </div>
+  <div id="main">
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+  <script src="/page.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
+`
 
 //routing côté serveur
-//routes de l'api REST qui répondent par du
+
+//LA ROUTE /test
+app.get('/test', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.send(`authorized for user ${req.user.email} with id ${req.user.id}`)
+})
+
 
 //LA ROUTE /matchs
 //CREATE
@@ -173,14 +131,14 @@ app.post("/matchs", (req, res) => {
 })
 
 //READ
-app.get("/matchs", (req, res) => {
+app.get("/matchs", passport.authenticate('jwt', { session: false }), (req, res) => {
   db.all("SELECT * from matchs")
     .then(records => records)
     .then(matchs => {
       db.all(`SELECT * from matchs
         join pronostics on pronostics.matchId = matchs.id
         join wilders on pronostics.wilderId = wilders.id
-        where wilders.id = 1 OR wilders.id IS NULL`)
+        where wilders.id = ${req.user.id} OR wilders.id IS NULL`)
         .then(pronos => {
           //console.log(pronos)
           const matchWithProno = matchs.map(
@@ -195,14 +153,27 @@ app.get("/matchs", (req, res) => {
     })
 })
 
+//UPDATE
+app.put("/matchs", (req, res) => {
+  console.log("app.put marche")
+})
+
+//A delete apres authentification
+
 //CREATE
-app.post("/pronostics", (req, res) => {
+app.post("/pronostics", passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log("req.user", req.user);
+  console.log("id user", req.user.id);
   const prono = {
-    wilderId: 1, // En attendant l'authentification
-    //matchId:
+    wilderId: req.user.id, // En attendant l'authentification // REMPLACER PAR UN POUR PARIER POUR LE MOMENT :)
+    ...req.body
   }
-  console.log(req.body);
-  return insertProno(req.body)
+
+  console.log("req.body", req.body);
+  console.log("prono: ", prono)
+  // if req.user.admin update match
+  //else
+  return insertProno(prono)
     .then(record => res.json(record))
 })
 
@@ -213,6 +184,11 @@ app.get("/pronostics", (req, res) => {
       return res.json(records)
     })
 })
+
+// //LA ROUTE /test
+// app.get('/test', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   res.send(`authorized for user ${req.user.email} with id ${req.user.id}`)
+// })
 
 //LA ROUTE /wilders
 //CREATE
