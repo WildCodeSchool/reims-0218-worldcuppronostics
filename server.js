@@ -122,6 +122,7 @@ app.get('/test', passport.authenticate('jwt', { session: false }), (req, res) =>
   res.send(`authorized for user ${req.user.email} with id ${req.user.id}`)
 })
 
+
 //LA ROUTE /matchs
 //CREATE
 app.post("/matchs", (req, res) => {
