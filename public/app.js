@@ -102,7 +102,15 @@ const loginWilderHtml = `
     "/domyprono": () => {
 
       //la route matchs
-      fetch("/matchs")
+      const token = localStorage.getItem("token") // get token
+      fetch("/matchs", {
+        method: "GET",
+        headers: {
+          "Accept": "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token, // send token
+        }
+      })
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
       .then(album => {

@@ -131,14 +131,14 @@ app.post("/matchs", (req, res) => {
 })
 
 //READ
-app.get("/matchs", (req, res) => {
+app.get("/matchs", passport.authenticate('jwt', { session: false }), (req, res) => {
   db.all("SELECT * from matchs")
     .then(records => records)
     .then(matchs => {
       db.all(`SELECT * from matchs
         join pronostics on pronostics.matchId = matchs.id
         join wilders on pronostics.wilderId = wilders.id
-        where wilders.id = 1 OR wilders.id IS NULL`)
+        where wilders.id = ${req.user.id} OR wilders.id IS NULL`)
         .then(pronos => {
           //console.log(pronos)
           const matchWithProno = matchs.map(
