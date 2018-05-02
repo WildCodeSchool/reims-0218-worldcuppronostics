@@ -181,6 +181,7 @@ const loginWilderHtml = `
                 })
                 .then(res => res.json())
                 .then(pronostic => {
+                  console.log(pronostic)
                   const alertBox = document.getElementById("alert-box")
                   alertBox.className = "alert alert-success"
                   alertBox.innerHTML = `Votre prono est bien enregistré`
@@ -275,7 +276,7 @@ const loginWilderHtml = `
     "/rules": () =>
       render (
         `
-        ${navBarNoLogin} 
+        ${navBarNoLogin}
         ${rulespage}
         `
       )

@@ -1,7 +1,10 @@
 //renvoie le html d'une card bootstrap pour un match
 
   const makeCard = item => {
-    // console.log(item)
+    console.log(item)
+    if (item.pronoTeamHome) {
+      console.log("prono existe")
+    }
       return `
       <div class="card mx-auto mb-3" style="width: 18rem;">
         <div class="card-body text-center">
@@ -20,4 +23,6 @@
       </div>
       `
     }
+
+
 export default makeCard
