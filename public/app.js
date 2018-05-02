@@ -88,7 +88,7 @@ const loginWilderHtml = `
                 method: "GET",
                 headers: {
                   "Accept": "application/json",
-                  "Content-Type": "application/json",
+                  "Content-Type": "application/json", 
                   Authorization: "Bearer " + token,
                 }
             })
