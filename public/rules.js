@@ -1,6 +1,6 @@
 const rulespage =
 `
-<div id="rules" class="container d-flex justify-content-center">
+<div id="rules" class="container rules d-flex justify-content-center">
   <div class="col-6 text-center border border-light">
     <p class="mt-1 text-uppercase">réglement pronostics</p> 
     <p class="text-uppercase">COUPE DU MONDE 2018</p>

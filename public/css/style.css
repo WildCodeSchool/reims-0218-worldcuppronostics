@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 /* GENERAL */
 
 body {
@@ -6,125 +9,8 @@ body {
   /* padding-top: 20px; */
   background-color:#08225b;
 }
-  header{
-    left: 0;
-    right: 0;
-    height: 80px;
-    line-height: 80px;
-    background-color: #222222;
-  }
- li {
-   text-decoration: none;
- }
-  /* NAVBAR */
-
-  .navbar {
-   
-    min-height: 100px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    padding: 0 1rem;
-  }
-
-  .navbar-default {
-    background-color: #07245e;
-    font-size: 20px;
-  }
-  .navbar-default .navbar-nav > li > a {
-    color: #ffffff;
-  }
-  .navbar-default .navbar-nav > li > a:hover {
-    color: #acacac;
-  }
-
-  .navbar-nav {
-    padding-left: 150px;
-  }
-
-  .nav-link {
-    font-size: 100%;
-  }
-
-  .rounded {
-    border-radius: 1.25rem !important;
-  }
-
-  .btn-secondary {
-    background-color: #494a4a;
-  }
-
-  .navbar-brand {
-    margin-left: 100px;
-  }
-
-   /* VIDEO */
-
-  .background {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background: url(polina.jpg) no-repeat;
-    background-size: cover;
-    filter: brightness(50%);
-  }
-  .page-header {
-    color: white;
-  }
-  p {
-    color: white;
-  }
-  .control-label {
-    color: white;
-  }
-  h3 {
-    color: white;
-  }
-  .custom-file-input:lang(en)~.custom-file-label::after {
-    content: "Parcourir";
-}
-.img-thumbnail {
-  width: 250px;
-}
-.img-fluid {
-  max-width: 100%;
-  width: 100%;
-  height: 300px;
-  margin-top: -20px;
-}
-.bg-jumbotron {
-  position: absolute;
-  background: url('https://i.ebayimg.com/images/i/131849350906-0-1/s-l1000.jpg');
-  filter: blur(10px);
-}
-.jumbotron-fluid {
-   position: relative;
-  width:100%;
-  height:200px;
-  margin-top: -20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size:cover;
-  background-attachment: fixed;
-
-}
-.card {
-  background-color: #b1b1b1ad;
-}
-.display-3 {
-  text-align: center;
-  color: #ffffff;
-}
-@import url('https://fonts.googleapis.com/css?family=Raleway:200');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
-/* Curtain container */
+  
+/* MODAL CARD PRONO */
 #match-details-curtain {
     display: flex;
     justify-content: center;
@@ -139,7 +25,7 @@ body {
     opacity: 1;
 
 }
-/* Match details container */
+
 #match-details-container {
     position: relative;
     color: #F3EFF5;
@@ -309,7 +195,7 @@ body {
   margin-left: 170px;
 }
 
-/* logo accueil */
+/* LOGO ACCUEIL */
 
 #logo_accueil {
   height: 12vw;
@@ -335,16 +221,9 @@ body {
 #encadre_rules {
 
 }
-.dashboard {
-  margin-top: 150px
-}
-.profil {
-  margin-top: 150px
-}
-.home {
-  margin-top: 150px
-}
-.rules {
-  margin-top: 150px;
+.navbar-nav {
+
+    padding-left: 150px;
+ 
 }
 

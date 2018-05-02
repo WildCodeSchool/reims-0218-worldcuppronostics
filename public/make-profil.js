@@ -1,7 +1,7 @@
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
   `
-<div class="container" style="padding-top: 60px;">
+<div class="profil container" style="padding-top: 60px;">
 
   <div class="row">
       <!-- left column -->
@@ -25,63 +25,64 @@ const makeProfil = profil =>
               <strong>profil</strong> avec succès!
           </div>
           <h3>Mes informations:</h3>
-          <form class="form-horizontal" role="form">
-              <div class="form-group">
-                  <label class="col-lg-3 control-label">Prénom:</label>
-                  <div class="col-lg-8">
-                      <input class="form-control" value="${profil.prenom}" type="text">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-lg-3 control-label">Nom:</label>
-                  <div class="col-lg-8">
-                      <input class="form-control" value="${profil.nom}" type="text">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-lg-3 control-label">Pseudo:</label>
-                  <div class="col-lg-8">
-                      <input class="form-control" value="${profil.pseudo}" type="text">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-lg-3 control-label">Email:</label>
-                  <div class="col-lg-8">
-                      <input class="form-control" value="${profil.mail}" type="text">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-lg-3 control-label">Ville:</label>
-                  <div class="col-lg-8">
-                      <input class="form-control" value="${profil.city}" type="text">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-md-3 control-label">Ton équipe favorite:</label>
-                  <div class="col-md-8">
-                      <input class="form-control" value="${profil.equipepreferee}" type="text">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-md-3 control-label">Mot de passe:</label>
-                  <div class="col-md-8">
-                      <input type="password" class="form-control" value="11111122333" name="passport">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-md-3 control-label">Confirmation du mot de passe:</label>
-                  <div class="col-md-8">
-                      <input type="password" class="form-control" value="11111122333" name="passport">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-md-3 control-label"></label>
-                  <div class="col-md-8">
-                      <input class="btn btn-outline-success" value="Valider" type="button">
-                      <input class="btn btn-outline-danger" value="Annuler" type="button">
-                  </div>
-              </div>
-          </form>
+          
+<!-- Material form register -->
+<form>
+    <!-- Material input text -->
+    <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <input type="text" id="materialFormRegisterFirstNameEx" class="form-control">
+        <label for="materialFormRegisterNameEx">${profil.prenom}</label>
+    </div>
+
+    <!-- Material input email -->
+    <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <input type="text" id="materialFormRegisterNameEx" class="form-control">
+        <label for="materialFormRegisterEmailEx">${profil.nom}</label>
+    </div>
+
+    <!-- Material input email -->
+    <div class="md-form">
+    <i class="fa fa-user-circle-o prefix grey-text"></i>
+        <input type="text" id="materialFormRegisterPseudoEx" class="form-control">
+        <label for="materialFormRegisterConfirmEx">${profil.pseudo}</label>
+    </div>
+
+    <!-- Material input password -->
+    <div class="md-form">
+        <i class="fa fa-envelope prefix grey-text"></i>
+        <input type="text" id="materialFormRegisterMailEx" class="form-control">
+        <label for="materialFormRegisterPasswordEx">${profil.mail}</label>
+    </div>
+
+    <div class="md-form">
+    <i class="fa fa-home prefix grey-text"></i>
+        <input type="text" id="materialFormRegisterCityEx" class="form-control">
+        <label for="materialFormRegisterPasswordEx">${profil.city}</label>
+    </div>
+
+     <!-- Material input password -->
+     <div class="md-form">
+        <i class="fa fa-lock prefix grey-text"></i>
+        <input type="password" id="materialFormRegisterPasswordEx" class="form-control">
+        <label for="materialFormRegisterPasswordEx">${profil.password}</label>
+    </div>
+
+     <!-- Material input password -->
+     <div class="md-form">
+        <i class="fa fa-lock prefix grey-text"></i>
+        <input type="password" id="materialFormRegisterConfirmPasswordEx" class="form-control">
+        <label for="materialFormRegisterPasswordEx">${profil.password}</label>
+    </div>
+
+
+    <div class="text-center mt-4">
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </div>
+</form>
+<!-- Material form register -->
+                      
       </div>
   </div>
 </div>
