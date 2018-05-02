@@ -122,6 +122,13 @@ app.get('/test', passport.authenticate('jwt', { session: false }), (req, res) =>
   res.send(`authorized for user ${req.user.email} with id ${req.user.id}`)
 })
 
+//LA ROUTE /dashboard
+app.get("/betsandmatches", (req, res) => {
+  console.log("app.get dashboard marche")
+  
+})
+
+
 
 //LA ROUTE /matchs
 //CREATE

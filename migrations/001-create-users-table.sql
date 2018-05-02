@@ -24,7 +24,6 @@ CREATE TABLE wilders (
   motdepasse VARCHAR(50) ,
   city VARCHAR(50),
   equipepreferee VARCHAR(50),
-  admin BOOLEAN DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE pronostics (
@@ -36,6 +35,5 @@ CREATE TABLE pronostics (
   FOREIGN KEY(wilderId) REFERENCES wilders(id),
   FOREIGN KEY(matchId) REFERENCES matchs(id)
 );
-
 
 -- Down
