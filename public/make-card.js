@@ -1,10 +1,8 @@
 //renvoie le html d'une card bootstrap pour un match
 
   const makeCard = item => {
-    console.log(item)
-    if (item.pronoTeamHome) {
-      console.log("prono existe")
-    }
+    console.log(item);
+    if (!item.pronoTeamHome) {
       return `
       <div class="card mx-auto mb-3" style="width: 18rem;">
         <div class="card-body text-center">
@@ -22,7 +20,20 @@
         <!-- Large modal -->
       </div>
       `
+      }
+      return `
+      <div class="card mx-auto mb-3" style="width: 18rem;">
+        <div class="card-body text-center">
+          <p> ${item.teamHome} </p>
+          <img src="${item.drapeauHome}" style="width: 48px; height: 48px" class="rounded">
+          <img src="${item.drapeauOut}" style="width: 48px; height: 48px" class="rounded">
+          <p> ${item.teamOut} </p>
+          <p class="idmatch"> ${item.id} </p>
+          <p> ${item.localisation} </p>
+          <p> ${item.numberMatch} </p>
+        </div>
+      </div>
+      `
     }
-
 
 export default makeCard
