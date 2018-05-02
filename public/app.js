@@ -265,7 +265,7 @@ const loginWilderHtml = `
               alertBox.className = "alert alert-success"
               alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
               // replace by page(route)
-              setTimeout(() => {location.href="/domyprono"}, 2000) // direction la page /domyprono quand il est inscrit
+              setTimeout(() => {location.href="/"}, 2000) // direction la page /domyprono quand il est inscrit
               //page('/') // direction la page /domyprono quand il est inscrit
             })
       })

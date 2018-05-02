@@ -1,5 +1,4 @@
 //renvoie le html d'une card bootstrap pour un match
-
   const makeCard = item => {
     console.log(item)
     const displayPronoButton = document.getElementsByClassName("button-bet-display")
