@@ -88,7 +88,7 @@ const loginWilderHtml = `
                 method: "GET",
                 headers: {
                   "Accept": "application/json",
-                  "Content-Type": "application/json", 
+                  "Content-Type": "application/json",
                   Authorization: "Bearer " + token,
                 }
             })
@@ -189,10 +189,13 @@ const loginWilderHtml = `
                 })
                 .then(res => res.json())
                 .then(pronostic => {
+                  $('')
                   console.log(pronostic)
                   const alertBox = document.getElementById("alert-box")
                   alertBox.className = "alert alert-success"
                   alertBox.innerHTML = `Votre prono est bien enregistré`
+                  $(".bd-example-modal-lg").modal('hide')
+                  page('/domyprono')
                 })
               })
             })
@@ -261,7 +264,9 @@ const loginWilderHtml = `
               const alertBox = document.getElementById("alert-box")
               alertBox.className = "alert alert-success"
               alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
-              setTimeout(() => {location.href="/domyprono"}, 3000) // direction la page /domyprono quand il est inscrit
+              // replace by page(route)
+              setTimeout(() => {location.href="/domyprono"}, 2000) // direction la page /domyprono quand il est inscrit
+              //page('/') // direction la page /domyprono quand il est inscrit
             })
       })
     },
