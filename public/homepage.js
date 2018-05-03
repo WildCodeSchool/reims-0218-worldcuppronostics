@@ -22,7 +22,11 @@ const homepage =
         <img src="assets/podium.jpg" class="mx-auto col-4 col-md-2 my-1 px-4" alt="example-bet">
         <p class="text-center col-sm-12 col-md-6">Domineras-tu le classement ?</p>
       </div>
+      <div id="explication_3" class="row mx-auto mb-5 mt-4 d-flex align-items-center border border-white">
+      <img src="assets/podium.jpg" class="mx-auto col-4 col-md-2 my-1 px-4" alt="example-bet">
+      <p class="text-center col-sm-12 col-md-6">Domineras-tu le classement ?</p>
     </div>
     </div>
+    
     `
 export default homepage
