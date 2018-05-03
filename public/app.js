@@ -21,16 +21,17 @@ const token = localStorage.getItem("token")
 const loginWilderHtml = `
 <form id="login-wilder">
   <div class="form-group">
-    <label for="inputMail">Email</label>
+    <label class="input-mail" for="inputMail">Email :</label>
     <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
   </div>
   <div class="form-group">
-    <label for="inputPassword">Mot de passe</label>
+    <label class="input-pass" for="inputPassword">Mot de passe :</label>
     <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Entrez votre mot de passe" required>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary marge">Se connecter</button>
 </form>
 `
+
 
   //routing côté client
   const controllers = {
@@ -47,14 +48,14 @@ const loginWilderHtml = `
           <div id="alert-login" class="hidden"></div>
           `
         })
-      
-      
+
+
       } else {
         render(`
         ${navBarLogin} ${homepage}`
       )}
 
-    
+
       const loginWilder = document.getElementById("modal-login")
       loginWilder.addEventListener("submit", e => {
         e.preventDefault()
@@ -196,7 +197,7 @@ const loginWilderHtml = `
           buttonLogout.addEventListener("click", () => {
             localStorage.removeItem("token")
             page("/")
-            
+
           })
         })
       },
@@ -227,10 +228,6 @@ const loginWilderHtml = `
         <div class="form-group">
           <label for="inputMotDePasse">Mot de passe</label>
           <input name="motdepasse" type="password" class="form-control" id="inputMotDePasse" placeholder="Choississez votre mot de passe" required>
-        </div>
-        <div class="form-group">
-          <label for="inputConfirmationMotDePasse">Confirmation de mot de passe</label>
-          <input name="confirmationmotdepasse" type="password" class="form-control" id="inputConfirmationMotDePasse" placeholder="Veuillez confirmer votre mot de passe" required>
         </div>
         <div class="form-group">
           <label for="inputCity">Votre ville</label>
@@ -328,7 +325,7 @@ const loginWilderHtml = `
         page("/")
       })
     }
-      
+
     ,
     "/ranking": () => {
       render (
