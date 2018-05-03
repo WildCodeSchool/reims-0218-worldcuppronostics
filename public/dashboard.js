@@ -14,7 +14,7 @@ const matchWilder1 = {
   matchId: 2,
   teamHome: "Russie",
   teamOut: "Arabie Saoudite",
-  pronoTeamHome: 3,
+  pronoTeamHome: 2,
   pronoTeamOut: 0,
   }
 
@@ -24,7 +24,7 @@ const matchWilder2 = {
   matchId: 2,
   teamHome: "Russie",
   teamOut: "Arabie Saoudite",
-  pronoTeamHome: 3,
+  pronoTeamHome: 1,
   pronoTeamOut: 0,
 }
     
@@ -62,7 +62,7 @@ let exampleMatch =
       </div>
     </div>
   </div>
-  <div class="dashboard container">
+  <div class="dashboard fsh1 container">
     <div class="row d-flex justify-content-center mb-4">
       <div class="col-10 col-md-4 bg-light text-center"> Egypte  ${matchWilder2.pronoTeamOut} - ${matchWilder2.teamHome} ${matchWilder2.pronoTeamHome}
       </div>

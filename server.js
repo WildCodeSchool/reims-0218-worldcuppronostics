@@ -103,11 +103,11 @@ const html = `
   </div>
   <div id="main">
   </div>
-  <footer class="container-fluid mt-2 text-center pt-1">
+  <footer class="container-fluid text-center pt-1 footer">
     <div class="footer-above">
       <h2 class="pb-3"> World Cup Pronostics</h6>
-      <a href="/" id="logo" class="mx-auto mb-3"></a>
-      <div class="container">
+      <a href="/" id="logo" class="mx-auto mb-3">logo</a>
+      <div>
         <div class="row">
           <div class="col-md-4">
             <h3 class="footer-title-h3">Les projets WildCodeSchool</h3>
@@ -136,7 +136,7 @@ const html = `
       </div>
     </div>
     <div class="footer-below">
-      <div class="container">
+      <div>
         <div class="row">
           <div class="col-lg-12">
             Copyright &copy; WildCodeSchool-REIMS

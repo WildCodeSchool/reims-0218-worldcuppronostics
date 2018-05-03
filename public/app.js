@@ -7,6 +7,8 @@ import serializeForm from "./serializeForm.js"
 import homepage from "./homepage.js"
 import rulespage from "./rules.js"
 import exampleMatch from "./dashboard.js"
+import exampleRanking from "./ranking.js";
+
 
 
 const mainDiv = document.getElementById("main")
@@ -15,88 +17,83 @@ const render = html => {
   mainDiv.innerHTML = html
 }
 
-
 const token = localStorage.getItem("token")
 
 const loginWilderHtml = `
 <form id="login-wilder">
   <div class="form-group">
-    <label for="inputMail">Email</label>
+    <label class="input-mail" for="inputMail">Email :</label>
     <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
   </div>
   <div class="form-group">
-    <label for="inputPassword">Mot de passe</label>
+    <label class="input-pass" for="inputPassword">Mot de passe :</label>
     <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Entrez votre mot de passe" required>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary marge">Se connecter</button>
 </form>
 `
-
   //routing côté client
   const controllers = {
     "/": () => {
+      const token = localStorage.getItem("token")
+      if (!token) {
       render(
         `${navBarNoLogin}
          ${homepage}
-        `
-
-      )
-      const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
-      buttonLogin.addEventListener("click", () => {
-        document.getElementById("modal-login").innerHTML = `
-            ${!token ? loginWilderHtml : ""}
-        <div id="alert-login" class="hidden"></div>
-        <div id="test">CALL TEST</div>
-        `
-      })
-
-      const loginWilder = document.getElementById("modal-login")
-      loginWilder.addEventListener("submit", e => {
-        e.preventDefault()
-        // data ?
-        const data = serializeForm(loginWilder)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
-        console.log(data)
-        // post sur le serveur /auth/login
-        fetch("/auth/login", {
-          method: "POST",
-          headers: {
-            "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
+        `)
+        const loginWilder = document.getElementById("modal-login")
+        loginWilder.addEventListener("submit", e => {
+          e.preventDefault()
+          // data ?
+          const data = serializeForm(loginWilder)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
           console.log(data)
-          const alert = document.getElementById("alert-login")
-          if(!data.user) {
-            //alet class danger
-            alert.innerHTML = `échec du login`
-          } else {
-            alert.innerHTML = `Vous êtes bien identifié`
-            //stores the token
-            localStorage.setItem("token", data.token)
-            // document.getElementById("link-signin").style.display = "none"
-            // document.getElementById("login-wilder").style.display = "none"
-            // buttonLogin.style.display = "none"
-          }
-          const callTest = document.getElementById("test")
-          callTest.addEventListener("click", () => {
-            const token = localStorage.getItem("token")
-            console.log(token);
-            fetch("test", {
-                method: "GET",
-                headers: {
-                  "Accept": "application/json",
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + token,
-                }
-            })
-            .then(res => res.json())
-            .catch(err => console.log(err))
+          // post sur le serveur /auth/login
+          fetch("/auth/login", {
+            method: "POST",
+            headers: {
+              "Accept": "application/json, text/plain, */*",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            const alert = document.getElementById("alert-login")
+            if(!data.user) {
+              //alet class danger
+              alert.innerHTML = `échec du login`
+            } else {
+              alert.innerHTML = `Vous êtes bien identifié`
+              //stores the token
+              localStorage.setItem("token", data.token)
+              // document.getElementById("link-signin").style.display = "none"
+              // document.getElementById("login-wilder").style.display = "none"
+              // buttonLogin.style.display = "none"
+              $(".bd-example-modal-sm").modal('hide')
+              page("/domyprono")
+            }
           })
         })
-      })
+        const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
+        buttonLogin.addEventListener("click", () => {
+          document.getElementById("modal-login").innerHTML = `
+              ${!token ? loginWilderHtml : ""}
+          <div id="alert-login" class="hidden"></div>
+          `
+        })
+      } else {
+        render(`
+          ${navBarLogin}
+          ${homepage}
+        `)
+        const buttonLogout = document.getElementById("button-logout")
+            buttonLogout.addEventListener("click", () => {
+              console.log("le clic marche")
+              localStorage.removeItem("token")
+              render(`${navBarNoLogin}`)
+            })
+      }
   }
   ,
     "/domyprono": () => {
@@ -111,6 +108,7 @@ const loginWilderHtml = `
           Authorization: "Bearer " + token, // send token
         }
       })
+
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
       .then(album => {
@@ -119,7 +117,7 @@ const loginWilderHtml = `
             ${navBarLogin}
           <div class="jumbotron jumbotron-fluid bg-jumbotron">
           <div class="container">
-            <h1 class="display-3">Mes pronos</h1>
+            <h1 class="display-3 text-dark">Mes pronos</h1>
           </div>
         </div>
         <div class="container">
@@ -204,6 +202,7 @@ const loginWilderHtml = `
           buttonLogout.addEventListener("click", () => {
             localStorage.removeItem("token")
             page("/")
+
           })
         })
       },
@@ -234,10 +233,6 @@ const loginWilderHtml = `
         <div class="form-group">
           <label for="inputMotDePasse">Mot de passe</label>
           <input name="motdepasse" type="password" class="form-control" id="inputMotDePasse" placeholder="Choississez votre mot de passe" required>
-        </div>
-        <div class="form-group">
-          <label for="inputConfirmationMotDePasse">Confirmation de mot de passe</label>
-          <input name="confirmationmotdepasse" type="password" class="form-control" id="inputConfirmationMotDePasse" placeholder="Veuillez confirmer votre mot de passe" required>
         </div>
         <div class="form-group">
           <label for="inputCity">Votre ville</label>
@@ -280,7 +275,8 @@ const loginWilderHtml = `
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),
 
-    "/mon-profil": () =>
+    "/mon-profil": () =>{
+      const token = localStorage.getItem("token") // get token
       //la route matchs
       fetch("/wilders", {
         method: "GET",
@@ -297,31 +293,58 @@ const loginWilderHtml = `
             ${navBarLogin}
             <div class="row">${album}</div>
           </div>`)
+
       )
+      const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            console.log("le clic marche")
+            localStorage.removeItem("token")
+            page("/")
+          })
+        }
     ,
-    "/rules": () =>
+    "/rules": () => {
       render (
         `
-        ${navBarNoLogin}
+        ${navBarLogin}
         ${rulespage}
         `
       )
+      const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            localStorage.removeItem("token")
+            page("/")
+          })
+        }
     ,
-    "/dashboard": () =>
+    "/dashboard": () => {
       render (
         `
         ${navBarLogin}
         ${exampleMatch}
         `
       )
-      
+      const buttonLogout = document.getElementById("button-logout")
+      buttonLogout.addEventListener("click", () => {
+        localStorage.removeItem("token")
+        page("/")
+      })
+    }
+
     ,
-    "/ranking": () =>
+    "/ranking": () => {
       render (
         `
         ${navBarLogin}
+        ${exampleRanking}
         `
       )
+      const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            localStorage.removeItem("token")
+            page("/")
+          })
+        }
 
     ,
     "*": () => render(
