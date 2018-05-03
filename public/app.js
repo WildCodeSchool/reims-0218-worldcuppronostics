@@ -273,7 +273,8 @@ const loginWilderHtml = `
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),
 
-    "/mon-profil": () =>
+    "/mon-profil": () =>{
+      const token = localStorage.getItem("token") // get token
       //la route matchs
       fetch("/wilders", {
         method: "GET",
@@ -291,6 +292,13 @@ const loginWilderHtml = `
             <div class="row">${album}</div>
           </div>`)
       )
+      const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            console.log("le clic marche")
+            localStorage.removeItem("token")
+            page("/")
+          })
+        }
     ,
     "/rules": () => {
       render (
@@ -306,13 +314,19 @@ const loginWilderHtml = `
           })
         }
     ,
-    "/dashboard": () =>
+    "/dashboard": () => {
       render (
         `
         ${navBarLogin}
         ${exampleMatch}
         `
       )
+      const buttonLogout = document.getElementById("button-logout")
+      buttonLogout.addEventListener("click", () => {
+        localStorage.removeItem("token")
+        page("/")
+      })
+    }
       
     ,
     "/ranking": () =>
