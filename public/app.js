@@ -21,16 +21,17 @@ const token = localStorage.getItem("token")
 const loginWilderHtml = `
 <form id="login-wilder">
   <div class="form-group">
-    <label for="inputMail">Email</label>
+    <label class="input-mail" for="inputMail">Email :</label>
     <input name="email" type="text" class="form-control" id="inputMail" placeholder="Entrez votre email" required>
   </div>
   <div class="form-group">
-    <label for="inputPassword">Mot de passe</label>
+    <label class="input-pass" for="inputPassword">Mot de passe :</label>
     <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Entrez votre mot de passe" required>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary marge">Se connecter</button>
 </form>
 `
+
 
   //routing côté client
   const controllers = {
@@ -46,7 +47,7 @@ const loginWilderHtml = `
         document.getElementById("modal-login").innerHTML = `
             ${!token ? loginWilderHtml : ""}
         <div id="alert-login" class="hidden"></div>
-        <div id="test">CALL TEST</div>
+       
         `
       })
 
@@ -210,10 +211,7 @@ const loginWilderHtml = `
     "/wilders/new": () => {
       //construit le formulaire
       render(
-      
-        ` 
-        ${navBarNoLogin}
-        <div class="container">
+        `<div class="container">
       <div id="alert-box" class="hidden">
       </div>
       <form id="add-wilder">
@@ -237,7 +235,15 @@ const loginWilderHtml = `
           <label for="inputMotDePasse">Mot de passe</label>
           <input name="motdepasse" type="password" class="form-control" id="inputMotDePasse" placeholder="Choississez votre mot de passe" required>
         </div>
-        <button type="submit" class="btn btn-primary">S'inscrire</button>
+        <div class="form-group">
+          <label for="inputCity">Votre ville</label>
+          <input name="city" type="text" class="form-control" id="inputCity" placeholder="Entrez votre ville actuelle" required>
+        </div>
+        <div class="form-group">
+          <label for="inputEquipePreferee">Votre équipe supportée pour le Mondial</label>
+          <input name="equipepreferee" type="text" class="form-control" id="inputEquipePreferee" placeholder="Entrez votre équipe supportée" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>`
       )
