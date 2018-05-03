@@ -203,6 +203,7 @@ const loginWilderHtml = `
           const buttonLogout = document.getElementById("button-logout")
           buttonLogout.addEventListener("click", () => {
             localStorage.removeItem("token")
+            page("/")
           })
         })
       },
@@ -271,6 +272,7 @@ const loginWilderHtml = `
               // replace by page(route)
               setTimeout(() => {page("/")}, 2000) // direction la page /domyprono quand il est inscrit
               //page('/') // direction la page /domyprono quand il est inscrit
+              page("/")
             })
       })
     },
@@ -312,6 +314,7 @@ const loginWilderHtml = `
         ${exampleMatch}
         `
       )
+      
     ,
     "/ranking": () =>
       render (
