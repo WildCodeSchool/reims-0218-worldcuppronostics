@@ -319,6 +319,7 @@ p {
 #explication_3 p {
   color: black;
 
+}
 /* FOOTER */
 
 .social-footer {
@@ -435,10 +436,6 @@ ul {
 
 .input-mail {
   margin-left: 10px;
-}
-
-.form-profil {
-  margin-left: 600px;
 }
 
 .valid-profil {

@@ -35,11 +35,46 @@ const loginWilderHtml = `
   //routing côté client
   const controllers = {
     "/": () => {
+      const token = localStorage.getItem("token")
       if (!token) {
       render(
         `${navBarNoLogin}
          ${homepage}
         `)
+        const loginWilder = document.getElementById("modal-login")
+        loginWilder.addEventListener("submit", e => {
+          e.preventDefault()
+          // data ?
+          const data = serializeForm(loginWilder)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
+          console.log(data)
+          // post sur le serveur /auth/login
+          fetch("/auth/login", {
+            method: "POST",
+            headers: {
+              "Accept": "application/json, text/plain, */*",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            const alert = document.getElementById("alert-login")
+            if(!data.user) {
+              //alet class danger
+              alert.innerHTML = `échec du login`
+            } else {
+              alert.innerHTML = `Vous êtes bien identifié`
+              //stores the token
+              localStorage.setItem("token", data.token)
+              // document.getElementById("link-signin").style.display = "none"
+              // document.getElementById("login-wilder").style.display = "none"
+              // buttonLogin.style.display = "none"
+              $(".bd-example-modal-sm").modal('hide')
+              page("/domyprono")
+            }
+          })
+        })
         const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
         buttonLogin.addEventListener("click", () => {
           document.getElementById("modal-login").innerHTML = `
@@ -59,42 +94,6 @@ const loginWilderHtml = `
               render(`${navBarNoLogin}`)
             })
       }
-
-
-      const loginWilder = document.getElementById("modal-login")
-      loginWilder.addEventListener("submit", e => {
-        e.preventDefault()
-        // data ?
-        const data = serializeForm(loginWilder)  //la fonction récupère tous les champs d'un form et les récupère pr en faire objet js
-        console.log(data)
-        // post sur le serveur /auth/login
-        fetch("/auth/login", {
-          method: "POST",
-          headers: {
-            "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          const alert = document.getElementById("alert-login")
-          if(!data.user) {
-            //alet class danger
-            alert.innerHTML = `échec du login`
-          } else {
-            alert.innerHTML = `Vous êtes bien identifié`
-            //stores the token
-            localStorage.setItem("token", data.token)
-            // document.getElementById("link-signin").style.display = "none"
-            // document.getElementById("login-wilder").style.display = "none"
-            // buttonLogin.style.display = "none"
-            $(".bd-example-modal-sm").modal('hide')
-            page("/domyprono")
-          }
-        })
-      })
   }
   ,
     "/domyprono": () => {

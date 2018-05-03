@@ -1,6 +1,6 @@
 //renvoie le html d'une card bootstrap pour un wilder
 const makeProfil = profil =>
-  `<form>
+  `<form class="mx-auto">
   <div class="container form-profil">
   <div class="form-group">
   <label for="exampleFormControlInput1">Prénom</label>
