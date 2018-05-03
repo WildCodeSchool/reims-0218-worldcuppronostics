@@ -276,12 +276,19 @@ const loginWilderHtml = `
 
     "/mon-profil": () =>
       //la route matchs
-      fetch("/wilders")
+      fetch("/wilders", {
+        method: "GET",
+        headers: {
+          "Accept": "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token, // send token
+        },
+      })
       .then(res => res.json())
       .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
       .then(album => render(
           `
-            ${navBarNoLogin}
+            ${navBarLogin}
             <div class="row">${album}</div>
           </div>`)
       )

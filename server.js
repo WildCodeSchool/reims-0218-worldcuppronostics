@@ -103,7 +103,7 @@ const html = `
   </div>
   <div id="main">
   </div>
-  <footer class="container-fluid text-center pt-5">
+  <footer class="container-fluid text-center pt-1">
     <div class="footer-above">
       <h2 class="pb-3"> World Cup Pronostics</h6>
       <a href="/" id="icone-ballon" class="mx-auto mb-3"></a>
@@ -242,9 +242,11 @@ app.post("/wilders", (req, res) => {
 })
 
 //READ
-app.get("/wilders", (req, res) => {
-  db.all("SELECT * from wilders")
+app.get("/wilders", passport.authenticate('jwt', { session: false }), (req, res) => {
+  db.all(`SELECT * from wilders
+    WHERE id = ${req.user.id}`)
     .then(records => {
+      console.log("console log /wilders", req.user.id);
       //console.log(records)
       return res.json(records)
     })
