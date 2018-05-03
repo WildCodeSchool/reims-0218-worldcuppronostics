@@ -15,7 +15,6 @@ const render = html => {
   mainDiv.innerHTML = html
 }
 
-
 const token = localStorage.getItem("token")
 
 const loginWilderHtml = `
@@ -31,8 +30,6 @@ const loginWilderHtml = `
   <button type="submit" class="btn btn-primary marge">Se connecter</button>
 </form>
 `
-
-
   //routing côté client
   const controllers = {
     "/": () => {
@@ -48,12 +45,18 @@ const loginWilderHtml = `
           <div id="alert-login" class="hidden"></div>
           `
         })
-
-
       } else {
         render(`
-        ${navBarLogin} ${homepage}`
-      )}
+          ${navBarLogin}
+          ${homepage}
+        `)
+        const buttonLogout = document.getElementById("button-logout")
+            buttonLogout.addEventListener("click", () => {
+              console.log("le clic marche")
+              localStorage.removeItem("token")
+              render(`${navBarNoLogin}`)
+            })
+      }
 
 
       const loginWilder = document.getElementById("modal-login")
@@ -288,7 +291,7 @@ const loginWilderHtml = `
             ${navBarLogin}
             <div class="row">${album}</div>
           </div>`)
-          
+
       )
       const buttonLogout = document.getElementById("button-logout")
           buttonLogout.addEventListener("click", () => {
