@@ -16,7 +16,7 @@ const makeProfil = profil =>
   </div>
   <div class="form-group">
     <label for="exampleFormControlInput1">Mot de passe</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="${profil.password}">
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="${profil.motdepasse}">
   </div>
   <button type="button" class="btn btn-success valid-profil">Validez</button>
   </div>
