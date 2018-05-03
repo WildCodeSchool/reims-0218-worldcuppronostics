@@ -116,7 +116,7 @@ const loginWilderHtml = `
       .then(album => {
         render(
           `
-            ${navBarNoLogin}
+            ${navBarLogin}
           <div class="jumbotron jumbotron-fluid bg-jumbotron">
           <div class="container">
             <h1 class="display-3">Mes pronos</h1>
@@ -200,6 +200,10 @@ const loginWilderHtml = `
               })
             })
           }
+          const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            localStorage.removeItem("token")
+          })
         })
       },
 
