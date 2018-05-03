@@ -35,21 +35,26 @@ const loginWilderHtml = `
   //routing côté client
   const controllers = {
     "/": () => {
+      if (!token) {
       render(
         `${navBarNoLogin}
          ${homepage}
-        `
+        `)
+        const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
+        buttonLogin.addEventListener("click", () => {
+          document.getElementById("modal-login").innerHTML = `
+              ${!token ? loginWilderHtml : ""}
+          <div id="alert-login" class="hidden"></div>
+          `
+        })
+      
+      
+      } else {
+        render(`
+        ${navBarLogin} ${homepage}`
+      )}
 
-      )
-      const buttonLogin = document.getElementById("button-login") // se trouve dans navbar.js
-      buttonLogin.addEventListener("click", () => {
-        document.getElementById("modal-login").innerHTML = `
-            ${!token ? loginWilderHtml : ""}
-        <div id="alert-login" class="hidden"></div>
-        <div id="test">CALL TEST</div>
-        `
-      })
-
+    
       const loginWilder = document.getElementById("modal-login")
       loginWilder.addEventListener("submit", e => {
         e.preventDefault()
@@ -79,22 +84,9 @@ const loginWilderHtml = `
             // document.getElementById("link-signin").style.display = "none"
             // document.getElementById("login-wilder").style.display = "none"
             // buttonLogin.style.display = "none"
+            $(".bd-example-modal-sm").modal('hide')
+            page("/domyprono")
           }
-          const callTest = document.getElementById("test")
-          callTest.addEventListener("click", () => {
-            const token = localStorage.getItem("token")
-            console.log(token);
-            fetch("test", {
-                method: "GET",
-                headers: {
-                  "Accept": "application/json",
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + token,
-                }
-            })
-            .then(res => res.json())
-            .catch(err => console.log(err))
-          })
         })
       })
   }
@@ -203,6 +195,8 @@ const loginWilderHtml = `
           const buttonLogout = document.getElementById("button-logout")
           buttonLogout.addEventListener("click", () => {
             localStorage.removeItem("token")
+            page("/")
+            
           })
         })
       },
@@ -271,6 +265,7 @@ const loginWilderHtml = `
               // replace by page(route)
               setTimeout(() => {page("/")}, 2000) // direction la page /domyprono quand il est inscrit
               //page('/') // direction la page /domyprono quand il est inscrit
+              page("/")
             })
       })
     },
@@ -278,7 +273,8 @@ const loginWilderHtml = `
     "/list-matchs": () =>
       render(makeHiddenButton(matches[0])),
 
-    "/mon-profil": () =>
+    "/mon-profil": () =>{
+      const token = localStorage.getItem("token") // get token
       //la route matchs
       fetch("/wilders", {
         method: "GET",
@@ -296,22 +292,42 @@ const loginWilderHtml = `
             <div class="row">${album}</div>
           </div>`)
       )
+      const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            console.log("le clic marche")
+            localStorage.removeItem("token")
+            page("/")
+          })
+        }
     ,
-    "/rules": () =>
+    "/rules": () => {
       render (
         `
-        ${navBarNoLogin}
+        ${navBarLogin}
         ${rulespage}
         `
       )
+      const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            localStorage.removeItem("token")
+            page("/")
+          })
+        }
     ,
-    "/dashboard": () =>
+    "/dashboard": () => {
       render (
         `
         ${navBarLogin}
         ${exampleMatch}
         `
       )
+      const buttonLogout = document.getElementById("button-logout")
+      buttonLogout.addEventListener("click", () => {
+        localStorage.removeItem("token")
+        page("/")
+      })
+    }
+      
     ,
     "/ranking": () =>
       render (

@@ -10,18 +10,7 @@ const navBarNoLogin =
         <img src="https://championnatdefrancedespronos.fr/scontent/images/FDJ_CFP_logo.png"></img>
       </a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="/domyprono">Mes pronos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ranking">Classement</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Tableau de bord</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/mon-profil">Mon profil</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="/rules">Règles</a>
         </li>
