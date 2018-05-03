@@ -65,7 +65,7 @@ const navBarLogin =
           <a class="nav-link" href="/rules">Règles</a>
         </li>
       </ul>
-        <button class="btn btn-secondary rounded my-2 my-sm-0" type="submit">Se déconnecter</button>
+        <button class="btn btn-secondary rounded my-2 my-sm-0" id="button-logout" type="submit">Se déconnecter</button>
     </div>
   </nav>
   `

@@ -334,3 +334,111 @@ body {
 
 }
 
+/* FOOTER */
+
+.social-footer {
+  height: 40px;
+  width: 40px;
+}
+
+footer {
+  background-color: #FFF;
+  margin-top: 150px;
+}
+
+.footer-above h2,
+ .footer-title-h3 {
+  color: #000;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-project-wild a,
+#icone-ballon {
+  color: #000;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#icone-ballon {
+  display: block;
+  background-image: url("https://fr.seaicons.com/wp-content/uploads/2015/10/soccer-ball-icon.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100px;
+  height: 100px;
+}
+
+/* END FOOTER */
+
+
+/* NOT FOUND */
+
+#notfound {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+   rgba(8, 34, 91, 0.75),
+   rgba(8, 34, 91, 0.75)
+   ),url("https://images.unsplash.com/photo-1518091043644-c1d4457512c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d69727bcd5aa3f020789b7867dda01f3&auto=format&fit=crop&w=1489&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#notfound h1 {
+  color: #d63031;
+  opacity: 0.7;
+}
+
+#notfound404 {
+  margin-top: 200px;
+  font-size: 125px;
+  color: #fff;
+}
+
+#notfoundText {
+  color: #d63031;
+  font-size: 100px;
+  margin-top: -50px;
+}
+
+#border-bottom-notfound {
+  display: block;
+  border-top: 3px solid #d63031;
+  width: 25%;
+}
+
+.links-notfound {
+  font-size: 20px;
+  color: #fff;
+  margin: 20px;
+}
+
+.links-notfound:hover {
+  font-size: 25px;
+  color: #fff;
+}
+
+.divTextNotFound {
+  opacity: 0.6;
+}
+
+@media (max-width: 575.98px) {
+  .links-notfound {
+    font-size: 15px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #notfound nav {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* END NOTFOUND */

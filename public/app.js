@@ -116,7 +116,7 @@ const loginWilderHtml = `
       .then(album => {
         render(
           `
-            ${navBarNoLogin}
+            ${navBarLogin}
           <div class="jumbotron jumbotron-fluid bg-jumbotron">
           <div class="container">
             <h1 class="display-3">Mes pronos</h1>
@@ -200,6 +200,10 @@ const loginWilderHtml = `
               })
             })
           }
+          const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            localStorage.removeItem("token")
+          })
         })
       },
 
@@ -265,7 +269,7 @@ const loginWilderHtml = `
               alertBox.className = "alert alert-success"
               alertBox.innerHTML = `Successfully created wilder ${wilder.nom} ${wilder.prenom}`
               // replace by page(route)
-              setTimeout(() => {location.href="/domyprono"}, 2000) // direction la page /domyprono quand il est inscrit
+              setTimeout(() => {location.href="/"}, 2000) // direction la page /domyprono quand il est inscrit
               //page('/') // direction la page /domyprono quand il est inscrit
             })
       })
@@ -276,12 +280,19 @@ const loginWilderHtml = `
 
     "/mon-profil": () =>
       //la route matchs
-      fetch("/wilders")
+      fetch("/wilders", {
+        method: "GET",
+        headers: {
+          "Accept": "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token, // send token
+        },
+      })
       .then(res => res.json())
       .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
       .then(album => render(
           `
-            ${navBarNoLogin}
+            ${navBarLogin}
             <div class="row">${album}</div>
           </div>`)
       )
@@ -310,7 +321,22 @@ const loginWilderHtml = `
       )
 
     ,
-    "*": () => render("<h1>Not Found</h1>")
+    "*": () => render(
+      `
+      <div id="notfound" class="text-center">
+        <h1 class="pt-5 mb-5"> Oups ! Tu t'es perdu ! </h1>
+        <nav class="d-flex justify-content-center">
+          <a href="/" class="links-notfound">Retour à l'accueil </a>
+          <a href="" class="links-notfound">Classement</a>
+          <a href="/rules" class="links-notfound">Les règles</a>
+        </nav>
+        <div class="coulou">
+          <h2 id="notfound404"> 404 </h2>
+          <h3 id="notfoundText"> Not Found </h3>
+        <div id="border-bottom-notfound" class="mx-auto"></div>
+        </div>
+      </div>
+  `)
     // toutes les autres routes sauf / on obtient en get NOT FOUND
   }
   //gère l'éxécution du routing côté client
