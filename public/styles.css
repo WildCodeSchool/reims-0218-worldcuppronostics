@@ -35,10 +35,7 @@ body {
     color: #acacac;
   }
 
-  .navbar-nav {
-    padding-left: 150px;
-  }
-
+ 
   .nav-link {
     font-size: 100%;
   }
@@ -199,7 +196,9 @@ body {
 .name {
     font-size: 1.2em;
 }
-
+.pari {
+  font-size: 2em;
+}
 #date-of-match {
     width: 100%;
     text-align: center;
@@ -311,7 +310,7 @@ body {
 
 #logo_accueil {
   height: 12vw;
-  background-image: url(../ressources/logoaccueil.jpg);
+  background-image: url(assets/logoaccueil.jpg);
   background-size: cover;
 }
 
@@ -324,6 +323,7 @@ body {
 #explication_1, #explication_2, #explication_3 {
   background-color: white;
 }
+
 
 #explication_1 p, #explication_2 p, #explication_3 p {
  color: black;
