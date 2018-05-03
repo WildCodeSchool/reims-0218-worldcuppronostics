@@ -99,7 +99,8 @@ const loginWilderHtml = `
       })
   }
   ,
-    "/domyprono": () => {
+
+  "/domyprono": () => {
 
       //la route matchs
       const token = localStorage.getItem("token") // get token
@@ -116,12 +117,26 @@ const loginWilderHtml = `
       .then(album => {
         render(
           `
-            ${navBarNoLogin}
-          <div class="jumbotron jumbotron-fluid bg-jumbotron">
-          <div class="container">
-            <h1 class="display-3">Mes pronos</h1>
-          </div>
-        </div>
+            ${navBarLogin}
+            <!--Jumbotron-->
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="card card-image" style="background-attachment: fixed; background-size: cover; background-image: url(http://47.52.36.53/ak7/shutterstock/videos/24828737/thumb/1.jpg);">
+                        <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+                            <div class="py-5">
+
+                                <!--Content-->
+
+                                    <h2 class="card-title pt-3 mb-5 font-bold">MES PRONOSTIQUES</h2>
+
+                                <!--Content-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Jumbotron-->
         <div class="container">
             <div class="row">${album}</div>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -281,7 +296,7 @@ const loginWilderHtml = `
       .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
       .then(album => render(
           `
-            ${navBarNoLogin}
+            ${navBarLogin}
             <div class="row">${album}</div>
           </div>`)
       )
@@ -305,11 +320,10 @@ const loginWilderHtml = `
     "/ranking": () =>
       render (
         `
-        ${navBarLogin}
+        ${navBarNoLogin}
         `
-      )
+      ),
 
-    ,
     "*": () => render(
       `
       <div id="notfound" class="text-center">

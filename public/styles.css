@@ -13,11 +13,13 @@ body {
     line-height: 80px;
     background-color: #222222;
   }
-
+ li {
+   text-decoration: none;
+ }
   /* NAVBAR */
 
   .navbar {
-    position: relative;
+   
     min-height: 100px;
     margin-bottom: 20px;
     border: 1px solid transparent;
@@ -332,6 +334,18 @@ body {
 /* encadre_rules */
 #encadre_rules {
 
+}
+.dashboard {
+  margin-top: 150px
+}
+.profil {
+  margin-top: 150px
+}
+.home {
+  margin-top: 150px
+}
+.rules {
+  margin-top: 150px;
 }
 
 /* FOOTER */
