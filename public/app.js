@@ -163,8 +163,8 @@ const loginWilderHtml = `
                     </div>
                 </div>
                 <form id="form-prono">
-                    <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="15" class="homecomming-team score form-control"></input>
-                    <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="15" class="away-team score form-control"></input>
+                    <input type="number" id="inputPronoTeamHome" name="pronoTeamHome" value="0" min="0" max="9" class="homecomming-team score form-control"></input>
+                    <input type="number" id="inputPronoTeamOut" name="pronoTeamOut" value="0" min="0" max="9" class="away-team score form-control"></input>
                     <input type="hidden" id="numberMatch" name="matchId" class="form-control" value="${button.dataset.matchId}">
                     <button type="submit" class="btn btn-outline-success prono"> Valider </button>
                 </form>

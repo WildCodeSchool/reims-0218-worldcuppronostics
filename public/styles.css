@@ -199,7 +199,9 @@ body {
 .name {
     font-size: 1.2em;
 }
-
+.pari {
+  font-size: 2em;
+}
 #date-of-match {
     width: 100%;
     text-align: center;

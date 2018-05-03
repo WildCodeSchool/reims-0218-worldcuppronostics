@@ -103,7 +103,7 @@ const html = `
   </div>
   <div id="main">
   </div>
-  <footer class="container-fluid text-center pt-1">
+  <footer class="container-fluid fixed-bottom text-center pt-1">
     <div class="footer-above">
       <h2 class="pb-3"> World Cup Pronostics</h6>
       <a href="/" id="icone-ballon" class="mx-auto mb-3"></a>
