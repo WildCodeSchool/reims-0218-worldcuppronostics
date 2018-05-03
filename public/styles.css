@@ -3,305 +3,296 @@
 body {
   background: url(https://championnatdefrancedespronos.fr/images/bg_home.png) no-repeat left top fixed;
   background-size: 100%;
-  background-color:#08225b;
+  background-color: #08225b;
   color: #222222;
 }
-  header{
-    left: 0;
-    right: 0;
-    height: 80px;
-    line-height: 80px;
-    background-color: #222222;
-  }
 
-  /* NAVBAR */
-
-  .navbar {
-    position: relative;
-    min-height: 100px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    padding: 0 1rem;
-  }
-
-  .navbar-default {
-    background-color: #07245e;
-    font-size: 20px;
-  }
-  .navbar-default .navbar-nav > li > a {
-    color: #ffffff;
-  }
-  .navbar-default .navbar-nav > li > a:hover {
-    color: #acacac;
-  }
-
- 
-  .nav-link {
-    font-size: 100%;
-  }
-
-  .rounded {
-    border-radius: 1.25rem !important;
-  }
-
-  .btn-secondary {
-    background-color: #494a4a;
-  }
-
-  .navbar-brand {
-    margin-left: 100px;
-  }
-
-   /* VIDEO */
-
-  .background {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background: url(polina.jpg) no-repeat;
-    background-size: cover;
-    filter: brightness(50%);
-  }
-  .page-header {
-    color: white;
-  }
-  p {
-    color: white;
-  }
-  .control-label {
-    color: white;
-  }
-  h3 {
-    color: white;
-  }
-  .custom-file-input:lang(en)~.custom-file-label::after {
-    content: "Parcourir";
+header {
+  left: 0;
+  right: 0;
+  height: 80px;
+  line-height: 80px;
+  background-color: #222222;
 }
+
+h3  {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+/* NAVBAR */
+
+.navbar {
+  position: relative;
+  min-height: 100px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  padding: 0 1rem;
+}
+
+.navbar-default {
+  background-color: #07245e;
+  font-size: 20px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #acacac;
+}
+
+.nav-link {
+  font-size: 100%;
+}
+
+.rounded {
+  border-radius: 1.25rem !important;
+}
+
+.btn-secondary {
+  background-color: #494a4a;
+}
+
+.navbar-brand {
+  margin-left: 100px;
+}
+
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: "Parcourir";
+}
+
 .img-thumbnail {
   width: 250px;
 }
+
 .img-fluid {
   max-width: 100%;
   width: 100%;
   height: 300px;
   margin-top: -20px;
 }
+
 .bg-jumbotron {
   position: absolute;
   background: url('https://i.ebayimg.com/images/i/131849350906-0-1/s-l1000.jpg');
   filter: blur(10px);
 }
+
 .jumbotron-fluid {
-   position: relative;
-  width:100%;
-  height:200px;
+  position: relative;
+  width: 100%;
+  height: 200px;
   margin-top: -20px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size:cover;
+  background-size: cover;
   background-attachment: fixed;
-
 }
+
 .card {
   background-color: #b1b1b1ad;
 }
+
 .display-3 {
   text-align: center;
   color: #ffffff;
 }
-@import url('https://fonts.googleapis.com/css?family=Raleway:200');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-/* Curtain container */
 #match-details-curtain {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(243, 239, 245, 0.7);
-    z-index: 500;
-    opacity: 1;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(243, 239, 245, 0.7);
+  z-index: 500;
+  opacity: 1;
 }
+
 /* Match details container */
+
 #match-details-container {
-    position: relative;
-    color: #F3EFF5;
-    background-color: #454955;
-    width: 480px;
-    padding: 3em 2em;
-    border-radius: 6px;
-    -webkit-box-shadow: 0px 0px 17px 3px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 17px 3px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 17px 3px rgba(0,0,0,0.75);
-    opacity: 1;
-    margin-top: 700px;
+  position: relative;
+  color: #F3EFF5;
+  background-color: #454955;
+  width: 480px;
+  padding: 3em 2em;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 17px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 17px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 17px 3px rgba(0, 0, 0, 0.75);
+  opacity: 1;
+  margin-top: 700px;
 }
 
 #title {
-    display: block;
-    position: relative;
-    width: 100%;
-    font-size: 2em;
-    text-align: center;
-    margin-bottom: 1.5em;
+  display: block;
+  position: relative;
+  width: 100%;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 1.5em;
 }
 
-#title::before, #title::after {
-    content: '';
-    display: block;
-    width: 45%;
-    border-bottom: 2px solid #99C24D;
-    margin: 0 auto;
-    margin-top: 0.2em;
+#title::before,
+#title::after {
+  content: '';
+  display: block;
+  width: 45%;
+  border-bottom: 2px solid #99C24D;
+  margin: 0 auto;
+  margin-top: 0.2em;
 }
 
 #title::before {
-    margin-bottom: 0.2em;
-    width: 60%;
+  margin-bottom: 0.2em;
+  width: 60%;
 }
 
 #teams-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .flexbox-items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 33.33333%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.33333%;
 }
 
 .logo {
-    display: block;
-    width: 70px;
-    height: 70px;
-    background-repeat: no-repeat;
-    background-size: cover;
+  display: block;
+  width: 70px;
+  height: 70px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .name {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
+
 .pari {
   font-size: 2em;
 }
+
 #date-of-match {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 #time-of-match {
-    width: 100%;
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 0.2em;
-    margin-top: -0.6em;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.2em;
+  margin-top: -0.6em;
 }
 
 #vs {
-    width: 100%;
-    position: relative;
-    margin-left: 5px;
+  width: 100%;
+  position: relative;
+  margin-left: 5px;
 }
 
 #vs-line {
-    width: 80%;
-    float: left;
-    margin-top: 6px;
-    border: 0;
-    border-bottom: 2px dashed #ccc;
+  width: 80%;
+  float: left;
+  margin-top: 6px;
+  border: 0;
+  border-bottom: 2px dashed #ccc;
 }
 
 .circle {
-    display: block;
-    float: left;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 2px solid #F3EFF5;
-    transform:rotate(360deg); /* for smoother circle */
-    -ms-transform:rotate(360deg);
-    -moz-transform:rotate(360deg);
-    -webkit-transform:rotate(360deg);
-    -o-transform:rotate(360deg);
+  display: block;
+  float: left;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #F3EFF5;
+  transform: rotate(360deg);
+  /* for smoother circle */
+  -ms-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
 }
 
 #form-prono {
-    display: block;
-    width: 30%;
-    height: 60px;
-    margin: 0 auto;
+  display: block;
+  width: 30%;
+  height: 60px;
+  margin: 0 auto;
 }
 
 .score {
-    position: relative;
-    width: calc(50% - 3px);
-    height: 60px;
-    float: left;
-    text-align: center;
-    line-height: 60px;
-    border: 2px solid #F3EFF5;
-    border-right: 1px solid #F3EFF5;
-    background-color: #454955;
-    font-size: 2em;
-    font-family: 'Roboto', sans-serif;
+  position: relative;
+  width: calc(50% - 3px);
+  height: 60px;
+  float: left;
+  text-align: center;
+  line-height: 60px;
+  border: 2px solid #F3EFF5;
+  border-right: 1px solid #F3EFF5;
+  background-color: #454955;
+  font-size: 2em;
+  font-family: 'Roboto', sans-serif;
 }
 
 .away-team.score {
-    float: right;
-    border-right: 2px solid #F3EFF5;
-    border-left: 1px solid #F3EFF5;
+  float: right;
+  border-right: 2px solid #F3EFF5;
+  border-left: 1px solid #F3EFF5;
 }
 
 .winner {
-    color: #02111B;
-    background-color: #99C24D;
+  color: #02111B;
+  background-color: #99C24D;
 }
 
 #bottom-devider {
-    margin-top: 2em;
-    width: 80%;
-    border: none;
-    border-bottom: 1px solid #99C24D;
+  margin-top: 2em;
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid #99C24D;
 }
 
 #close-details {
-    display: block;
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }
 
-#close-details::before, #close-details::after {
-    content:'';
-    display: block;
-    margin-top: 15px;
-    width: 100%;
-    border-bottom: 2px solid #F3EFF5;
-    transform: rotate(45deg);
+#close-details::before,
+#close-details::after {
+  content: '';
+  display: block;
+  margin-top: 15px;
+  width: 100%;
+  border-bottom: 2px solid #F3EFF5;
+  transform: rotate(45deg);
 }
 
 #close-details::after {
-    margin-top: -2px;
-    transform: rotate(-45deg);
+  margin-top: -2px;
+  transform: rotate(-45deg);
 }
+
 .prono {
   margin-left: 170px;
 }
@@ -314,25 +305,27 @@ body {
   background-size: cover;
 }
 
-#logo_accueil p  {
+#logo_accueil p {
   color: white;
   font-size: 4.5vw;
   text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
 }
 
-#explication_1, #explication_2, #explication_3 {
+#explication_1,
+#explication_2,
+#explication_3 {
   background-color: white;
 }
 
-
-#explication_1 p, #explication_2 p, #explication_3 p {
- color: black;
+#explication_1 p,
+#explication_2 p,
+#explication_3 p {
+  color: black;
 }
 
 /* encadre_rules */
-#encadre_rules {
 
-}
+#encadre_rules {}
 
 /* FOOTER */
 
@@ -347,7 +340,7 @@ footer {
 }
 
 .footer-above h2,
- .footer-title-h3 {
+.footer-title-h3 {
   color: #000;
 }
 
@@ -375,16 +368,12 @@ ul {
 
 /* END FOOTER */
 
-
 /* NOT FOUND */
 
 #notfound {
   height: 100%;
   width: 100%;
-  background: linear-gradient(
-   rgba(8, 34, 91, 0.75),
-   rgba(8, 34, 91, 0.75)
-   ),url("https://images.unsplash.com/photo-1518091043644-c1d4457512c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d69727bcd5aa3f020789b7867dda01f3&auto=format&fit=crop&w=1489&q=80");
+  background: linear-gradient( rgba(8, 34, 91, 0.75), rgba(8, 34, 91, 0.75)), url("https://images.unsplash.com/photo-1518091043644-c1d4457512c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d69727bcd5aa3f020789b7867dda01f3&auto=format&fit=crop&w=1489&q=80");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -434,7 +423,6 @@ ul {
     margin-left: 0;
     margin-right: 0;
   }
-
   #notfound nav {
     display: flex;
     flex-direction: column;
@@ -443,152 +431,27 @@ ul {
 
 /* END NOTFOUND */
 
-* Card component
- */
-.card {
-    background-color: #F7F7F7;
-    /* just in case there no content*/
-    padding: 20px 25px 30px;
-    margin: 0 auto 25px;
-    margin-top: 50px;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
-/*
- * Form styles
- */
-.profile-name-card {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin: 10px 0 0;
-    min-height: 1em;
-}
-
-.reauth-email {
-    display: block;
-    color: #404040;
-    line-height: 2;
-    margin-bottom: 10px;
-    font-size: 14px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.form-signin #inputEmail,
-.form-signin #inputPassword {
-    direction: ltr;
-    height: 44px;
-    font-size: 16px;
-}
-
-.form-signin input[type=email],
-.form-signin input[type=password],
-.form-signin input[type=text],
-.form-signin button {
-    width: 100%;
-    display: block;
-    margin-bottom: 10px;
-    z-index: 1;
-    position: relative;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.form-signin .form-control:focus {
-    border-color: rgb(104, 145, 162);
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-}
-
-.btn.btn-signin {
-    /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
-    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-    padding: 0px;
-    font-weight: 700;
-    font-size: 14px;
-    height: 36px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    border: none;
-    -o-transition: all 0.218s;
-    -moz-transition: all 0.218s;
-    -webkit-transition: all 0.218s;
-    transition: all 0.218s;
-}
-
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
-}
-
-.forgot-password {
-    color: rgb(104, 145, 162);
-}
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-  color: rgb(12, 97, 33);
-}
-.form-control {
-  display: block;
-  width: 100%;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  margin-left: 0px;
-  width: 250px;
-  margin-left: 20px;
-}
 .marge {
   margin-left: 85px;
   margin-top: -10px
 }
+
 .input-pass {
-margin-left: 10px;
+  margin-left: 10px;
 }
+
 .input-mail {
-margin-left: 10px;
+  margin-left: 10px;
 }
+
 .form-profil {
   margin-left: 600px;
 }
+
 .valid-profil {
-margin-left: 100px;
+  margin-left: 100px;
 }
+
 .form-group {
-color: white;
+  color: white;
 }
