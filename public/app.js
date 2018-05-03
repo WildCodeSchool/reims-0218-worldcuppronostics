@@ -210,7 +210,10 @@ const loginWilderHtml = `
     "/wilders/new": () => {
       //construit le formulaire
       render(
-        `<div class="container">
+      
+        ` 
+        ${navBarNoLogin}
+        <div class="container">
       <div id="alert-box" class="hidden">
       </div>
       <form id="add-wilder">
@@ -234,19 +237,7 @@ const loginWilderHtml = `
           <label for="inputMotDePasse">Mot de passe</label>
           <input name="motdepasse" type="password" class="form-control" id="inputMotDePasse" placeholder="Choississez votre mot de passe" required>
         </div>
-        <div class="form-group">
-          <label for="inputConfirmationMotDePasse">Confirmation de mot de passe</label>
-          <input name="confirmationmotdepasse" type="password" class="form-control" id="inputConfirmationMotDePasse" placeholder="Veuillez confirmer votre mot de passe" required>
-        </div>
-        <div class="form-group">
-          <label for="inputCity">Votre ville</label>
-          <input name="city" type="text" class="form-control" id="inputCity" placeholder="Entrez votre ville actuelle" required>
-        </div>
-        <div class="form-group">
-          <label for="inputEquipePreferee">Votre équipe supportée pour le Mondial</label>
-          <input name="equipepreferee" type="text" class="form-control" id="inputEquipePreferee" placeholder="Entrez votre équipe supportée" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
       </form>
     </div>`
       )
