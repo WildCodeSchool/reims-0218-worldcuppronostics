@@ -203,6 +203,7 @@ const loginWilderHtml = `
           const buttonLogout = document.getElementById("button-logout")
           buttonLogout.addEventListener("click", () => {
             localStorage.removeItem("token")
+            page('/')
           })
         })
       },
@@ -287,6 +288,7 @@ const loginWilderHtml = `
           "Content-Type": "application/json",
           Authorization: "Bearer " + token, // send token
         },
+        
       })
       .then(res => res.json())
       .then(wilders => wilders.reduce((carry, wilder) => carry + makeProfil(wilder), ""))
@@ -296,6 +298,7 @@ const loginWilderHtml = `
             <div class="row">${album}</div>
           </div>`)
       )
+      
     ,
     "/rules": () =>
       render (

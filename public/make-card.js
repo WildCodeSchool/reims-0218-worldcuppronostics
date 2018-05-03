@@ -13,15 +13,20 @@
     }
       return `
       <div class="card mx-auto mb-3" style="width: 18rem;">
-        <div class="card-body text-center">
-          <p> ${item.teamHome} </p>
-          <img src="${item.drapeauHome}" style="width: 48px; height: 48px" class="rounded">
-          <img src="${item.drapeauOut}" style="width: 48px; height: 48px" class="rounded">
-          <p> ${item.teamOut} </p>
-          <p class="idmatch"> ${item.id} </p>
-          <p> ${item.localisation} </p>
+        <div class="card-body cardprono text-center">
+          <div class="row">
+            <div class="col-6"> 
+              <img src="${item.drapeauHome}" style="width: 48px; height: 48px" class="rounded">
+              <p class="name"> ${item.teamHome} </p>
+            </div>
+            <div class="col-6">
+              <img src="${item.drapeauOut}" style="width: 48px; height: 48px" class="rounded">
+              <p class="name"> ${item.teamOut} </p>
+            </div>
+          </div>
+          <p> Lieu : ${item.localisation} </p>
         </div>
-        <div class="text-center button-bet-display">
+        <div class="text-center my-0 pb-2 button-bet-display">
           ${buttonOrProno}
         </div>
         <!-- Large modal -->
