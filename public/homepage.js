@@ -2,10 +2,10 @@
 
 const homepage =
     `
-    <div id="homepage" class="container">
+    <div id="homepage" class="container-fluid">
       <div class="row">
-        <div id="logo_accueil" class=" col d-flex align-items-center rounded border border-white mx-1">
-          <p class="text-center col">Seras-tu le meilleur pronostiqueur ?</p>
+        <div id="logo_accueil" class=" col d-flex align-items-center rounded border border-white  mx-0 mb-0">
+          <p class="text-center my-auto col">Seras-tu le meilleur pronostiqueur ?</p>
         </div>
       </div>
       <div id="explication_1" class="row mx-auto mt-4 d-flex align-items-center border border-white">
