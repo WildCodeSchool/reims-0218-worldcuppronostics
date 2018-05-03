@@ -7,6 +7,8 @@ import serializeForm from "./serializeForm.js"
 import homepage from "./homepage.js"
 import rulespage from "./rules.js"
 import exampleMatch from "./dashboard.js"
+import exampleRanking from "./ranking.js";
+
 
 
 const mainDiv = document.getElementById("main")
@@ -107,6 +109,7 @@ const loginWilderHtml = `
           Authorization: "Bearer " + token, // send token
         }
       })
+
       .then(res => res.json())
       .then(matchs => matchs.reduce((carry, match) => carry + makeCard(match), ""))
       .then(album => {
@@ -334,6 +337,7 @@ const loginWilderHtml = `
       render (
         `
         ${navBarLogin}
+        ${exampleRanking}
         `
       )
       const buttonLogout = document.getElementById("button-logout")
