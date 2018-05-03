@@ -111,7 +111,7 @@ const loginWilderHtml = `
             ${navBarLogin}
           <div class="jumbotron jumbotron-fluid bg-jumbotron">
           <div class="container">
-            <h1 class="display-3">Mes pronos</h1>
+            <h1 class="display-3 text-dark">Mes pronos</h1>
           </div>
         </div>
         <div class="container">
@@ -291,6 +291,7 @@ const loginWilderHtml = `
             ${navBarLogin}
             <div class="row">${album}</div>
           </div>`)
+          
       )
       const buttonLogout = document.getElementById("button-logout")
           buttonLogout.addEventListener("click", () => {
@@ -329,12 +330,18 @@ const loginWilderHtml = `
     }
       
     ,
-    "/ranking": () =>
+    "/ranking": () => {
       render (
         `
         ${navBarLogin}
         `
       )
+      const buttonLogout = document.getElementById("button-logout")
+          buttonLogout.addEventListener("click", () => {
+            localStorage.removeItem("token")
+            page("/")
+          })
+        }
 
     ,
     "*": () => render(

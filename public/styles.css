@@ -96,7 +96,7 @@ body {
 .bg-jumbotron {
   position: absolute;
   background: url('https://i.ebayimg.com/images/i/131849350906-0-1/s-l1000.jpg');
-  filter: blur(10px);
+  filter: blur(0px);
 }
 .jumbotron-fluid {
    position: relative;
