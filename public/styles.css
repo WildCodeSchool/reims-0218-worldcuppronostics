@@ -15,7 +15,7 @@ header {
   background-color: #222222;
 }
 
-h3  {
+h3 {
   color: white;
 }
 
@@ -50,25 +50,8 @@ p {
   font-size: 100%;
 }
 
-.rounded {
-  border-radius: 1.25rem !important;
-}
-
-.btn-secondary {
-  background-color: #494a4a;
-}
-
 .navbar-brand {
   margin-left: 100px;
-}
-
-
-.custom-file-input:lang(en)~.custom-file-label::after {
-  content: "Parcourir";
-}
-
-.img-thumbnail {
-  width: 250px;
 }
 
 .img-fluid {
@@ -322,10 +305,6 @@ p {
 #explication_3 p {
   color: black;
 }
-
-/* encadre_rules */
-
-#encadre_rules {}
 
 /* FOOTER */
 
