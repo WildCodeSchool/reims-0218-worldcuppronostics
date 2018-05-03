@@ -7,20 +7,20 @@ body {
   color: #222222;
 }
 
-header {
-  left: 0;
-  right: 0;
-  height: 80px;
-  line-height: 80px;
-  background-color: #222222;
-}
-
 h3 {
   color: white;
 }
 
 p {
   color: white;
+}
+
+.name {
+  font-size: 1.2em;
+}
+
+.pari {
+  font-size: 2em;
 }
 
 /* NAVBAR */
@@ -42,23 +42,8 @@ p {
   color: #ffffff;
 }
 
-.navbar-default .navbar-nav>li>a:hover {
-  color: #acacac;
-}
-
-.nav-link {
-  font-size: 100%;
-}
-
 .navbar-brand {
   margin-left: 100px;
-}
-
-.img-fluid {
-  max-width: 100%;
-  width: 100%;
-  height: 300px;
-  margin-top: -20px;
 }
 
 .bg-jumbotron {
@@ -87,6 +72,8 @@ p {
   color: #ffffff;
 }
 
+/* CARD PRONOS MATCHS */
+
 #match-details-curtain {
   display: flex;
   justify-content: center;
@@ -100,8 +87,6 @@ p {
   z-index: 500;
   opacity: 1;
 }
-
-/* Match details container */
 
 #match-details-container {
   position: relative;
@@ -160,14 +145,6 @@ p {
   height: 70px;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.name {
-  font-size: 1.2em;
-}
-
-.pari {
-  font-size: 2em;
 }
 
 #date-of-match {
