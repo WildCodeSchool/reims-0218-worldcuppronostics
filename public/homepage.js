@@ -14,12 +14,15 @@ const homepage =
       </div>
       <div id="explication_2" class="row mx-auto mt-4 d-flex align-items-center border border-white">
           <p class="text-center col-sm-12 order-2 col-md-6 order-md-1">Réalise tes pronostics !</p>
-          <img src="../ressources/logoaccueil.jpg" class="col-sm-12 order-1 col-md-6 order-md-2 my-1" alt="example-bet">
+          <div class="col-sm-12 order-1 col-md-6 order-md-2 my-1 px-4 py-4 text-center" >
+            <img src="assets/prono.png" class="col-9" alt="example-bet">
+          </div>
       </div>
-      <div id="explication_3" class="row mx-auto mt-4 d-flex align-items-center border border-white">
-        <img src="../ressources/podium.jpg" class="mx-auto col-4 col-md-2 my-1 px-4" alt="example-bet">
+      <div id="explication_3" class="row mx-auto mb-5 mt-4 d-flex align-items-center border border-white">
+        <img src="assets/podium.jpg" class="mx-auto col-4 col-md-2 my-1 px-4" alt="example-bet">
         <p class="text-center col-sm-12 col-md-6">Domineras-tu le classement ?</p>
       </div>
+    </div>
     </div>
     `
 export default homepage
