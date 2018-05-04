@@ -106,7 +106,6 @@ const html = `
   <footer class="container-fluid text-center pt-1 footer">
     <div class="footer-above">
       <h2 class="pb-3"> World Cup Pronostics</h6>
-      <a href="/" id="logo" class="mx-auto mb-3">logo</a>
       <div>
         <div class="row">
           <div class="col-md-4">

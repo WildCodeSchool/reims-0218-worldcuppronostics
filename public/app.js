@@ -214,7 +214,7 @@ const loginWilderHtml = `
       <div id="alert-box" class="hidden">
       </div>
       <form id="add-wilder">
-        <div class="form-group">
+        <div class="form-group mt-5">
           <label for="inputName">Nom</label>
           <input name="nom" type="text" class="form-control" id="inputName" placeholder="Entrez votre nom" required>
         </div>
@@ -238,12 +238,9 @@ const loginWilderHtml = `
           <label for="inputCity">Votre ville</label>
           <input name="city" type="text" class="form-control" id="inputCity" placeholder="Entrez votre ville actuelle" required>
         </div>
-        <div class="form-group">
-          <label for="inputEquipePreferee">Votre équipe supportée pour le Mondial</label>
-          <input name="equipepreferee" type="text" class="form-control" id="inputEquipePreferee" placeholder="Entrez votre équipe supportée" required>
-        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <a href="/" class="text-light">Retour</a>
+      </form mb>
     </div>`
       )
       //transformer l'objet js en json sur ma route wilder/new

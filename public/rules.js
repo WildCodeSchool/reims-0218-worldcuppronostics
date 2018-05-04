@@ -10,7 +10,6 @@ const rulespage =
 </div> 
 <div class="explication_of_the_game container mt-4">
   <div class="row text-center">
-  <p class="my-0 col-12">Tu en rêvais ? Nous l'avons fait !</p>
   <p class="my-0 col-12">Même si tu penses que l'Italie gagnera la prochaine Coupe du Monde, tu peux t'inscrire.</p>
   <p class="my-0 col-12">A travers cette compétition amicale, tu pourras épater tes amis et devenir le meilleur pronostiqueur.</p>
   <p class="my-0 col-12">Nous vous attendons très nombreux (une récompense sera définie en fonction du nombre d'inscrits).</p>
@@ -29,7 +28,7 @@ const rulespage =
   
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body bg-light text-center">
-          <p class="text-dark">Le vainqueur sera celui qui aura cumulé le plus de points sur les 48 pronostics de la phase de poules. En cas d'égalité, les joueurs partageront la récompense.</p>
+          <p class="text-dark">Le vainqueur sera celui qui aura cumulé le plus de points sur les 48 pronostics de la phase de poule. En cas d'égalité, les joueurs partageront la récompense.</p>
         </div>
       </div>
     </div>
@@ -43,7 +42,7 @@ const rulespage =
       </div>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
         <div class="card-body bg-light text-center">
-          <p class="text-dark">1. Dès que ton inscription est faite, tu peux alors accèder aux 48 pronostics de la phase de poules. Pas de panique, tu n'es pas obligé de faire les 48 matchs en une seule fois. Tu peux revenir demain pour finir.</p>
+          <p class="text-dark">1. Dès que ton inscription est faite, tu peux alors accèder aux 48 pronostics de la phase de poule. Pas de panique, tu n'es pas obligé de faire les 48 matchs en une seule fois. Tu peux revenir demain pour finir.</p>
           <p class="text-dark">2. Maintenant le plus dur sera d'attendre le 14 juin pour le premier match Russie - Arabie Saoudite.</p>
           <p class="text-dark">3. Tu dois faire les pronostics pour les 48 matchs. Tu dois inscrire le score exact. Tu gagneras des points si tu as bien pronostiqué sur la victoire, nul ou défaite et si tu as le score exact.</p>
           <p class="text-dark">4. Le match Russie - Arabie Saoudite est fini. Tu obtiens alors dans ta page "Tableau de bord" le récapitulatif des points obtenus pour ce match.</p>
